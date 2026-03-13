@@ -173,8 +173,8 @@
         /* MAIN CONTENT */
         .container-main {
             max-width: 1600px;
-                width: 100vw;
-    margin-left: calc(-1 * var(--sidebar-w));
+            width: 100vw;
+            margin-left: calc(-1 * var(--sidebar-w));
             background: white;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
@@ -377,7 +377,7 @@
             color: #888;
             margin-bottom: 10px;
             font-style: italic;
-        
+
         }
 
         /* Main Container */
@@ -397,14 +397,14 @@
 
         /* Navbar Adjustment */
         .acwa-navbar {
-            
+
             width: 100% !important;
         }
 
 
     </style>
     <style>
-       
+
         body{display:flex!important;flex-direction:column!important;}
         #content-area{flex:1;}
         .view-page{display:none!important;}
@@ -462,135 +462,135 @@
         .asset-btn{padding:8px 20px;border-radius:8px;background:#F1EDF9;color:#2E2044;font-size:13px;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .2s;font-family:'Montserrat',sans-serif;}
         .asset-btn.active{background:#9273DA;color:white;border-color:#9273DA;}
         .metric-select{width:100%;padding:6px 10px;border-radius:8px;border:1.5px solid #E2E8F0;font-family:'Montserrat',sans-serif;font-size:12px;color:#2E2044;margin-bottom:12px;}
-    
-/* ===== COVERAGE PANEL ===== */
-#coveragePanel{display:none;position:fixed;inset:0;background:rgba(46,32,68,.82);
-  z-index:9100;align-items:center;justify-content:center;padding:12px;font-family:'Montserrat',sans-serif;}
-.cpbox{background:#fff;border-radius:18px;width:min(960px,98vw);max-height:92vh;
-  display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;}
-.cphdr{background:#2E2044;padding:15px 22px;display:flex;align-items:flex-start;
-  justify-content:space-between;flex-shrink:0;}
-.cptitle{color:#fff;font-size:.95rem;font-weight:700;margin:0;}
-.cpsub{color:rgba(255,255,255,.55);font-size:.68rem;margin:2px 0 0;}
-.cpxbtn{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7;padding:0 4px;}
-.cpxbtn:hover{opacity:1;}
-.cptabbar{display:flex;background:#f4f1fb;border-bottom:2px solid #ede9f8;flex-shrink:0;}
-.cptab{flex:1;padding:11px 16px;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;
-  background:none;font-family:'Montserrat',sans-serif;font-size:.73rem;font-weight:700;color:#aaa;cursor:pointer;}
-.cptab.on{color:#9273DA;border-bottom-color:#9273DA;background:#fff;}
-.cpfbar{display:flex;gap:6px;padding:9px 14px;background:#f9f7fc;
-  border-bottom:1px solid #ede9f8;flex-shrink:0;flex-wrap:wrap;align-items:center;}
-.cpfbtn{padding:4px 12px;border-radius:20px;border:1.5px solid #ddd;background:#fff;
-  font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
-.cpfbtn.on{background:#9273DA;border-color:#9273DA;color:#fff;}
-.cpscroll{flex:1;overflow-y:auto;min-height:0;}
-.cptbl{width:100%;border-collapse:collapse;font-size:.78rem;}
-.cptbl thead th{padding:9px 14px;text-align:left;font-size:.59rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:.05em;color:#aaa;background:#f9f7fc;border-bottom:2px solid #ede9f8;position:sticky;top:0;z-index:2;}
-.cptbl tbody td{padding:8px 14px;border-bottom:1px solid #f3f0fa;vertical-align:middle;}
-.cptbl .cpsecrow td{background:#2E2044;color:#fff;font-weight:700;font-size:.68rem;padding:7px 14px;}
-.cptbl tr:not(.cpsecrow):not(.cpeditrow):hover td{background:#faf8ff;}
-.spill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.6rem;font-weight:700;text-transform:uppercase;}
-.spD{background:#d7f7d3;color:#1a6e14;}.spN{background:#2e2044;color:#d2f050;}
-.spO{background:#f0f0f0;color:#999;}.spL{background:#fef3c7;color:#b45309;}
-.spS{background:#fee2e2;color:#b91c1c;}.spC{background:#dbeafe;color:#1e40af;}
-.crewdot{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:.6rem;font-weight:800;}
-.crewdot-A{background:#9273DA;color:#fff;}.crewdot-B{background:#D2F050;color:#2E2044;}
-.crewdot-C{background:#2E2044;color:#D2F050;}.crewdot-D{background:#f97316;color:#fff;}
-.cpebtn{background:none;border:1.5px solid #e2e8f0;border-radius:6px;padding:2px 7px;font-size:.7rem;cursor:pointer;color:#888;}
-.cpebtn:hover{background:#9273DA;border-color:#9273DA;color:#fff;}
-.cpeditrow td{padding:0!important;background:#f9f7fc!important;}
-.cpeditwrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;}
-.cpepin{width:88px;padding:6px 9px;border:2px solid #ddd;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.8rem;text-align:center;letter-spacing:.3em;outline:none;}
-.cpepin:focus{border-color:#9273DA;}
-.cpesel{padding:6px 9px;border:2px solid #ddd;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.74rem;outline:none;color:#2E2044;}
-.cpebtnok{padding:6px 14px;background:#9273DA;color:#fff;border:none;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;}
-.cpebtncanc{padding:6px 11px;background:#f0f0f0;border:none;border-radius:7px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.7rem;}
-.cpeerr{color:#e53e3e;font-size:.64rem;font-weight:700;width:100%;display:none;}
-.cplw{padding:14px;}.cplcard{border:1.5px solid #ede9f8;border-radius:12px;padding:14px;margin-bottom:12px;background:#fff;}
-.cplcard h4{font-size:.72rem;font-weight:700;color:#2E2044;margin:0 0 10px;text-transform:uppercase;}
-.cpfg{display:flex;flex-direction:column;gap:3px;}
-.cpfg label{font-size:.59rem;font-weight:700;color:#aaa;text-transform:uppercase;}
-.cpfsel{padding:7px 11px;border:2px solid #ddd;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.74rem;color:#2E2044;outline:none;min-width:200px;}
-.cpfsel:focus{border-color:#9273DA;}
-.cpltbtn{padding:6px 12px;border:2px solid #ddd;border-radius:8px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
-.cpltbtn.on{background:#2E2044;border-color:#2E2044;color:#fff;}
-.cpfindbtn{padding:8px 18px;background:#9273DA;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:700;cursor:pointer;}
-.cpfindbtn:hover{background:#2E2044;}
-.cpferr{color:#e53e3e;font-size:.66rem;font-weight:700;display:none;margin-bottom:8px;}
-.cpri{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border:1.5px solid #ede9f8;border-radius:9px;margin-bottom:8px;background:#faf8ff;}
-.cprin{font-size:.78rem;font-weight:700;color:#2E2044;}.cprim{font-size:.61rem;color:#888;margin-top:1px;}
-.cprok{font-size:.6rem;color:#15803d;font-weight:700;}.cprwarn{font-size:.6rem;color:#d97706;font-weight:700;}
-.cpabtn{padding:5px 13px;background:#fff;border:2px solid #9273DA;color:#9273DA;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;cursor:pointer;}
-.cpabtn:hover{background:#9273DA;color:#fff;}
-.cpal{padding:9px 12px;border-left:4px solid #f97316;background:#fff7ed;border-radius:0 7px 7px 0;margin-bottom:7px;font-size:.7rem;}
-.cpnrep{color:#aaa;font-size:.74rem;font-style:italic;padding:4px 0;}
-/* Opposite-shift button */
-.view-opp-btn{display:block;width:calc(100% - 4px);margin:3px 2px 0;padding:2px 6px;
-  font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:700;text-transform:uppercase;
-  background:rgba(210,240,80,.15);color:#D2F050;border:1px solid rgba(210,240,80,.3);
-  border-radius:4px;cursor:pointer;transition:all .15s;}
-.view-opp-btn:hover{background:#D2F050;color:#2E2044;}
-/* Hover tooltip */
-#cpTip{position:fixed;z-index:9500;background:#2E2044;border-radius:12px;padding:12px 16px;
-  box-shadow:0 12px 40px rgba(0,0,0,.5);min-width:200px;max-width:300px;
-  pointer-events:none;display:none;font-family:'Montserrat',sans-serif;
-  border:1.5px solid rgba(210,240,80,.2);}
-/* Multi-date modal */
-#cpMultiModal{display:none;position:fixed;inset:0;background:rgba(46,32,68,.85);
-  z-index:9200;align-items:center;justify-content:center;padding:12px;font-family:'Montserrat',sans-serif;}
 
-/* ── View Team Absence button ── */
-.ta-btn{
-  padding:10px 22px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;
-  background:linear-gradient(135deg,#2E2044,#4a3370);color:#D2F050;
-  border:2px solid rgba(210,240,80,.4);border-radius:10px;cursor:pointer;
-  letter-spacing:.04em;text-transform:uppercase;transition:all .18s;
-  box-shadow:0 2px 10px rgba(46,32,68,.25);white-space:nowrap;
-}
-.ta-btn:hover{background:#D2F050;color:#2E2044;border-color:#D2F050;box-shadow:0 4px 18px rgba(210,240,80,.3);}
-/* ── Team Absence Modal ── */
-#taModal{display:none;position:fixed;inset:0;background:rgba(46,32,68,.85);
-  z-index:9300;align-items:center;justify-content:center;padding:12px;
-  font-family:'Montserrat',sans-serif;}
-.ta-box{background:#fff;border-radius:18px;width:min(1000px,98vw);max-height:92vh;
-  display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;}
-.ta-hdr{background:#2E2044;padding:15px 22px;display:flex;align-items:center;
-  justify-content:space-between;flex-shrink:0;}
-.ta-hdr-title{color:#fff;font-size:.95rem;font-weight:700;margin:0;}
-.ta-hdr-sub{color:rgba(255,255,255,.55);font-size:.68rem;margin:2px 0 0;}
-.ta-xbtn{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7;padding:0 4px;}
-.ta-xbtn:hover{opacity:1;}
-.ta-toolbar{display:flex;gap:8px;padding:10px 16px;background:#f9f7fc;
-  border-bottom:1px solid #ede9f8;flex-shrink:0;flex-wrap:wrap;align-items:center;}
-.ta-filter{padding:5px 14px;border-radius:20px;border:1.5px solid #ddd;background:#fff;
-  font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
-.ta-filter.on{background:#9273DA;border-color:#9273DA;color:#fff;}
-.ta-search{padding:6px 12px;border:2px solid #ddd;border-radius:8px;
-  font-family:'Montserrat',sans-serif;font-size:.72rem;outline:none;min-width:180px;color:#2E2044;}
-.ta-search:focus{border-color:#9273DA;}
-.ta-scroll{flex:1;overflow-y:auto;min-height:0;padding:16px;}
-.ta-empty{color:#aaa;font-size:.78rem;font-style:italic;text-align:center;padding:40px 0;}
-/* summary cards */
-.ta-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px;}
-.ta-stat{background:#fff;border:1.5px solid #ede9f8;border-radius:12px;padding:12px 16px;text-align:center;}
-.ta-stat-n{font-size:1.5rem;font-weight:800;color:#9273DA;}
-.ta-stat-l{font-size:.62rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
-/* crew section */
-.ta-crew-hdr{background:#2E2044;color:#fff;font-size:.68rem;font-weight:700;
-  padding:7px 14px;border-radius:8px 8px 0 0;margin-top:12px;
-  display:flex;align-items:center;justify-content:space-between;}
-.ta-card{border:1.5px solid #ede9f8;border-radius:0 0 10px 10px;margin-bottom:4px;overflow:hidden;}
-.ta-row{display:grid;grid-template-columns:200px 90px 100px 1fr 160px;
-  align-items:center;padding:8px 14px;border-bottom:1px solid #f3f0fa;font-size:.74rem;}
-.ta-row:last-child{border-bottom:none;}
-.ta-row:hover{background:#faf8ff;}
-.ta-row-hd{background:#f9f7fc;font-size:.6rem;font-weight:700;text-transform:uppercase;
-  letter-spacing:.05em;color:#aaa;border-bottom:2px solid #ede9f8;}
-.ta-dates{display:flex;flex-wrap:wrap;gap:3px;}
-.ta-date-pill{padding:1px 6px;background:#ede9f8;border-radius:10px;font-size:.6rem;color:#666;}
-.ta-date-pill.today{background:#D2F050;color:#2E2044;font-weight:700;}
-</style>
+        /* ===== COVERAGE PANEL ===== */
+        #coveragePanel{display:none;position:fixed;inset:0;background:rgba(46,32,68,.82);
+            z-index:9100;align-items:center;justify-content:center;padding:12px;font-family:'Montserrat',sans-serif;}
+        .cpbox{background:#fff;border-radius:18px;width:min(960px,98vw);max-height:92vh;
+            display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;}
+        .cphdr{background:#2E2044;padding:15px 22px;display:flex;align-items:flex-start;
+            justify-content:space-between;flex-shrink:0;}
+        .cptitle{color:#fff;font-size:.95rem;font-weight:700;margin:0;}
+        .cpsub{color:rgba(255,255,255,.55);font-size:.68rem;margin:2px 0 0;}
+        .cpxbtn{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7;padding:0 4px;}
+        .cpxbtn:hover{opacity:1;}
+        .cptabbar{display:flex;background:#f4f1fb;border-bottom:2px solid #ede9f8;flex-shrink:0;}
+        .cptab{flex:1;padding:11px 16px;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;
+            background:none;font-family:'Montserrat',sans-serif;font-size:.73rem;font-weight:700;color:#aaa;cursor:pointer;}
+        .cptab.on{color:#9273DA;border-bottom-color:#9273DA;background:#fff;}
+        .cpfbar{display:flex;gap:6px;padding:9px 14px;background:#f9f7fc;
+            border-bottom:1px solid #ede9f8;flex-shrink:0;flex-wrap:wrap;align-items:center;}
+        .cpfbtn{padding:4px 12px;border-radius:20px;border:1.5px solid #ddd;background:#fff;
+            font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
+        .cpfbtn.on{background:#9273DA;border-color:#9273DA;color:#fff;}
+        .cpscroll{flex:1;overflow-y:auto;min-height:0;}
+        .cptbl{width:100%;border-collapse:collapse;font-size:.78rem;}
+        .cptbl thead th{padding:9px 14px;text-align:left;font-size:.59rem;font-weight:700;text-transform:uppercase;
+            letter-spacing:.05em;color:#aaa;background:#f9f7fc;border-bottom:2px solid #ede9f8;position:sticky;top:0;z-index:2;}
+        .cptbl tbody td{padding:8px 14px;border-bottom:1px solid #f3f0fa;vertical-align:middle;}
+        .cptbl .cpsecrow td{background:#2E2044;color:#fff;font-weight:700;font-size:.68rem;padding:7px 14px;}
+        .cptbl tr:not(.cpsecrow):not(.cpeditrow):hover td{background:#faf8ff;}
+        .spill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.6rem;font-weight:700;text-transform:uppercase;}
+        .spD{background:#d7f7d3;color:#1a6e14;}.spN{background:#2e2044;color:#d2f050;}
+        .spO{background:#f0f0f0;color:#999;}.spL{background:#fef3c7;color:#b45309;}
+        .spS{background:#fee2e2;color:#b91c1c;}.spC{background:#dbeafe;color:#1e40af;}
+        .crewdot{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:.6rem;font-weight:800;}
+        .crewdot-A{background:#9273DA;color:#fff;}.crewdot-B{background:#D2F050;color:#2E2044;}
+        .crewdot-C{background:#2E2044;color:#D2F050;}.crewdot-D{background:#f97316;color:#fff;}
+        .cpebtn{background:none;border:1.5px solid #e2e8f0;border-radius:6px;padding:2px 7px;font-size:.7rem;cursor:pointer;color:#888;}
+        .cpebtn:hover{background:#9273DA;border-color:#9273DA;color:#fff;}
+        .cpeditrow td{padding:0!important;background:#f9f7fc!important;}
+        .cpeditwrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;}
+        .cpepin{width:88px;padding:6px 9px;border:2px solid #ddd;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.8rem;text-align:center;letter-spacing:.3em;outline:none;}
+        .cpepin:focus{border-color:#9273DA;}
+        .cpesel{padding:6px 9px;border:2px solid #ddd;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.74rem;outline:none;color:#2E2044;}
+        .cpebtnok{padding:6px 14px;background:#9273DA;color:#fff;border:none;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;}
+        .cpebtncanc{padding:6px 11px;background:#f0f0f0;border:none;border-radius:7px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.7rem;}
+        .cpeerr{color:#e53e3e;font-size:.64rem;font-weight:700;width:100%;display:none;}
+        .cplw{padding:14px;}.cplcard{border:1.5px solid #ede9f8;border-radius:12px;padding:14px;margin-bottom:12px;background:#fff;}
+        .cplcard h4{font-size:.72rem;font-weight:700;color:#2E2044;margin:0 0 10px;text-transform:uppercase;}
+        .cpfg{display:flex;flex-direction:column;gap:3px;}
+        .cpfg label{font-size:.59rem;font-weight:700;color:#aaa;text-transform:uppercase;}
+        .cpfsel{padding:7px 11px;border:2px solid #ddd;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.74rem;color:#2E2044;outline:none;min-width:200px;}
+        .cpfsel:focus{border-color:#9273DA;}
+        .cpltbtn{padding:6px 12px;border:2px solid #ddd;border-radius:8px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
+        .cpltbtn.on{background:#2E2044;border-color:#2E2044;color:#fff;}
+        .cpfindbtn{padding:8px 18px;background:#9273DA;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:700;cursor:pointer;}
+        .cpfindbtn:hover{background:#2E2044;}
+        .cpferr{color:#e53e3e;font-size:.66rem;font-weight:700;display:none;margin-bottom:8px;}
+        .cpri{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border:1.5px solid #ede9f8;border-radius:9px;margin-bottom:8px;background:#faf8ff;}
+        .cprin{font-size:.78rem;font-weight:700;color:#2E2044;}.cprim{font-size:.61rem;color:#888;margin-top:1px;}
+        .cprok{font-size:.6rem;color:#15803d;font-weight:700;}.cprwarn{font-size:.6rem;color:#d97706;font-weight:700;}
+        .cpabtn{padding:5px 13px;background:#fff;border:2px solid #9273DA;color:#9273DA;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;cursor:pointer;}
+        .cpabtn:hover{background:#9273DA;color:#fff;}
+        .cpal{padding:9px 12px;border-left:4px solid #f97316;background:#fff7ed;border-radius:0 7px 7px 0;margin-bottom:7px;font-size:.7rem;}
+        .cpnrep{color:#aaa;font-size:.74rem;font-style:italic;padding:4px 0;}
+        /* Opposite-shift button */
+        .view-opp-btn{display:block;width:calc(100% - 4px);margin:3px 2px 0;padding:2px 6px;
+            font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:700;text-transform:uppercase;
+            background:rgba(210,240,80,.15);color:#D2F050;border:1px solid rgba(210,240,80,.3);
+            border-radius:4px;cursor:pointer;transition:all .15s;}
+        .view-opp-btn:hover{background:#D2F050;color:#2E2044;}
+        /* Hover tooltip */
+        #cpTip{position:fixed;z-index:9500;background:#2E2044;border-radius:12px;padding:12px 16px;
+            box-shadow:0 12px 40px rgba(0,0,0,.5);min-width:200px;max-width:300px;
+            pointer-events:none;display:none;font-family:'Montserrat',sans-serif;
+            border:1.5px solid rgba(210,240,80,.2);}
+        /* Multi-date modal */
+        #cpMultiModal{display:none;position:fixed;inset:0;background:rgba(46,32,68,.85);
+            z-index:9200;align-items:center;justify-content:center;padding:12px;font-family:'Montserrat',sans-serif;}
+
+        /* ── View Team Absence button ── */
+        .ta-btn{
+            padding:10px 22px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;
+            background:linear-gradient(135deg,#2E2044,#4a3370);color:#D2F050;
+            border:2px solid rgba(210,240,80,.4);border-radius:10px;cursor:pointer;
+            letter-spacing:.04em;text-transform:uppercase;transition:all .18s;
+            box-shadow:0 2px 10px rgba(46,32,68,.25);white-space:nowrap;
+        }
+        .ta-btn:hover{background:#D2F050;color:#2E2044;border-color:#D2F050;box-shadow:0 4px 18px rgba(210,240,80,.3);}
+        /* ── Team Absence Modal ── */
+        #taModal{display:none;position:fixed;inset:0;background:rgba(46,32,68,.85);
+            z-index:9300;align-items:center;justify-content:center;padding:12px;
+            font-family:'Montserrat',sans-serif;}
+        .ta-box{background:#fff;border-radius:18px;width:min(1000px,98vw);max-height:92vh;
+            display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;}
+        .ta-hdr{background:#2E2044;padding:15px 22px;display:flex;align-items:center;
+            justify-content:space-between;flex-shrink:0;}
+        .ta-hdr-title{color:#fff;font-size:.95rem;font-weight:700;margin:0;}
+        .ta-hdr-sub{color:rgba(255,255,255,.55);font-size:.68rem;margin:2px 0 0;}
+        .ta-xbtn{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7;padding:0 4px;}
+        .ta-xbtn:hover{opacity:1;}
+        .ta-toolbar{display:flex;gap:8px;padding:10px 16px;background:#f9f7fc;
+            border-bottom:1px solid #ede9f8;flex-shrink:0;flex-wrap:wrap;align-items:center;}
+        .ta-filter{padding:5px 14px;border-radius:20px;border:1.5px solid #ddd;background:#fff;
+            font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
+        .ta-filter.on{background:#9273DA;border-color:#9273DA;color:#fff;}
+        .ta-search{padding:6px 12px;border:2px solid #ddd;border-radius:8px;
+            font-family:'Montserrat',sans-serif;font-size:.72rem;outline:none;min-width:180px;color:#2E2044;}
+        .ta-search:focus{border-color:#9273DA;}
+        .ta-scroll{flex:1;overflow-y:auto;min-height:0;padding:16px;}
+        .ta-empty{color:#aaa;font-size:.78rem;font-style:italic;text-align:center;padding:40px 0;}
+        /* summary cards */
+        .ta-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px;}
+        .ta-stat{background:#fff;border:1.5px solid #ede9f8;border-radius:12px;padding:12px 16px;text-align:center;}
+        .ta-stat-n{font-size:1.5rem;font-weight:800;color:#9273DA;}
+        .ta-stat-l{font-size:.62rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+        /* crew section */
+        .ta-crew-hdr{background:#2E2044;color:#fff;font-size:.68rem;font-weight:700;
+            padding:7px 14px;border-radius:8px 8px 0 0;margin-top:12px;
+            display:flex;align-items:center;justify-content:space-between;}
+        .ta-card{border:1.5px solid #ede9f8;border-radius:0 0 10px 10px;margin-bottom:4px;overflow:hidden;}
+        .ta-row{display:grid;grid-template-columns:200px 90px 100px 1fr 160px;
+            align-items:center;padding:8px 14px;border-bottom:1px solid #f3f0fa;font-size:.74rem;}
+        .ta-row:last-child{border-bottom:none;}
+        .ta-row:hover{background:#faf8ff;}
+        .ta-row-hd{background:#f9f7fc;font-size:.6rem;font-weight:700;text-transform:uppercase;
+            letter-spacing:.05em;color:#aaa;border-bottom:2px solid #ede9f8;}
+        .ta-dates{display:flex;flex-wrap:wrap;gap:3px;}
+        .ta-date-pill{padding:1px 6px;background:#ede9f8;border-radius:10px;font-size:.6rem;color:#666;}
+        .ta-date-pill.today{background:#D2F050;color:#2E2044;font-weight:700;}
+    </style>
 </head>
 <body>
 
@@ -655,6 +655,7 @@
             <!-- SLICER BAR (horizontal, no sidebar) -->
             <div class="slicer">
                 <span class="sl-lbl">Range</span>
+                <button class="btn-q" id="btn-today" onclick="qr(1,this)">Today</button>
                 <button class="btn-q" onclick="qr(7,this)">7D</button>
                 <button class="btn-q" onclick="qr(14,this)">14D</button>
                 <button class="btn-q" onclick="qr(30,this)">30D</button>
@@ -734,40 +735,34 @@
                 <div style="position:relative;height:260px"><canvas id="cUN"></canvas></div>
             </div></div>
 
-            
-           
-                    </main>
-                </div>
-            </div>
+
         </div>
     </div>
-
-    <!-- VIEW: CALENDAR (hidden, accessed via Ops Calendar button) -->
-    <div id="view-calendar" class="view-page">
-        <!-- MAIN CONTENT -->
-        <div class="container-main">
-            <div class="shift-nav" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-                <button class="ta-btn" onclick="taOpen()">&#128203; View Team Absence</button>
-                <button class="shift-btn active" onclick="switchShift('A', event)">Shift A</button>
-                <button class="shift-btn" onclick="switchShift('B', event)">Shift B</button>
-                <button class="shift-btn" onclick="switchShift('C', event)">Shift C</button>
-                <button class="shift-btn" onclick="switchShift('D', event)">Shift D</button>
-            </div>
-
-            <div class="calendar-container" id="calendarContainer"></div>
-
-            <div class="legend">
-                <div class="legend-item"><div class="dot" style="background:white; border:3px solid #9273DA"></div> Day Shift</div>
-                <div class="legend-item"><div class="dot" style="background:#2E2044;"></div> Night Shift</div>
-                <div class="legend-item"><div class="dot" style="background:#ddd;"></div> Off</div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
-<!-- SHARED FOOTER -->
-<!-- FOOTER -->
+
+<div id="view-calendar" class="view-page">
+    <!-- MAIN CONTENT -->
+    <div class="container-main">
+        <div class="shift-nav" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+            <button class="ta-btn" onclick="taOpen()">&#128203; View Team Absence</button>
+            <button class="shift-btn active" onclick="switchShift('A', event)">Shift A</button>
+            <button class="shift-btn" onclick="switchShift('B', event)">Shift B</button>
+            <button class="shift-btn" onclick="switchShift('C', event)">Shift C</button>
+            <button class="shift-btn" onclick="switchShift('D', event)">Shift D</button>
+        </div>
+
+        <div class="calendar-container" id="calendarContainer"></div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="dot" style="background:white; border:3px solid #9273DA"></div> Day Shift</div>
+            <div class="legend-item"><div class="dot" style="background:#2E2044;"></div> Night Shift</div>
+            <div class="legend-item"><div class="dot" style="background:#ddd;"></div> Off</div>
+        </div>
+    </div>
+</div>
+
+
 <footer class="brand-footer">
     <div class="footer-content">
         <!-- Left Side -->
@@ -829,97 +824,97 @@
 
 <!-- Team Absence Modal -->
 <div id="taModal">
- <div class="ta-box">
-  <div class="ta-hdr">
-   <div>
-    <p class="ta-hdr-title">&#128203; Team Absence &amp; Coverage Overview</p>
-    <p class="ta-hdr-sub" id="taSubtitle">All crews — 2026</p>
-   </div>
-   <button class="ta-xbtn" onclick="document.getElementById('taModal').style.display='none'">&#x2715;</button>
-  </div>
-  <div class="ta-toolbar">
-   <span style="font-size:.6rem;font-weight:700;color:#bbb;text-transform:uppercase;">Crew:</span>
-   <button class="ta-filter on" data-tacrew="all">All</button>
-   <button class="ta-filter" data-tacrew="A">Crew A</button>
-   <button class="ta-filter" data-tacrew="B">Crew B</button>
-   <button class="ta-filter" data-tacrew="C">Crew C</button>
-   <button class="ta-filter" data-tacrew="D">Crew D</button>
-   <span style="font-size:.6rem;font-weight:700;color:#bbb;text-transform:uppercase;margin-left:8px;">Type:</span>
-   <button class="ta-filter on" data-tatype="all">All Types</button>
-   <button class="ta-filter" data-tatype="Annual">Annual</button>
-   <button class="ta-filter" data-tatype="Sick">Sick</button>
-   <button class="ta-filter" data-tatype="Emergency">Emergency</button>
-   <input class="ta-search" type="text" id="taSearch" placeholder="&#128269; Search name...">
-  </div>
-  <div class="ta-scroll" id="taBody"></div>
- </div>
+    <div class="ta-box">
+        <div class="ta-hdr">
+            <div>
+                <p class="ta-hdr-title">&#128203; Team Absence &amp; Coverage Overview</p>
+                <p class="ta-hdr-sub" id="taSubtitle">All crews — 2026</p>
+            </div>
+            <button class="ta-xbtn" onclick="document.getElementById('taModal').style.display='none'">&#x2715;</button>
+        </div>
+        <div class="ta-toolbar">
+            <span style="font-size:.6rem;font-weight:700;color:#bbb;text-transform:uppercase;">Crew:</span>
+            <button class="ta-filter on" data-tacrew="all">All</button>
+            <button class="ta-filter" data-tacrew="A">Crew A</button>
+            <button class="ta-filter" data-tacrew="B">Crew B</button>
+            <button class="ta-filter" data-tacrew="C">Crew C</button>
+            <button class="ta-filter" data-tacrew="D">Crew D</button>
+            <span style="font-size:.6rem;font-weight:700;color:#bbb;text-transform:uppercase;margin-left:8px;">Type:</span>
+            <button class="ta-filter on" data-tatype="all">All Types</button>
+            <button class="ta-filter" data-tatype="Annual">Annual</button>
+            <button class="ta-filter" data-tatype="Sick">Sick</button>
+            <button class="ta-filter" data-tatype="Emergency">Emergency</button>
+            <input class="ta-search" type="text" id="taSearch" placeholder="&#128269; Search name...">
+        </div>
+        <div class="ta-scroll" id="taBody"></div>
+    </div>
 </div>
 
 <div id="cpTip"></div>
 
 <div id="cpMultiModal">
- <div style="background:#fff;border-radius:18px;width:min(580px,96vw);max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;">
-  <div style="background:#2E2044;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
-   <div><p id="mmTitle" style="color:#fff;font-weight:700;font-size:.9rem;margin:0;"></p>
-   <p id="mmSub" style="color:rgba(255,255,255,.55);font-size:.67rem;margin:2px 0 0;"></p></div>
-   <button onclick="document.getElementById('cpMultiModal').style.display='none'" style="background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;opacity:.7;">&#x2715;</button>
-  </div>
-  <div style="padding:4px 16px 8px;background:#f9f7fc;border-bottom:1px solid #ede9f8;font-size:.68rem;color:#666;flex-shrink:0;">Tick the dates for this replacement to cover. Changes appear on the calendar.</div>
-  <div style="flex:1;overflow-y:auto;padding:14px;" id="mmDateList"></div>
-  <div style="padding:12px 16px;border-top:1px solid #ede9f8;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;background:#f9f7fc;">
-   <button onclick="mmSelectAll(true)" style="padding:6px 12px;border:1.5px solid #ddd;border-radius:7px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.7rem;cursor:pointer;">&#9745; Select All</button>
-   <button onclick="mmSelectAll(false)" style="padding:6px 12px;border:1.5px solid #ddd;border-radius:7px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.7rem;cursor:pointer;">&#9744; Deselect</button>
-   <button onclick="mmApply()" style="padding:6px 18px;background:#9273DA;color:#fff;border:none;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;">&#10003; Apply Coverage</button>
-  </div>
- </div>
+    <div style="background:#fff;border-radius:18px;width:min(580px,96vw);max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;">
+        <div style="background:#2E2044;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
+            <div><p id="mmTitle" style="color:#fff;font-weight:700;font-size:.9rem;margin:0;"></p>
+                <p id="mmSub" style="color:rgba(255,255,255,.55);font-size:.67rem;margin:2px 0 0;"></p></div>
+            <button onclick="document.getElementById('cpMultiModal').style.display='none'" style="background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;opacity:.7;">&#x2715;</button>
+        </div>
+        <div style="padding:4px 16px 8px;background:#f9f7fc;border-bottom:1px solid #ede9f8;font-size:.68rem;color:#666;flex-shrink:0;">Tick the dates for this replacement to cover. Changes appear on the calendar.</div>
+        <div style="flex:1;overflow-y:auto;padding:14px;" id="mmDateList"></div>
+        <div style="padding:12px 16px;border-top:1px solid #ede9f8;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;background:#f9f7fc;">
+            <button onclick="mmSelectAll(true)" style="padding:6px 12px;border:1.5px solid #ddd;border-radius:7px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.7rem;cursor:pointer;">&#9745; Select All</button>
+            <button onclick="mmSelectAll(false)" style="padding:6px 12px;border:1.5px solid #ddd;border-radius:7px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.7rem;cursor:pointer;">&#9744; Deselect</button>
+            <button onclick="mmApply()" style="padding:6px 18px;background:#9273DA;color:#fff;border:none;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;">&#10003; Apply Coverage</button>
+        </div>
+    </div>
 </div>
 
 <div id="coveragePanel">
- <div class="cpbox">
-  <div class="cphdr">
-   <div><p class="cptitle" id="cpTitle"></p><p class="cpsub" id="cpSub"></p></div>
-   <button class="cpxbtn" id="cpXBtn">&#x2715;</button>
-  </div>
-  <div class="cptabbar">
-   <button class="cptab on" data-pane="ov">&#128203;&nbsp;Coverage Overview</button>
-   <button class="cptab" data-pane="lv">&#127973;&nbsp;Leave &amp; Overtime</button>
-  </div>
-  <div class="cpfbar" id="cpFBar">
-   <span style="font-size:.58rem;font-weight:700;color:#bbb;text-transform:uppercase;">Filter:</span>
-   <button class="cpfbtn on" data-crew="all">All Crews</button>
-   <button class="cpfbtn" data-crew="A">Crew A</button>
-   <button class="cpfbtn" data-crew="B">Crew B</button>
-   <button class="cpfbtn" data-crew="C">Crew C</button>
-   <button class="cpfbtn" data-crew="D">Crew D</button>
-  </div>
-  <div class="cpscroll">
-   <div id="cpPaneOv"><table class="cptbl"><thead><tr><th>Name</th><th>Crew</th><th>Role</th><th>Status</th><th style="width:46px"></th></tr></thead><tbody id="cpTBody"></tbody></table></div>
-   <div id="cpPaneLv" style="display:none">
-    <div class="cplw">
-     <div class="cplcard"><h4>&#128221; Report Absence</h4>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:10px;">
-       <div class="cpfg"><label>Absent Member</label><select class="cpfsel" id="cpAbsSel"><option value="">&#8212; Select member &#8212;</option></select></div>
-       <div class="cpfg"><label>Leave Type</label>
-        <div style="display:flex;gap:5px;">
-         <button class="cpltbtn on" data-lt="Annual">Annual</button>
-         <button class="cpltbtn" data-lt="Sick">Sick</button>
-         <button class="cpltbtn" data-lt="Emergency">Emergency</button>
+    <div class="cpbox">
+        <div class="cphdr">
+            <div><p class="cptitle" id="cpTitle"></p><p class="cpsub" id="cpSub"></p></div>
+            <button class="cpxbtn" id="cpXBtn">&#x2715;</button>
         </div>
-       </div>
-      </div>
-      <div class="cpferr" id="cpAbsErr"></div>
-      <button class="cpfindbtn" id="cpFindBtn">&#128269; Find Replacements</button>
-     </div>
-     <div class="cplcard" id="cpRepCard" style="display:none">
-      <h4>&#9989; Available Replacements</h4>
-      <p id="cpRepCtx" style="font-size:.7rem;color:#666;margin-bottom:9px;"></p>
-      <div id="cpRepList"></div>
-     </div>
-     <div class="cplcard"><h4>&#128203; Leave Records</h4><div id="cpLeaveLog"><p class="cpnrep">No records.</p></div></div>
+        <div class="cptabbar">
+            <button class="cptab on" data-pane="ov">&#128203;&nbsp;Coverage Overview</button>
+            <button class="cptab" data-pane="lv">&#127973;&nbsp;Leave &amp; Overtime</button>
+        </div>
+        <div class="cpfbar" id="cpFBar">
+            <span style="font-size:.58rem;font-weight:700;color:#bbb;text-transform:uppercase;">Filter:</span>
+            <button class="cpfbtn on" data-crew="all">All Crews</button>
+            <button class="cpfbtn" data-crew="A">Crew A</button>
+            <button class="cpfbtn" data-crew="B">Crew B</button>
+            <button class="cpfbtn" data-crew="C">Crew C</button>
+            <button class="cpfbtn" data-crew="D">Crew D</button>
+        </div>
+        <div class="cpscroll">
+            <div id="cpPaneOv"><table class="cptbl"><thead><tr><th>Name</th><th>Crew</th><th>Role</th><th>Status</th><th style="width:46px"></th></tr></thead><tbody id="cpTBody"></tbody></table></div>
+            <div id="cpPaneLv" style="display:none">
+                <div class="cplw">
+                    <div class="cplcard"><h4>&#128221; Report Absence</h4>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:10px;">
+                            <div class="cpfg"><label>Absent Member</label><select class="cpfsel" id="cpAbsSel"><option value="">&#8212; Select member &#8212;</option></select></div>
+                            <div class="cpfg"><label>Leave Type</label>
+                                <div style="display:flex;gap:5px;">
+                                    <button class="cpltbtn on" data-lt="Annual">Annual</button>
+                                    <button class="cpltbtn" data-lt="Sick">Sick</button>
+                                    <button class="cpltbtn" data-lt="Emergency">Emergency</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cpferr" id="cpAbsErr"></div>
+                        <button class="cpfindbtn" id="cpFindBtn">&#128269; Find Replacements</button>
+                    </div>
+                    <div class="cplcard" id="cpRepCard" style="display:none">
+                        <h4>&#9989; Available Replacements</h4>
+                        <p id="cpRepCtx" style="font-size:.7rem;color:#666;margin-bottom:9px;"></p>
+                        <div id="cpRepList"></div>
+                    </div>
+                    <div class="cplcard"><h4>&#128203; Leave Records</h4><div id="cpLeaveLog"><p class="cpnrep">No records.</p></div></div>
+                </div>
+            </div>
+        </div>
     </div>
-   </div>
-  </div>
- </div>
 </div>
 
 <!-- SCRIPTS -->
@@ -1066,11 +1061,18 @@
     function qr(days,btn){
         document.querySelectorAll('.btn-q').forEach(b=>b.classList.remove('on'));
         btn.classList.add('on');
-        if(days===0){VIEW=[...ALL];}
-        else{const max=ALL[ALL.length-1]?._d;if(!max)return;
-            const c=new Date(max);c.setDate(c.getDate()-days+1);VIEW=ALL.filter(r=>r._d>=c);}
+        if(days===1){
+            const latest=ALL[ALL.length-1];
+            VIEW=latest?[latest]:[];
+        } else if(days===0){
+            VIEW=[...ALL];
+        } else {
+            const max=ALL[ALL.length-1]?._d;if(!max)return;
+            const c=new Date(max);c.setDate(c.getDate()-days+1);VIEW=ALL.filter(r=>r._d>=c);
+        }
         sync();draw();
     }
+
     function dr(){
         const f=document.getElementById('d-f').value,t=document.getElementById('d-t').value;
         if(!f||!t)return;
@@ -1100,11 +1102,13 @@
         s('s-hr',r.HeatRate!=null?N(r.HeatRate,0)+' kJ/kWh':'--');
         s('s-fu',r.Fuel!=null?N(r.Fuel,0)+' T':'--');
         const _mfv=r.MFEQH??((r.Units||[]).reduce((a,u)=>a+(u.MFEQH||0),0)||null);s('s-mf',_mfv?N(_mfv,0)+' Hrs':'--');
-        const em=r.Emissions||{};
+                const emRec=[...VIEW].reverse().find(x=>x.Emissions?.NOx!=null||x.Emissions?.SOx!=null||x.Emissions?.CO!=null);
+        const em=(emRec||r).Emissions||{};
         s('s-nx',em.NOx!=null?N(em.NOx,2)+' mg/Nm³':'--');
         s('s-sx',em.SOx!=null?N(em.SOx,2)+' mg/Nm³':'--');
         s('s-co',em.CO!=null?N(em.CO,2)+' mg/Nm³':'--');
     }
+
     function updKPI(){
         const r=VIEW[VIEW.length-1];if(!r)return;
         const sv=(id,v,d,max,mid,c)=>{
@@ -1294,7 +1298,13 @@
     (async()=>{
         try{
             const raw=await(await fetch('plant_data.json')).json();
-            ALL=raw.map(r=>({...r,_d:pd(r.Date)}))
+            ALL=raw.map(r=>{
+    const hr=(r.HeatRate!=null)?r.HeatRate:
+        (r.Fuel&&r.Generation?Math.round(r.Fuel*48500/r.Generation*10)/10:null);
+    const ef=(r.Efficiency!=null)?r.Efficiency:
+        (hr?Math.round(3600/hr*10000)/100:null);
+    return {...r,_d:pd(r.Date),HeatRate:hr,Efficiency:ef};
+})
                 .filter(r=>r._d&&!isNaN(r._d.getTime()))
                 .sort((a,b)=>a._d-b._d);
             VIEW=[...ALL];
@@ -1661,56 +1671,56 @@
     var CP_OV={}, CP_LR={}, CP_PENDING=null;
 
     var CP_REG=[
-  {n:"Syed Shahnawaz Ahmed",c:"A",r:"Shift in Charge Engineer"},
-  {n:"Shaheer Yousaf",c:"A",r:"Supervisor"},
-  {n:"Sami Hamdan",c:"A",r:"CCR Operator"},
-  {n:"Fawaz Al Qahtani",c:"A",r:"CCR Operator"},
-  {n:"Ahmed Fathy",c:"A",r:"CCR Operator"},
-  {n:"Abdulwahab Al-Shehab",c:"A",r:"CCR Operator"},
-  {n:"Adam Mohammed Al-Huzum",c:"A",r:"CCR Operator"},
-  {n:"Purushothaman Devaraj",c:"A",r:"Local Operator"},
-  {n:"Mohamed Al Dossary",c:"A",r:"Local Operator"},
-  {n:"Abdullah Altulayhi",c:"A",r:"Local Operator"},
-  {n:"Bakr Abdulmajeed",c:"A",r:"Local Operator"},
-  {n:"Saad Salem Al Hajiri",c:"A",r:"Local Operator"},
-  {n:"Abdulhadi Mohammed Saleh",c:"A",r:"Local Operator"},
-  {n:"Abdullah Al Amri",c:"B",r:"Shift in Charge Engineer"},
-  {n:"Kanaka Naga Srinivasu Kolli",c:"B",r:"Supervisor"},
-  {n:"Prathapan",c:"B",r:"CCR Operator"},
-  {n:"Ahmed Meshef",c:"B",r:"CCR Operator"},
-  {n:"Rashed Alhajri",c:"B",r:"CCR Operator"},
-  {n:"Saravanakumar Madhaiyan",c:"B",r:"CCR Operator"},
-  {n:"Abdullah Mohiddin Alshahrani",c:"B",r:"CCR Operator"},
-  {n:"Mohammed Mulhim",c:"B",r:"Local Operator"},
-  {n:"Mohammed Afnan",c:"B",r:"Local Operator"},
-  {n:"Abdelaziz Al Harbi",c:"B",r:"Local Operator"},
-  {n:"Amjad",c:"B",r:"Local Operator"},
-  {n:"Abderahman Al Anezie",c:"B",r:"Local Operator"},
-  {n:"Mustafa Ansari",c:"C",r:"Shift in Charge Engineer"},
-  {n:"Juma Khan",c:"C",r:"Supervisor"},
-  {n:"Abdullah Al Hajri",c:"C",r:"CCR Operator"},
-  {n:"Yasser Althuiqeb",c:"C",r:"CCR Operator"},
-  {n:"Waleed Fayad",c:"C",r:"CCR Operator"},
-  {n:"Norbie Cruz",c:"C",r:"CCR Operator"},
-  {n:"Khalid Saleh Khalousi",c:"C",r:"Local Operator"},
-  {n:"Saad Al Enize",c:"C",r:"Local Operator"},
-  {n:"Izhar Ali",c:"C",r:"Local Operator"},
-  {n:"Abderahman Al Baqmi",c:"C",r:"Local Operator"},
-  {n:"Ali Al Qahtani",c:"C",r:"Local Operator"},
-  {n:"Mustafa Salem",c:"D",r:"Shift in Charge Engineer"},
-  {n:"Veera Prasad",c:"D",r:"Supervisor"},
-  {n:"Lakshmy Prasad",c:"D",r:"CCR Operator"},
-  {n:"Saleh Mohammed Al Amri",c:"D",r:"CCR Operator"},
-  {n:"Hassan Arshad",c:"D",r:"CCR Operator"},
-  {n:"Ahmed Alsagoor",c:"D",r:"CCR Operator"},
-  {n:"Rajesh",c:"D",r:"Local Operator"},
-  {n:"Mark Ramirez",c:"D",r:"Local Operator"},
-  {n:"Mohammed Al Ghamdi",c:"D",r:"Local Operator"},
-  {n:"Bader AlSubait",c:"D",r:"Local Operator"},
-  {n:"Faris Al Dawasri",c:"D",r:"Local Operator"},
-  {n:"Mohamed Al Hakami",c:"D",r:"Local Operator"},
-  {n:"Saad Al Shahrani",c:"D",r:"Local Operator"}
-];
+        {n:"Syed Shahnawaz Ahmed",c:"A",r:"Shift in Charge Engineer"},
+        {n:"Shaheer Yousaf",c:"A",r:"Supervisor"},
+        {n:"Sami Hamdan",c:"A",r:"CCR Operator"},
+        {n:"Fawaz Al Qahtani",c:"A",r:"CCR Operator"},
+        {n:"Ahmed Fathy",c:"A",r:"CCR Operator"},
+        {n:"Abdulwahab Al-Shehab",c:"A",r:"CCR Operator"},
+        {n:"Adam Mohammed Al-Huzum",c:"A",r:"CCR Operator"},
+        {n:"Purushothaman Devaraj",c:"A",r:"Local Operator"},
+        {n:"Mohamed Al Dossary",c:"A",r:"Local Operator"},
+        {n:"Abdullah Altulayhi",c:"A",r:"Local Operator"},
+        {n:"Bakr Abdulmajeed",c:"A",r:"Local Operator"},
+        {n:"Saad Salem Al Hajiri",c:"A",r:"Local Operator"},
+        {n:"Abdulhadi Mohammed Saleh",c:"A",r:"Local Operator"},
+        {n:"Abdullah Al Amri",c:"B",r:"Shift in Charge Engineer"},
+        {n:"Kanaka Naga Srinivasu Kolli",c:"B",r:"Supervisor"},
+        {n:"Prathapan",c:"B",r:"CCR Operator"},
+        {n:"Ahmed Meshef",c:"B",r:"CCR Operator"},
+        {n:"Rashed Alhajri",c:"B",r:"CCR Operator"},
+        {n:"Saravanakumar Madhaiyan",c:"B",r:"CCR Operator"},
+        {n:"Abdullah Mohiddin Alshahrani",c:"B",r:"CCR Operator"},
+        {n:"Mohammed Mulhim",c:"B",r:"Local Operator"},
+        {n:"Mohammed Afnan",c:"B",r:"Local Operator"},
+        {n:"Abdelaziz Al Harbi",c:"B",r:"Local Operator"},
+        {n:"Amjad",c:"B",r:"Local Operator"},
+        {n:"Abderahman Al Anezie",c:"B",r:"Local Operator"},
+        {n:"Mustafa Ansari",c:"C",r:"Shift in Charge Engineer"},
+        {n:"Juma Khan",c:"C",r:"Supervisor"},
+        {n:"Abdullah Al Hajri",c:"C",r:"CCR Operator"},
+        {n:"Yasser Althuiqeb",c:"C",r:"CCR Operator"},
+        {n:"Waleed Fayad",c:"C",r:"CCR Operator"},
+        {n:"Norbie Cruz",c:"C",r:"CCR Operator"},
+        {n:"Khalid Saleh Khalousi",c:"C",r:"Local Operator"},
+        {n:"Saad Al Enize",c:"C",r:"Local Operator"},
+        {n:"Izhar Ali",c:"C",r:"Local Operator"},
+        {n:"Abderahman Al Baqmi",c:"C",r:"Local Operator"},
+        {n:"Ali Al Qahtani",c:"C",r:"Local Operator"},
+        {n:"Mustafa Salem",c:"D",r:"Shift in Charge Engineer"},
+        {n:"Veera Prasad",c:"D",r:"Supervisor"},
+        {n:"Lakshmy Prasad",c:"D",r:"CCR Operator"},
+        {n:"Saleh Mohammed Al Amri",c:"D",r:"CCR Operator"},
+        {n:"Hassan Arshad",c:"D",r:"CCR Operator"},
+        {n:"Ahmed Alsagoor",c:"D",r:"CCR Operator"},
+        {n:"Rajesh",c:"D",r:"Local Operator"},
+        {n:"Mark Ramirez",c:"D",r:"Local Operator"},
+        {n:"Mohammed Al Ghamdi",c:"D",r:"Local Operator"},
+        {n:"Bader AlSubait",c:"D",r:"Local Operator"},
+        {n:"Faris Al Dawasri",c:"D",r:"Local Operator"},
+        {n:"Mohamed Al Hakami",c:"D",r:"Local Operator"},
+        {n:"Saad Al Shahrani",c:"D",r:"Local Operator"}
+    ];
 
     var CP_MAP={};
     CP_REG.forEach(function(m){ CP_MAP[m.n]=m; });
@@ -2089,7 +2099,7 @@
             if(TA_CREW!=='all'&&m&&m.c!==TA_CREW) return false;
             if(TA_TYPE!=='all'&&r.type!==TA_TYPE) return false;
             if(q&&r.absent.toLowerCase().indexOf(q)===-1&&
-               r.coverBy&&r.coverBy.toLowerCase().indexOf(q)===-1) return false;
+                r.coverBy&&r.coverBy.toLowerCase().indexOf(q)===-1) return false;
             return true;
         });
 
