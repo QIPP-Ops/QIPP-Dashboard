@@ -1784,6 +1784,26 @@
         'Shift in Charge Engineer': ['Supervisor','Shift in Charge Engineer']
     };
 
+function cpOpenPanel(dateKey, shift) {
+    // ... existing code ...
+    window.CPKEY = dateKey;
+    window.CPLT = shift;
+    
+    const panel = document.querySelector('.cpbox');
+    if (panel.requestFullscreen) {
+        panel.requestFullscreen().catch(() => {});  // Hides back arrow
+    }
+}
+
+function taOpen() {
+    const modal = document.getElementById('taModal');
+    if (modal.requestFullscreen) {
+        modal.requestFullscreen().catch(() => {});
+    }
+    // ... rest of taOpen
+}
+
+    
     /* ── helpers ── */
     function cpSt(name,key){
         if(CP_OV[name]&&CP_OV[name][key]) return CP_OV[name][key];
