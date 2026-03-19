@@ -1,3 +1,4 @@
+<!-- Trigger GitHub Pages redeploy -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,7 +147,6 @@
         }
 
         /* 2. Planned Leaves Button (Primary/Lime) */
-
 
         /* HERO SECTION */
         .hero-section {
@@ -403,352 +403,6 @@
         }
 
 
-/* ════════════════════════════════════════════════════════════
-   MOBILE FIX v2 — QIPP Dashboard 2026
-   Fixes: (1) 50% width clip  (2) Lime bar in navbar
-   (3) All layout, sizing, modals for phone/tablet
-════════════════════════════════════════════════════════════ */
-
-/* ── GLOBAL WIDTH RESET (Root Cause Fix) ───────────────────
-   Forces --sidebar-w to 0 and overrides all width-clipping
-   caused by width:100vw + margin-left:calc(-1 * sidebar-w) */
-:root { --sidebar-w: 0px !important; }
-
-html { overflow-x: hidden; }
-body { overflow-x: hidden; }
-
-/* Force every main wrapper to full width */
-#content-area,
-.view-page,
-.container-main {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-/* ══ PHONE  (≤ 767px) ══════════════════════════════════════ */
-@media (max-width: 767px) {
-
-  /* ── NAVBAR ── */
-  .acwa-navbar .container-fluid { padding: 0 0.85rem !important; }
-  .navbar-brand svg { height: 52px !important; width: auto !important; }
-
-  /* ── CRITICAL: Lime bar fix ──
-     When the Bootstrap navbar collapses, nav-actions
-     sits inside the collapse menu. We must prevent
-     btn-mini-lime from stretching to 100% width.       */
-  .nav-actions {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-    margin-left: 0 !important;
-    padding: 8px 0 !important;
-    width: auto !important;
-    align-items: center !important;
-  }
-  .btn-sap,
-  .btn-mini,
-  .btn-mini-lime {
-    width: auto !important;
-    display: inline-flex !important;
-    font-size: 10px !important;
-    padding: 5px 10px !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-  }
-
-  /* Navbar links */
-  .nav-link { margin: 0.5rem 0.4rem !important; font-size: 0.88rem; }
-
-  /* ── HERO BANNER ── */
-  .hero-section {
-    width: 100% !important;
-    min-height: 190px !important;
-    height: auto !important;
-    padding-top: 72px !important;
-    padding-left: 5% !important;
-    padding-right: 5% !important;
-    background-size: cover !important;
-    background-position: center center !important;
-    background-attachment: scroll !important;
-  }
-  .hero-text {
-    font-size: 24px !important;
-    max-width: 100% !important;
-    line-height: 1.3;
-  }
-  .hero-text ~ div {
-    font-size: 14px !important;
-    margin-top: 12px !important;
-  }
-
-  /* ── BODY BACKGROUND (iOS scroll fix) ── */
-  body {
-    background-attachment: scroll !important;
-    width: 100% !important;
-  }
-
-  /* ── SHIFT NAV ── */
-  .shift-nav {
-    gap: 6px;
-    padding: 10px 8px;
-    top: 58px;
-    flex-wrap: wrap;
-    width: 100% !important;
-  }
-  .shift-btn { padding: 7px 14px; font-size: 12px; }
-
-  /* ── DASHBOARD MAIN ── */
-  .dash-main {
-    padding: 0.6rem 0.65rem 1.5rem !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-  /* ── SLICER BAR ── */
-  .slicer {
-    gap: 0.4rem;
-    padding: 0.45rem 0.65rem;
-    flex-wrap: wrap;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .sl-sep { display: none; }
-  .sl-lbl { font-size: 0.58rem; }
-  .btn-q { padding: 0.2rem 0.5rem; font-size: 0.62rem; }
-  .di input {
-    font-size: 0.62rem;
-    padding: 0.2rem 0.35rem;
-    max-width: 110px;
-  }
-  .toggles { gap: 0.28rem; flex-wrap: wrap; }
-  .tgl { padding: 0.18rem 0.5rem; font-size: 0.62rem; }
-
-  /* ── STATUS STRIP ── */
-  .strip {
-    padding: 0.6rem 0.85rem;
-    gap: 0.6rem;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    -webkit-overflow-scrolling: touch;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .si-v  { font-size: 0.75rem; }
-  .si-l  { font-size: 0.5rem; }
-  .sdv   { display: none; }
-
-  /* ── KPI CARDS ── */
-  .kpi-row {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.55rem;
-    width: 100% !important;
-  }
-  .kc     { padding: 0.75rem 0.8rem; border-radius: 10px; }
-  .kc-v   { font-size: 1.2rem; }
-  .kc-l   { font-size: 0.56rem; }
-  .kc-u   { font-size: 0.58rem; }
-
-  /* ── CHARTS ── */
-  .ch-row2, .ch-row3 {
-    grid-template-columns: 1fr !important;
-    gap: 0.6rem;
-    width: 100% !important;
-  }
-  .cc {
-    padding: 0.7rem 0.75rem;
-    border-radius: 10px;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .cc-t { font-size: 0.7rem; }
-  .cc-s { font-size: 0.56rem; }
-  .badge-tag { font-size: 0.56rem; padding: 0.12rem 0.4rem; }
-
-  #cTcanvas               { max-height: 200px !important; }
-  #cHRcanvas, #cEFcanvas,
-  #cPFcanvas, #cMFcanvas  { max-height: 170px !important; }
-  #cUNcanvas              { max-height: 180px !important; }
-
-  /* ── ASSET BUTTONS ── */
-  .asset-btn-group { gap: 5px; flex-wrap: wrap; }
-  .asset-btn  { padding: 6px 10px; font-size: 11px; }
-  .metric-select { font-size: 11px; padding: 5px 8px; }
-
-  /* ── CALENDAR ── */
-  .calendar-container {
-    padding: 12px 6px;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .month-title { font-size: 1.2em; margin-bottom: 18px; }
-  .calendar-grid { gap: 3px; }
-  .calendar-day {
-    min-height: 54px !important;
-    border-radius: 6px;
-    padding: 2px;
-    aspect-ratio: unset !important;
-  }
-  .calendar-day .date  { font-size: 12px; margin-bottom: 1px; }
-  .calendar-day .shift { font-size: 8px; letter-spacing: 0; }
-  .view-crew-btn  { font-size: 7px; padding: 1px 3px; margin-top: 2px; }
-  .view-opp-btn   { font-size: 7px; padding: 1px 3px; }
-  .day-header { font-size: 10px; padding-bottom: 8px; }
-  .legend {
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px;
-    justify-content: center;
-  }
-  .legend-item { font-size: 12px; gap: 6px; }
-
-  /* ── COVERAGE PANEL (bottom sheet) ── */
-  #coveragePanel {
-    align-items: flex-end !important;
-    padding: 0 !important;
-  }
-  .cpbox {
-    width: 100vw !important;
-    min-width: unset !important;
-    max-height: 96vh !important;
-    border-radius: 16px 16px 0 0 !important;
-  }
-  .cphdr   { padding: 10px 12px; }
-  .cptitle { font-size: 0.8rem; }
-  .cpsub   { font-size: 0.58rem; }
-  .cptabbar { overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
-  .cptab  { padding: 8px 10px; font-size: 0.64rem; min-width: 80px; }
-  .cpfbar { gap: 4px; padding: 6px 8px; flex-wrap: wrap; }
-  .cpfbtn { font-size: 0.58rem; padding: 3px 7px; }
-  .cpscroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .cptbl  { font-size: 0.64rem; min-width: 460px; }
-  .cptbl thead th, .cptbl tbody td { padding: 6px 7px; }
-
-  /* ── TEAM ABSENCE MODAL (bottom sheet) ── */
-  #taModal {
-    align-items: flex-end !important;
-    padding: 0 !important;
-  }
-  .ta-box {
-    width: 100vw !important;
-    min-width: unset !important;
-    max-height: 96vh !important;
-    border-radius: 16px 16px 0 0 !important;
-  }
-  .ta-hdr      { padding: 10px 12px; }
-  .ta-hdr-title { font-size: 0.8rem; }
-  .ta-toolbar  { gap: 4px; padding: 7px 8px; flex-wrap: wrap; }
-  .ta-filter   { padding: 3px 8px; font-size: 0.58rem; }
-  .ta-search   { min-width: 100px; font-size: 0.64rem; width: 100%; }
-  .ta-scroll   { padding: 10px; }
-  .ta-stats    { grid-template-columns: repeat(2, 1fr); gap: 7px; }
-  .ta-stat     { padding: 8px 10px; }
-  .ta-stat-n   { font-size: 1.2rem; }
-  .ta-stat-l   { font-size: 0.56rem; }
-  .ta-row {
-    grid-template-columns: 1fr 80px !important;
-    font-size: 0.65rem;
-    padding: 7px 8px;
-    gap: 3px;
-  }
-  .ta-row > span:nth-child(n+3) { grid-column: 1 / -1; }
-  .ta-row-hd { font-size: 0.55rem; }
-  .ta-crew-hdr { font-size: 0.62rem; padding: 6px 10px; border-radius: 6px 6px 0 0; }
-
-  /* ── MULTI-DATE MODAL ── */
-  #cpMultiModal > div {
-    width: 96vw !important;
-    min-width: unset !important;
-    border-radius: 14px !important;
-  }
-
-  /* ── TA BUTTON ── */
-  .ta-btn {
-    font-size: 0.6rem;
-    padding: 7px 12px;
-    white-space: normal;
-    text-align: center;
-  }
-
-  /* ── FOOTER ── */
-  .brand-footer {
-    width: 100% !important;
-    padding: 35px 16px !important;
-    box-sizing: border-box !important;
-  }
-  .footer-content  { grid-template-columns: 1fr !important; gap: 25px; }
-  .footer-motto    { font-size: 24px !important; margin-bottom: 25px; }
-  .footer-links-grid { grid-template-columns: 1fr 1fr !important; gap: 12px; }
-  .footer-bottom   {
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-    font-size: 11px;
-  }
-  .footer-logo svg { height: 50px; }
-  .get-in-touch-box { max-width: 100%; }
-}
-
-/* ══ TABLET  (768px – 991px) ════════════════════════════════ */
-@media (min-width: 768px) and (max-width: 991px) {
-
-  :root { --sidebar-w: 0px !important; }
-  html, body { overflow-x: hidden; }
-  #content-area, .view-page, .container-main {
-    width: 100% !important; max-width: 100% !important; margin-left: 0 !important;
-  }
-
-  .acwa-navbar .container-fluid { padding: 0 1.4rem; }
-  .navbar-brand svg { height: 60px; }
-  .nav-link { margin: 1.4rem 0.65rem !important; font-size: 0.9rem; }
-  .btn-sap, .btn-mini, .btn-mini-lime {
-    font-size: 11px; padding: 5px 11px; width: auto !important;
-  }
-
-  .hero-section {
-    min-height: 240px !important;
-    background-attachment: scroll !important;
-    width: 100% !important;
-  }
-  .hero-text { font-size: 30px !important; }
-
-  .shift-nav { top: 72px; gap: 8px; padding: 14px; }
-  .shift-btn { padding: 9px 20px; font-size: 14px; }
-
-  .dash-main {
-    padding: 0.85rem 1rem 2rem !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-  }
-  .kpi-row  { grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-  .ch-row2, .ch-row3 { grid-template-columns: 1fr !important; }
-
-  .calendar-day { min-height: 90px; aspect-ratio: unset !important; }
-  .calendar-day .date  { font-size: 15px; }
-  .calendar-day .shift { font-size: 9px; }
-
-  .cpbox  { width: 96vw !important; min-width: unset !important; border-radius: 16px; }
-  .ta-box { width: 96vw !important; min-width: unset !important; border-radius: 16px; }
-
-  .brand-footer { padding: 45px 24px; width: 100% !important; }
-  .footer-content { grid-template-columns: 1fr !important; gap: 28px; }
-  .footer-motto { font-size: 28px; }
-  .footer-links-grid { grid-template-columns: 1fr 1fr 1fr; }
-}
-
-/* ══ TOUCH OPTIMISATIONS ════════════════════════════════════ */
-@media (hover: none) and (pointer: coarse) {
-  .kc, .calendar-day, .asset-btn, .btn-q,
-  .shift-btn, .ta-filter, .cpfbtn, .cptab {
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-  .calendar-day { cursor: default; }
-  .view-crew-btn, .view-opp-btn { min-height: 22px; }
-}
     </style>
     <style>
 
@@ -997,11 +651,8 @@ body { overflow-x: hidden; }
         },100);
     }());
 </script>
-</html>
 
 
-<!-- SHARED NAVBAR -->
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg acwa-navbar">
     <div class="container-fluid">
         <!-- Logo -->
@@ -1715,7 +1366,7 @@ body { overflow-x: hidden; }
                 .sort((a,b)=>a._d-b._d);
             VIEW=[...ALL];
             document.getElementById('dash-info').textContent=
-                `${ALL[0]?.Date} → ${ALL[ALL.length-1]?.Date}  ·  ${ALL.length}`;
+                `${ALL[0]?.Date} → ${ALL[ALL.length-1]?.Date}  ·  ${ALL.length} daily records`;
             buildTgl();sync();draw();
         }catch(e){
             document.getElementById('dash-info').textContent='⚠ Open via: python -m http.server 8080';
@@ -2064,7 +1715,7 @@ body { overflow-x: hidden; }
        COVERAGE PANEL — injected in same script block as calendar
        All functions share exact same scope as buildCalendar
        ════════════════════════════════════════════════════════════ */
-    var CP_PIN='8285', CP_KEY=null, CP_LT='Annual', CP_EID=null, CP_FC='all';
+    var CP_PIN='1234', CP_KEY=null, CP_LT='Annual', CP_EID=null, CP_FC='all';
     var CP_OV={}, CP_LR={}, CP_PENDING=null;
 
     var CP_REG=[
@@ -2746,3 +2397,6 @@ body { overflow-x: hidden; }
     })();
 
 </script>
+<>
+
+</html>
