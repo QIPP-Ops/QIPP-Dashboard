@@ -1,0 +1,27 @@
+name: Sync CSV to Azure Blob
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'powerbi_export.csv'
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    name: Upload powerbi_export.csv to Blob Storage
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Upload to Azure Blob Storage
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az storage blob upload \
+              --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" \
+              --container-name data \
+              --name powerbiexport.csv \
+              --file powerbi_export.csv \
+              --overwrite true
