@@ -251,6 +251,23 @@ try {
         });
 
     fs.writeFileSync(outputFile, JSON.stringify(finalData, null, 2));
+
+// ── Azure Blob Upload ─────────────────────────────────────────
+(async () => {
+  try {
+    const { BlobServiceClient } = require('@azure/storage-blob');
+    const connStr = process.env.AZURE_STORAGE_CONNECTION_STRING;
+    if (!connStr) { console.warn('WARN: Set AZURE_STORAGE_CONNECTION_STRING to enable auto-upload'); return; }
+    const blobService = BlobServiceClient.fromConnectionString(connStr);
+    const container = blobService.getContainerClient('data');
+    const blobClient = container.getBlockBlobClient('plant_data.json');
+    const data = fs.readFileSync(outputFile);
+    await blobClient.upload(data, data.length, { blobHTTPHeaders: { blobContentType: 'application/json' } });
+    console.log('AZURE: plant_data.json uploaded to qippdashstorage/data');
+  } catch (azErr) {
+    console.warn('AZURE UPLOAD SKIPPED:', azErr.message);
+  }
+})();
     console.log(`\n✅ Success — ${finalData.length} days written to ${outputFile}`);
 
 } catch (e) {
