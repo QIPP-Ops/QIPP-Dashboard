@@ -1039,7 +1039,7 @@
 <script>
     let OPS_DATA = [];
     let _opsReady = false;
-    fetch('plant_data.json')
+    fetch('https://qippdashstorage.blob.core.windows.net/data/plant_data.json')
         .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
         .then(data=>{
             OPS_DATA = Array.isArray(data)?data:(data.records||data.data||[]);
@@ -1354,7 +1354,7 @@
     // ─── INIT ───
     (async()=>{
         try{
-            const raw=await(await fetch('plant_data.json')).json();
+            const raw=await(await fetch('https://qippdashstorage.blob.core.windows.net/data/plant_data.json')).json();
             ALL=raw.map(r=>{
                 const hr=(r.HeatRate!=null)?r.HeatRate:
                     (r.Fuel&&r.Generation?Math.round(r.Fuel*48500/r.Generation*10)/10:null);
