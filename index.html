@@ -956,6 +956,8 @@
                                     <button class="cpltbtn on" data-lt="Annual">Annual</button>
                                     <button class="cpltbtn" data-lt="Sick">Sick</button>
                                     <button class="cpltbtn" data-lt="Emergency">Emergency</button>
+                                    <button class="cpltbtn" data-lt="Compensate">Compensate</button>
+                                    <button class="cpltbtn" data-lt="Shift Change">Shift Change</button>
                                 </div>
                             </div>
                         </div>
@@ -1037,20 +1039,143 @@
 
 </script>
 <script>
+
+    // ── LIVE DATA FROM AZURE BLOB CSV (Power BI export) ─────────
     let OPS_DATA = [];
     let _opsReady = false;
-    fetch('https://qippdashstorage.blob.core.windows.net/data/plant_data.json')
-        .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-        .then(data=>{
-            OPS_DATA = Array.isArray(data)?data:(data.records||data.data||[]);
-            _opsReady = true;
-            if(document.readyState==='complete') initDash();
-        })
-        .catch(err=>{
-            console.warn('plant_data.json not loaded:',err);
-            const el=document.getElementById('dash-info');
-            if(el){ el.textContent='data not loaded — place plant_data.json next to this HTML'; el.style.color='#ef4444'; }
+
+    function parseDate(value) {
+    if (!value) return null;
+    const s = String(value).trim();
+    if (s.includes('T')) {
+        const d = new Date(s);
+        return isNaN(d.getTime()) ? null : d;
+    }
+    return null;
+}
+
+function formatDate(d) {
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = String(d.getFullYear());
+    return `${day}.${month}.${year}`;
+}
+
+function sv(val) {
+    if (val == null || val === '') return null;
+    const n = Number(val);
+    return (!isNaN(n) && isFinite(n)) ? n : null;
+}
+
+
+    function parseCSV(text) {
+        const lines = text.split('\n').filter(l => l.trim());
+        if (!lines.length) return [];
+        const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g,'').trim());
+        return lines.slice(1).map(line => {
+            // handle quoted commas
+            const vals = [];
+            let cur = '', inQ = false;
+            for (let i = 0; i < line.length; i++) {
+                const c = line[i];
+                if (c === '"') { inQ = !inQ; }
+                else if (c === ',' && !inQ) { vals.push(cur); cur = ''; }
+                else cur += c;
+            }
+            vals.push(cur);
+            const obj = {};
+            headers.forEach((h,i) => obj[h] = (vals[i]||'').replace(/^"|"$/g,'').trim());
+            return obj;
         });
+    }
+
+    function csvToOpsData(rawRows) {
+        const byDate = new Map();
+            rawRows.forEach(row => {
+        /** @type {Record<string, any>} */
+        const rowData = row;
+        const cleanRow = {};
+
+        for (const [k, v] of Object.entries(rowData)) {
+            const cleanKey = k.replace('DailyOperation[', '').replace(']', '').trim();
+            cleanRow[cleanKey] = v;
+        }
+
+        const dateObj = parseDate(cleanRow['ReportDate']) || parseDate(cleanRow['Date']);
+        if (!dateObj) return;
+        const dStr = formatDate(dateObj);
+
+        if (!byDate.has(dStr)) {
+            let eff = sv(cleanRow['NetEff_Pct']);
+            if (eff !== null && eff < 1) eff = parseFloat((eff * 100).toFixed(2));
+
+            let load = sv(cleanRow['TotalLoadMW']);
+            if (load !== null && load > 10000) load = load / 24;
+
+            byDate.set(dStr, {
+                Date: dStr,
+                Generation: sv(cleanRow['GrossMWH']),
+                NetGen: sv(cleanRow['NetMWH']),
+                Load: load,
+                PLF: (load !== null) ? parseFloat((load / 3883.2 * 100).toFixed(2)) : null,
+                Efficiency: eff,
+                HeatRate: sv(cleanRow['HeatRate']),
+                Fuel: sv(cleanRow['FuelGasTons']),
+                Emissions: {
+                    NOx: null,
+                    SOx: null,
+                    CO: null,
+                    Particulate: null,
+                    StackTemp: null
+                },
+                Water: { ROProduction: sv(cleanRow['ROProduction']) },
+                AirIntakeDP: sv(cleanRow['AirIntakeDP']),
+                Units: []
+            });
+        }
+
+        const day = byDate.get(dStr);
+
+        // Map Environment data (Pivoted or Row-based)
+        const nox = sv(cleanRow['NOx']) || sv(cleanRow['Env.NOx']);
+        const sox = sv(cleanRow['SOx']) || sv(cleanRow['Env.SOx']);
+        const co = sv(cleanRow['CO']) || sv(cleanRow['Env.CO']);
+        const particulate = sv(cleanRow['Particulate']) || sv(cleanRow['Dust']);
+        const temp = sv(cleanRow['Stack Temp']) || sv(cleanRow['StackTemp']);
+
+        if (nox !== null) day.Emissions.NOx = nox;
+        if (sox !== null) day.Emissions.SOx = sox;
+        if (co !== null) day.Emissions.CO = co;
+        if (particulate !== null) day.Emissions.Particulate = particulate;
+        if (temp !== null) day.Emissions.StackTemp = temp;
+    });
+
+        
+    const output = Array.from(byDate.values()).sort((a, b) => {
+        const p = s => {
+            const parts = s.split('.');
+            return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).getTime();
+        };
+        return p(a.Date) - p(b.Date);
+    });
+
+        return output;
+    }
+
+    fetch('https://qippdashstorage.blob.core.windows.net/data/powerbi_export.csv')
+        .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+        .then(csvText => {
+            const rawRows = parseCSV(csvText);
+            OPS_DATA = csvToOpsData(rawRows);
+            _opsReady = true;
+            if(document.readyState === 'complete') initDash();
+        })
+        .catch(err => {
+            console.warn('CSV not loaded:', err);
+            const el = document.getElementById('dash-info');
+            if(el) { el.textContent = 'Live data not loaded — flow may not have run yet'; el.style.color='#f97316'; }
+        });
+
     function initDash(){
         if(!OPS_DATA.length) return;
         ALL=OPS_DATA.map(r=>{r._d=pd(r.Date);return r;}).filter(r=>r._d);
@@ -2397,6 +2522,208 @@
     })();
 
 </script>
-<>
 
+<script>
+// ================================================================
+// QIPP SHAREPOINT INTEGRATION — Azure SWA + SharePoint REST API
+// ================================================================
+var SP_CFG = {
+  site: 'https://acwapi.sharepoint.com/sites/QIPPMailIngestTemp',
+  list: 'QIPP_Absences',
+  user: null,
+  ready: false,
+  syncEnabled: false
+};
+
+// 1 — GET USER FROM AZURE SWA /.auth/me
+async function spGetUser() {
+  try {
+    var res = await fetch('/.auth/me');
+    var data = await res.json();
+    var p = data.clientPrincipal;
+    if (p) {
+      SP_CFG.user = p.userDetails || p.userId || 'User';
+      var el = document.getElementById('sp-user-name');
+      if (el) el.textContent = SP_CFG.user;
+      var badge = document.getElementById('sp-sync-badge');
+      if (badge) { badge.textContent = '⟳ Connecting...'; badge.style.color = '#D2F050'; }
+    }
+  } catch(e) { console.warn('/.auth/me not available (local mode)', e.message); }
+}
+
+// 2 — SHAREPOINT FETCH WRAPPER
+async function spFetch(url, opts) {
+  opts = opts || {};
+  if (opts.method && opts.method !== 'GET') {
+    try {
+      var dr = await fetch(SP_CFG.site + '/_api/contextinfo', {
+        method: 'POST', credentials: 'include',
+        headers: { 'Accept': 'application/json;odata=verbose' }
+      });
+      var dd = await dr.json();
+      opts.headers = opts.headers || {};
+      opts.headers['X-RequestDigest'] = dd.d.GetContextWebInformation.FormDigestValue;
+    } catch(e) {}
+  }
+  return fetch(url, Object.assign({ credentials: 'include' }, opts, {
+    headers: Object.assign({
+      'Accept': 'application/json;odata=verbose',
+      'Content-Type': 'application/json;odata=verbose'
+    }, opts.headers || {})
+  }));
+}
+
+// 3 — LOAD records from SharePoint → rebuild CPLR + CPOV
+async function spLoad() {
+  var badge = document.getElementById('sp-sync-badge');
+  try {
+    var res = await spFetch(
+      SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.list + "')/items?$top=5000&$orderby=Id"
+    );
+    if (!res.ok) {
+      if (badge) { badge.textContent = '⚠ SP Auth Needed'; badge.style.color = '#f97316'; }
+      console.warn('spLoad: HTTP', res.status, '— run in local mode');
+      return;
+    }
+    var data = await res.json();
+    var items = data.d.results;
+
+    Object.keys(CPLR).forEach(function(k){ delete CPLR[k]; });
+    Object.keys(CPOV).forEach(function(k){ delete CPOV[k]; });
+
+    items.forEach(function(item) {
+      var dk  = item.DateKey;
+      var all = item.AllDates
+        ? item.AllDates.split(',').map(function(d){ return d.trim(); }).filter(Boolean)
+        : [dk];
+      if (!CPLR[dk]) CPLR[dk] = [];
+      CPLR[dk].push({
+        absent:   item.AbsentMember || '',
+        coverBy:  item.CoverBy      || '',
+        type:     item.LeaveType    || 'Annual',
+        shift:    item.ShiftType    || 'D',
+        dates:    all,
+        crew:     item.Crew         || '',
+        _spId:    item.Id,
+        _spSaved: true
+      });
+      var absent = item.AbsentMember, cover = item.CoverBy;
+      if (absent) {
+        if (!CPOV[absent]) CPOV[absent] = {};
+        all.forEach(function(d){ CPOV[absent][d] = 'LEAVE'; });
+      }
+      if (cover) {
+        if (!CPOV[cover]) CPOV[cover] = {};
+        all.forEach(function(d){ CPOV[cover][d] = item.ShiftType || 'D'; });
+      }
+    });
+
+    if (typeof cpRenderTbl === 'function') cpRenderTbl();
+    if (typeof taRender    === 'function') taRender();
+    if (typeof cpMarkCal   === 'function') cpMarkCal();
+
+    SP_CFG.ready = true;
+    SP_CFG.syncEnabled = true;
+    if (badge) { badge.textContent = '● SP Live (' + items.length + ')'; badge.style.color = '#D2F050'; }
+    console.log('spLoad: loaded', items.length, 'records from SharePoint');
+  } catch(e) {
+    if (badge) { badge.textContent = '○ Local Mode'; badge.style.color = '#888'; }
+    console.warn('spLoad failed — local mode active:', e.message);
+  }
+}
+
+// 4 — SAVE one record to SharePoint
+async function spSave(record) {
+  if (!SP_CFG.syncEnabled) return;
+  var rid = record.absent.replace(/\s+/g,'') + '_' + record.dateKey + '_' + record.shift;
+  try {
+    var chk = await spFetch(
+      SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.list + "')/items?$filter=Title eq '" + encodeURIComponent(rid) + "'&$top=1&$select=Id"
+    );
+    var chkData = await chk.json();
+    var existing = chkData.d.results[0];
+    var etRes  = await spFetch(SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.list + "')?$select=ListItemEntityTypeFullName");
+    var etData = await etRes.json();
+    var et     = etData.d.ListItemEntityTypeFullName;
+    var body   = JSON.stringify({
+      __metadata:    { type: et },
+      Title:         rid,
+      AbsentMember:  record.absent,
+      CoverBy:       record.coverBy  || '',
+      LeaveType:     record.type     || 'Annual',
+      ShiftType:     record.shift    || 'D',
+      DateKey:       record.dateKey,
+      AllDates:      (record.allDates || [record.dateKey]).join(','),
+      Crew:          record.crew     || '',
+      UpdatedByName: SP_CFG.user     || '',
+      UpdatedAt:     new Date().toISOString()
+    });
+    if (existing) {
+      await spFetch(
+        SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.list + "')/items(" + existing.Id + ")",
+        { method: 'POST', body: body, headers: { 'IF-MATCH': '*', 'X-HTTP-Method': 'MERGE' } }
+      );
+    } else {
+      await spFetch(
+        SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.list + "')/items",
+        { method: 'POST', body: body }
+      );
+    }
+    console.log('spSave:', rid);
+  } catch(e) { console.error('spSave failed:', e.message); }
+}
+
+// 5 — DELETE one record from SharePoint
+async function spDelete(absent, dateKey, shift) {
+  if (!SP_CFG.syncEnabled) return;
+  var rid = absent.replace(/\s+/g,'') + '_' + dateKey + '_' + shift;
+  try {
+    var chk = await spFetch(
+      SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.list + "')/items?$filter=Title eq '" + encodeURIComponent(rid) + "'&$top=1&$select=Id"
+    );
+    var chkData = await chk.json();
+    var existing = chkData.d.results[0];
+    if (!existing) return;
+    await spFetch(
+      SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.list + "')/items(" + existing.Id + ")",
+      { method: 'POST', headers: { 'IF-MATCH': '*', 'X-HTTP-Method': 'DELETE' } }
+    );
+    console.log('spDelete:', rid);
+  } catch(e) { console.error('spDelete failed:', e.message); }
+}
+
+// 6 — PATCH cpAssign to auto-save after every assignment
+(function patchCpAssign() {
+  var wait = setInterval(function() {
+    if (typeof cpAssign !== 'function' || cpAssign._spPatched) return;
+    clearInterval(wait);
+    var _orig = cpAssign;
+    cpAssign = function() {
+      _orig.apply(this, arguments);
+      setTimeout(function() {
+        try {
+          Object.keys(CPLR).forEach(function(dk) {
+            CPLR[dk].forEach(function(rec) {
+              if (!rec._spSaved) {
+                rec._spSaved = true;
+                spSave({ absent: rec.absent, coverBy: rec.coverBy||'', type: rec.type||'Annual',
+                         shift: rec.shift||'D', dateKey: dk, allDates: rec.dates||[dk], crew: rec.crew||'' })
+                  .catch(function(e){ console.error('spSave error', e); });
+              }
+            });
+          });
+        } catch(e) { console.error('patch error', e); }
+      }, 400);
+    };
+    cpAssign._spPatched = true;
+    console.log('cpAssign patched for SP sync');
+  }, 300);
+})();
+
+// 7 — INIT
+window.addEventListener('load', async function() {
+  await spGetUser();
+  await spLoad();
+});
+</script>
 </html>
