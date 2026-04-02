@@ -1980,6 +1980,9 @@ function sv(val) {
                 +'<tr class="cpeditrow" id="er_'+id+'" style="display:none"><td colspan="5"><div class="cpeditwrap" id="ew_'+id+'"></div></td></tr>';
         });
         tbody.innerHTML=rows;
+        if(typeof SP_CFG!=='undefined'&&!SP_CFG.canEdit){
+            document.querySelectorAll('.cpebtn').forEach(function(b){b.style.display='none';});
+        }
     }
 
     /* ── edit ── */
@@ -1990,7 +1993,8 @@ function sv(val) {
         CP_EID=id; row.style.display='';
         var cur=cpSt(name,CP_KEY),w=document.getElementById('ew_'+id);
         w.innerHTML='<span style="font-size:.7rem;color:#444">Change <b>'+name+'</b>:</span>'
-            +'<input type="password" class="cpepin" id="ep_'+id+'" maxlength="6" placeholder="PIN" autocomplete="off"/>'
+            /* PIN removed — access controlled by SharePoint permissions */
+        +''
             +'<select class="cpesel" id="es_'+id+'"><option value="D"'+(cur==='D'?' selected':'')+'>&#9728; Day</option>'
             +'<option value="N"'+(cur==='N'?' selected':'')+'>&#127769; Night</option>'
             +'<option value="O"'+(cur==='O'?' selected':'')+'>&#9866; Off</option></select>'
@@ -2001,11 +2005,11 @@ function sv(val) {
     }
     function cpCancelEdit(id){var r=document.getElementById('er_'+id);if(r)r.style.display='none';CP_EID=null;}
     function cpApplyEdit(id,name){
-        var pin=document.getElementById('ep_'+id).value,ns=document.getElementById('es_'+id).value,err=document.getElementById('ee_'+id);
-        if(pin!==CP_PIN){err.textContent='Wrong PIN';err.style.display='';return;}
+        var ns=document.getElementById('es_'+id).value,err=document.getElementById('ee_'+id);
         if(ns==='D'&&cpSt(name,cpPK(CP_KEY))==='N'){err.textContent='Cannot — finished Night yesterday';err.style.display='';return;}
         if(ns==='N'&&cpSt(name,cpNK(CP_KEY))==='D'){err.textContent='Cannot — Day scheduled tomorrow';err.style.display='';return;}
         if(!CP_OV[name])CP_OV[name]={};CP_OV[name][CP_KEY]=ns;cpCancelEdit(id);cpRenderTbl();
+        spSaveCalEdit(name, CP_KEY, CP_FC||'', ns, '').catch(function(e){console.error('spSaveCalEdit',e);});
     }
 
     /* ── leave form ── */
@@ -2530,9 +2534,11 @@ function sv(val) {
 var SP_CFG = {
   site: 'https://acwapi.sharepoint.com/sites/QIPPMailIngestTemp',
   list: 'QIPP_Absences',
+  calList: 'QIPP_CalendarEdits',
   user: null,
   ready: false,
-  syncEnabled: false
+  syncEnabled: false,
+  canEdit: false
 };
 
 // 1 — GET USER FROM AZURE SWA /.auth/me
@@ -2720,10 +2726,90 @@ async function spDelete(absent, dateKey, shift) {
   }, 300);
 })();
 
+// 7a — CHECK SHAREPOINT EDIT PERMISSIONS
+async function spCheckPermissions() {
+  try {
+    var res = await spFetch(
+      SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.calList + "')/effectivebasePermissions"
+    );
+    var data = await res.json();
+    var low = parseInt(data.d.Low) || 0;
+    SP_CFG.canEdit = !!(low & 4); // EditListItems bit
+  } catch(e) { SP_CFG.canEdit = false; }
+  document.querySelectorAll('.cpebtn').forEach(function(b){
+    b.style.display = SP_CFG.canEdit ? '' : 'none';
+  });
+  console.log('spCheckPermissions: canEdit =', SP_CFG.canEdit);
+}
+
+// 7b — LOAD CALENDAR EDITS from QIPP_CalendarEdits
+async function spLoadCalEdits() {
+  try {
+    var res = await spFetch(
+      SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.calList + "')/items?$top=5000&$orderby=Id"
+    );
+    if (!res.ok) { console.warn('spLoadCalEdits: HTTP', res.status); return; }
+    var data = await res.json();
+    var items = data.d.results;
+    items.forEach(function(item) {
+      var emp = item.AssignedEmployee, date = item.ShiftDate, shift = item.ShiftType;
+      if (emp && date && shift) {
+        if (!CP_OV[emp]) CP_OV[emp] = {};
+        CP_OV[emp][date] = shift;
+      }
+    });
+    if (typeof cpRenderTbl === 'function') cpRenderTbl();
+    if (typeof cpMarkCal   === 'function') cpMarkCal();
+    console.log('spLoadCalEdits: loaded', items.length, 'overrides');
+  } catch(e) { console.warn('spLoadCalEdits failed:', e.message); }
+}
+
+// 7c — SAVE ONE CALENDAR EDIT to QIPP_CalendarEdits
+async function spSaveCalEdit(employee, shiftDate, crew, shiftType, notes) {
+  if (!SP_CFG.syncEnabled) return;
+  var cellKey = employee.replace(/\s+/g,'') + '_' + shiftDate;
+  try {
+    var chk = await spFetch(
+      SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.calList + "')/items?$filter=CellKey eq '" + encodeURIComponent(cellKey) + "'&$top=1&$select=Id"
+    );
+    var chkData = await chk.json();
+    var existing = chkData.d.results[0];
+    var etRes = await spFetch(SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.calList + "')?$select=ListItemEntityTypeFullName");
+    var etData = await etRes.json();
+    var et = etData.d.ListItemEntityTypeFullName;
+    var body = JSON.stringify({
+      __metadata:      { type: et },
+      Title:           cellKey,
+      CellKey:         cellKey,
+      ShiftDate:       shiftDate,
+      Crew:            crew || '',
+      ShiftType:       shiftType,
+      AssignedEmployee: employee,
+      Notes:           notes || '',
+      UpdatedByName:   SP_CFG.user || '',
+      UpdatedAt:       new Date().toISOString()
+    });
+    if (existing) {
+      await spFetch(
+        SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.calList + "')/items(" + existing.Id + ")",
+        { method: 'POST', body: body, headers: { 'IF-MATCH': '*', 'X-HTTP-Method': 'MERGE' } }
+      );
+    } else {
+      await spFetch(
+        SP_CFG.site + "/_api/web/lists/getbytitle('" + SP_CFG.calList + "')/items",
+        { method: 'POST', body: body }
+      );
+    }
+    console.log('spSaveCalEdit saved:', cellKey, '->', shiftType);
+  } catch(e) { console.error('spSaveCalEdit failed:', e.message); }
+}
+
 // 7 — INIT
 window.addEventListener('load', async function() {
   await spGetUser();
   await spLoad();
+  await spCheckPermissions();
+  await spLoadCalEdits();
 });
 </script>
 </html>
