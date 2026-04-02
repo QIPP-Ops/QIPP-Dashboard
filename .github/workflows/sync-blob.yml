@@ -1,6 +1,6 @@
 name: Sync CSV to Azure Blob
 
-on:
+on: 
   push:
     branches:
       - main
