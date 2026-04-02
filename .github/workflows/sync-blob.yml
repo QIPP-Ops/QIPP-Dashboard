@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+
       - 'powerbi_export.csv'
   workflow_dispatch:
 
@@ -22,6 +23,6 @@ jobs:
             az storage blob upload \
               --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" \
               --container-name data \
-              --name powerbiexport.csv \
+              --name powerbi_export.csv \
               --file powerbi_export.csv \
               --overwrite true
