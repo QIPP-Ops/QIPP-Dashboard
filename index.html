@@ -175,7 +175,7 @@
         .container-main {
             max-width: 1600px;
             width: 100vw;
-            margin-left: calc(-1 * var(--sidebar-w));
+            
             background: white;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
@@ -834,7 +834,7 @@
             </div>
             <a href="https://www.acwapower.com/en/contact-us/" class="get-in-touch-box">
                 <span>Get in touch</span>
-                <span class="arrow-icon">â†’</span>
+                <span class="arrow-icon">→</span>
             </a>
         </div>
 
@@ -868,7 +868,7 @@
     </div>
 
     <div class="footer-bottom">
-        <div>Â© 2026 Acwa. All rights reserved.</div>
+        <div>© 2026 Acwa. All rights reserved.</div>
         <div class="bottom-links">
             <a href="#">Legal Notice</a>
             <a href="https://www.acwapower.com/en/privacy-policy/">Privacy Policy</a>
@@ -1497,9 +1497,9 @@ function sv(val) {
             document.getElementById('dash-info').textContent='⚠ Open via: python -m http.server 8080';
             console.error('plant_data.json load error:',e);
         }
-    })();window.addEventListener('load',()=>{
-        if(typeof _opsReady!=='undefined'&&_opsReady) initDash();
-        initDash(); selectType('Gas Turbines');
+    })();window.addEventListener('load', () => {
+    initDash();
+});
     });
 </script>
 <script>
