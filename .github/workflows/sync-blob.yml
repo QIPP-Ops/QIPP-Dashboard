@@ -1,28 +1,37 @@
-name: Sync CSV to Azure Blob
+name: Sync plant_data.json from Azure Blob
 
-on: 
+on:
+  schedule:
+    - cron: '*/15 * * * *'
   push:
     branches:
       - main
     paths:
-
       - 'powerbi_export.csv'
   workflow_dispatch:
 
 jobs:
-  upload:
+  sync:
     runs-on: ubuntu-latest
-    name: Upload powerbi_export.csv to Blob Storage
+    name: Download plant_data.json from Azure Blob and commit
     steps:
       - uses: actions/checkout@v4
 
-      - name: Upload to Azure Blob Storage
+      - name: Download plant_data.json from Azure Blob Storage
         uses: azure/CLI@v2
         with:
           inlineScript: |
-            az storage blob upload \
+            az storage blob download \
               --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" \
               --container-name data \
-              --name powerbi_export.csv \
-              --file powerbi_export.csv \
+              --name plant_data.json \
+              --file plant_data.json \
               --overwrite true
+
+      - name: Commit and push updated plant_data.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add plant_data.json
+          git diff --cached --quiet || git commit -m "Auto-update plant_data.json from Azure Blob $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git push
