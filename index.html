@@ -1178,7 +1178,7 @@ function sv(val) {
 
     function initDash(){
         if(!OPS_DATA.length) return;
-        ALL=OPS_DATA.map(r=>{r._d=pd(r.Date);return r;}).filter(r=>r._d);
+        ALL=OPS_DATA.map(r=>{r._d=(s=>{if(!s)return null;const p=s.trim().split('.');if(p.length===3)return new Date(+p[2],+p[1]-1,+p[0]);return new Date(s);})(r.Date);return r;}).filter(r=>r._d);
         ALL.sort((a,b)=>a._d-b._d); VIEW=[...ALL];
         const last=ALL[ALL.length-1];
         const el=document.getElementById('dash-info');
@@ -1497,9 +1497,10 @@ function sv(val) {
             document.getElementById('dash-info').textContent='⚠ Open via: python -m http.server 8080';
             console.error('plant_data.json load error:',e);
         }
-    })();window.addEventListener('load', () => {
-    initDash();
-});
+        })();
+
+    window.addEventListener('load', () => {
+        initDash();
     });
 </script>
 <script>
