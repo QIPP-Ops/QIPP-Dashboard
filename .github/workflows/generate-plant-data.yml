@@ -1,0 +1,46 @@
+name: Generate plant_data.json from powerbi_export.csv
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'powerbi_export.csv'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Convert CSV to plant_data.json and commit
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run generate_plant_data.py
+        run: python generate_plant_data.py
+
+      - name: Upload plant_data.json to Azure Blob Storage
+        uses: azure/CLI@v2
+        with:
+          inlineScript: |
+            az storage blob upload \
+              --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" \
+              --container-name data \
+              --name plant_data.json \
+              --file plant_data.json \
+              --overwrite true
+
+      - name: Commit and push updated plant_data.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add plant_data.json
+          git diff --cached --quiet || git commit -m "Auto-generate plant_data.json from powerbi_export.csv $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          git push
