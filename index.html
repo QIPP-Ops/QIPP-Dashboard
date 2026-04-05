@@ -1479,7 +1479,7 @@ function sv(val) {
     // ─── INIT ───
     (async()=>{
         try{
-            const raw=await(await fetch('https://qippdashstorage.blob.core.windows.net/data/plant_data.json')).json();
+            const raw=await(await fetch('https://acwapi.sharepoint.com/:x:/r/sites/QIPPMailIngestTemp/Shared%20Documents/PowerBIExports/powerbi_export.csv?d=weabfbc5b24844e7a8cc382e493d37da6&csf=1&web=1&e=gRn5TD')).csv();
             ALL=raw.map(r=>{
                 const hr=(r.HeatRate!=null)?r.HeatRate:
                     (r.Fuel&&r.Generation?Math.round(r.Fuel*48500/r.Generation*10)/10:null);
@@ -1495,7 +1495,7 @@ function sv(val) {
             buildTgl();sync();draw();
         }catch(e){
             document.getElementById('dash-info').textContent='⚠ Open via: python -m http.server 8080';
-            console.error('plant_data.json load error:',e);
+            console.error('powerbi_export.csv load error:',e);
         }
         })();
 
