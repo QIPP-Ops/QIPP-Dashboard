@@ -592,158 +592,53 @@
         .ta-date-pill{padding:1px 6px;background:#ede9f8;border-radius:10px;font-size:.6rem;color:#666;}
         .ta-date-pill.today{background:#D2F050;color:#2E2044;font-weight:700;}
     </style>
-    <!-- ── MOBILE / SAFARI RESPONSIVE FIXES ── -->
+
+<!-- MOBILE / SAFARI RESPONSIVE FIXES -->
 <style>
-  /* 1. Fix iOS Safari background-attachment:fixed (unsupported) */
   @supports (-webkit-touch-callout: none) {
     body { background-attachment: scroll !important; }
   }
   @media (max-width: 991px) {
     body { background-attachment: scroll !important; }
-  }
-
-  /* 2. Navbar container padding */
-  @media (max-width: 991px) {
-    .acwa-navbar .container-fluid {
-      padding: 0 1rem !important;
-    }
-
-    /* 3. Logo size — smaller on mobile */
-    .navbar-brand svg {
-      height: 50px !important;
-      width: auto !important;
-    }
-
-    /* 4. Nav links — compact margins inside the collapsed menu */
-    .nav-link {
-      margin: 0.4rem 0.5rem !important;
-      padding: 0.5rem 0 !important;
-    }
-
-    /* 5. Hamburger toggler — auto width, not full width */
-    .navbar-toggler {
-      width: auto !important;
-      flex-shrink: 0;
-    }
-
-    /* 6. Give the collapsed navbar a solid background so links are readable */
+    .acwa-navbar .container-fluid { padding: 0 1rem !important; }
+    .navbar-brand svg { height: 50px !important; width: auto !important; }
+    .nav-link { margin: 0.4rem 0.5rem !important; padding: 0.5rem 0 !important; }
+    .navbar-toggler { width: auto !important; flex-shrink: 0; }
     .acwa-navbar .navbar-collapse.show,
     .acwa-navbar .navbar-collapse.collapsing {
       background-color: rgba(46, 34, 53, 0.97);
       padding: 0.5rem 1rem 1rem;
       border-radius: 0 0 12px 12px;
     }
-
-    /* 7. Stack nav action buttons vertically */
-    .nav-actions {
-      flex-direction: row;
-      flex-wrap: wrap;
-      gap: 8px !important;
-      margin-left: 0 !important;
-      padding-top: 0.5rem;
-    }
-
-    /* 8. Hero text — scale down on mobile */
-    .hero-text {
-      font-size: clamp(22px, 6vw, 40px) !important;
-      max-width: 100% !important;
-    }
-    .hero-section {
-      padding: 0 5% !important;
-      padding-top: 70px !important;
-      min-height: 280px !important;
-      height: auto !important;
-    }
-    .hero-text > div {
-      font-size: clamp(14px, 3.5vw, 24px) !important;
-    }
-
-    /* 9. Main container — no forced 100vw that causes horizontal scroll */
-    .container-main {
-      width: 100% !important;
-      overflow-x: hidden !important;
-    }
-
-    /* 10. Shift nav — lower sticky offset on mobile */
-    .shift-nav {
-      top: 60px !important;
-      padding: 15px !important;
-      gap: 8px !important;
-      flex-wrap: wrap;
-    }
-    .shift-btn {
-      padding: 8px 18px !important;
-      font-size: 13px !important;
-    }
-
-    /* 11. Calendar — compact padding, smaller cells */
-    .calendar-container {
-      padding: 15px 10px !important;
-    }
-    .calendar-day {
-      min-height: 60px !important;
-      font-size: 11px;
-    }
-    .calendar-day .date {
-      font-size: 13px !important;
-    }
-    .calendar-day .shift {
-      font-size: 9px !important;
-    }
-    .month-title {
-      font-size: 1.3em !important;
-    }
-
-    /* 12. Footer — single column, smaller padding */
-    .brand-footer {
-      padding: 40px 20px !important;
-    }
-    .footer-content {
-      grid-template-columns: 1fr !important;
-      gap: 30px !important;
-    }
-    .footer-logo svg {
-      height: 55px !important;
-    }
-
-    /* 13. Dashboard main content — tighter padding on mobile */
-    .dash-main {
-      padding: 0.75rem 0.75rem 1.5rem !important;
-    }
-    .slicer {
-      gap: 0.5rem !important;
-    }
-    .strip {
-      padding: 0.65rem 0.9rem !important;
-    }
+    .nav-actions { flex-direction: row; flex-wrap: wrap; gap: 8px !important; margin-left: 0 !important; padding-top: 0.5rem; }
+    .hero-text { font-size: clamp(22px, 6vw, 40px) !important; max-width: 100% !important; }
+    .hero-section { padding: 0 5% !important; padding-top: 70px !important; min-height: 280px !important; height: auto !important; }
+    .hero-text > div { font-size: clamp(14px, 3.5vw, 24px) !important; }
+    .container-main { width: 100% !important; overflow-x: hidden !important; }
+    .shift-nav { top: 60px !important; padding: 15px !important; gap: 8px !important; flex-wrap: wrap; }
+    .shift-btn { padding: 8px 18px !important; font-size: 13px !important; }
+    .calendar-container { padding: 15px 10px !important; }
+    .calendar-day { min-height: 60px !important; font-size: 11px; }
+    .calendar-day .date { font-size: 13px !important; }
+    .calendar-day .shift { font-size: 9px !important; }
+    .month-title { font-size: 1.3em !important; }
+    .brand-footer { padding: 40px 20px !important; }
+    .footer-content { grid-template-columns: 1fr !important; gap: 30px !important; }
+    .footer-logo svg { height: 55px !important; }
+    .dash-main { padding: 0.75rem 0.75rem 1.5rem !important; }
+    .slicer { gap: 0.5rem !important; }
+    .strip { padding: 0.65rem 0.9rem !important; }
   }
-
-  /* Extra small phones (375px and below) */
   @media (max-width: 480px) {
-    .calendar-grid {
-      gap: 4px !important;
-    }
-    .calendar-day {
-      min-height: 48px !important;
-      border-radius: 6px !important;
-    }
-    .kpi-row {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-    .btn-sap, .btn-mini, .btn-mini-lime {
-      font-size: 11px !important;
-      padding: 6px 10px !important;
-    }
+    .calendar-grid { gap: 4px !important; }
+    .calendar-day { min-height: 48px !important; border-radius: 6px !important; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr) !important; }
+    .btn-sap, .btn-mini, .btn-mini-lime { font-size: 11px !important; padding: 6px 10px !important; }
   }
-
-  /* Safari-specific: prevent tap highlight and text zoom */
-  * {
-    -webkit-tap-highlight-color: transparent;
-  }
-  input, select, textarea {
-    font-size: 16px; /* prevents iOS auto-zoom on focus */
-  }
+  * { -webkit-tap-highlight-color: transparent; }
+  input, select, textarea { font-size: 16px; }
 </style>
+
 </head>
 <script>
     (function () {
