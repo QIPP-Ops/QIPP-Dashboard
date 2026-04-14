@@ -175,7 +175,7 @@
         .container-main {
             max-width: 1600px;
             width: 100vw;
-            margin-left: calc(-1 * var(--sidebar-w));
+            
             background: white;
             border-radius: 12px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
@@ -212,32 +212,7 @@
         }
         .shift-btn.active, .shift-btn:hover { background: var(--brand-lilac); color: white; }
 
-        /* CALENDAR */
-        .calendar-container { padding: 40px; }
-        .month-title { text-align: center; color: var(--brand-dark); font-size: 2em; font-weight: 700; margin-bottom: 30px; }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; }
-        .day-header { text-align: center; font-weight: 700; color: #888; font-size: 14px; text-transform: uppercase; padding-bottom: 15px; }
-
-        .calendar-day {
-            aspect-ratio: 1;
-            min-height: 140px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            border: 1px solid #f4f4f4;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .calendar-day:hover { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(146, 115, 218, 0.25); border-color: var(--brand-lilac); }
-        .calendar-day.day-shift { background: white; border: 3px solid var(--brand-lime); color: var(--brand-dark); }
-        .calendar-day.night-shift { background: var(--brand-dark); color: white; border: 3px solid var(--brand-dark); }
-        .calendar-day.off-shift { background: #f9f9f9; color: #bbb; border: 1px dashed #ddd; }
-
-        .calendar-day .date { font-weight: 700; font-size: 20px; margin-bottom: 5px; }
-        .calendar-day .shift { font-size: 13px; text-transform: uppercase; font-weight: 600; }
-
+        
         /* FOOTER */
         .brand-footer { background-color: var(--brand-lilac); padding: 80px 50px; }
         .footer-content { max-width: 1600px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
@@ -300,10 +275,7 @@
             transition: all 0.2s;
             z-index: 2;
         }
-        .view-crew-btn:hover {
-            background: var(--brand-dark);
-            transform: scale(1.05);
-        }
+        
 
 
         body {
@@ -406,10 +378,7 @@
     </style>
     <style>
 
-        body{display:flex!important;flex-direction:column!important;}
-        #content-area{flex:1;}
-        .view-page{display:none!important;}
-        .view-page.active{display:block!important;}
+        
         /* Mini nav buttons */
         .btn-mini{border:1.5px solid rgba(255,255,255,.6);color:#fff;font-weight:600;padding:5px 12px;border-radius:50px;font-size:11px;text-decoration:none;transition:all .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:5px;cursor:pointer;background:transparent;font-family:'Montserrat',sans-serif;}
         .btn-mini:hover{background:rgba(255,255,255,.15);color:#fff;}
@@ -464,193 +433,50 @@
         .asset-btn.active{background:#9273DA;color:white;border-color:#9273DA;}
         .metric-select{width:100%;padding:6px 10px;border-radius:8px;border:1.5px solid #E2E8F0;font-family:'Montserrat',sans-serif;font-size:12px;color:#2E2044;margin-bottom:12px;}
 
-        /* ===== COVERAGE PANEL ===== */
-        #coveragePanel{display:none;position:fixed;inset:0;background:rgba(46,32,68,.82);
-            z-index:9100;align-items:center;justify-content:center;padding:12px;font-family:'Montserrat',sans-serif;}
-        .cpbox{background:#fff;border-radius:18px;width:min(960px,98vw);max-height:92vh;
-            display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;}
-        .cphdr{background:#2E2044;padding:15px 22px;display:flex;align-items:flex-start;
-            justify-content:space-between;flex-shrink:0;}
-        .cptitle{color:#fff;font-size:.95rem;font-weight:700;margin:0;}
-        .cpsub{color:rgba(255,255,255,.55);font-size:.68rem;margin:2px 0 0;}
-        .cpxbtn{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7;padding:0 4px;}
-        .cpxbtn:hover{opacity:1;}
-        .cptabbar{display:flex;background:#f4f1fb;border-bottom:2px solid #ede9f8;flex-shrink:0;}
-        .cptab{flex:1;padding:11px 16px;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;
-            background:none;font-family:'Montserrat',sans-serif;font-size:.73rem;font-weight:700;color:#aaa;cursor:pointer;}
-        .cptab.on{color:#9273DA;border-bottom-color:#9273DA;background:#fff;}
-        .cpfbar{display:flex;gap:6px;padding:9px 14px;background:#f9f7fc;
-            border-bottom:1px solid #ede9f8;flex-shrink:0;flex-wrap:wrap;align-items:center;}
-        .cpfbtn{padding:4px 12px;border-radius:20px;border:1.5px solid #ddd;background:#fff;
-            font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
-        .cpfbtn.on{background:#9273DA;border-color:#9273DA;color:#fff;}
-        .cpscroll{flex:1;overflow-y:auto;min-height:0;}
-        .cptbl{width:100%;border-collapse:collapse;font-size:.78rem;}
-        .cptbl thead th{padding:9px 14px;text-align:left;font-size:.59rem;font-weight:700;text-transform:uppercase;
-            letter-spacing:.05em;color:#aaa;background:#f9f7fc;border-bottom:2px solid #ede9f8;position:sticky;top:0;z-index:2;}
-        .cptbl tbody td{padding:8px 14px;border-bottom:1px solid #f3f0fa;vertical-align:middle;}
-        .cptbl .cpsecrow td{background:#2E2044;color:#fff;font-weight:700;font-size:.68rem;padding:7px 14px;}
-        .cptbl tr:not(.cpsecrow):not(.cpeditrow):hover td{background:#faf8ff;}
-        .spill{display:inline-block;padding:2px 10px;border-radius:20px;font-size:.6rem;font-weight:700;text-transform:uppercase;}
-        .spD{background:#d7f7d3;color:#1a6e14;}.spN{background:#2e2044;color:#d2f050;}
-        .spO{background:#f0f0f0;color:#999;}.spL{background:#fef3c7;color:#b45309;}
-        .spS{background:#fee2e2;color:#b91c1c;}.spC{background:#dbeafe;color:#1e40af;}
-        .crewdot{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:.6rem;font-weight:800;}
-        .crewdot-A{background:#9273DA;color:#fff;}.crewdot-B{background:#D2F050;color:#2E2044;}
-        .crewdot-C{background:#2E2044;color:#D2F050;}.crewdot-D{background:#f97316;color:#fff;}
-        .cpebtn{background:none;border:1.5px solid #e2e8f0;border-radius:6px;padding:2px 7px;font-size:.7rem;cursor:pointer;color:#888;}
-        .cpebtn:hover{background:#9273DA;border-color:#9273DA;color:#fff;}
-        .cpeditrow td{padding:0!important;background:#f9f7fc!important;}
-        .cpeditwrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 14px;}
-        .cpepin{width:88px;padding:6px 9px;border:2px solid #ddd;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.8rem;text-align:center;letter-spacing:.3em;outline:none;}
-        .cpepin:focus{border-color:#9273DA;}
-        .cpesel{padding:6px 9px;border:2px solid #ddd;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.74rem;outline:none;color:#2E2044;}
-        .cpebtnok{padding:6px 14px;background:#9273DA;color:#fff;border:none;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.7rem;font-weight:700;cursor:pointer;}
-        .cpebtncanc{padding:6px 11px;background:#f0f0f0;border:none;border-radius:7px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.7rem;}
-        .cpeerr{color:#e53e3e;font-size:.64rem;font-weight:700;width:100%;display:none;}
-        .cplw{padding:14px;}.cplcard{border:1.5px solid #ede9f8;border-radius:12px;padding:14px;margin-bottom:12px;background:#fff;}
-        .cplcard h4{font-size:.72rem;font-weight:700;color:#2E2044;margin:0 0 10px;text-transform:uppercase;}
-        .cpfg{display:flex;flex-direction:column;gap:3px;}
-        .cpfg label{font-size:.59rem;font-weight:700;color:#aaa;text-transform:uppercase;}
-        .cpfsel{padding:7px 11px;border:2px solid #ddd;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.74rem;color:#2E2044;outline:none;min-width:200px;}
-        .cpfsel:focus{border-color:#9273DA;}
-        .cpltbtn{padding:6px 12px;border:2px solid #ddd;border-radius:8px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
-        .cpltbtn.on{background:#2E2044;border-color:#2E2044;color:#fff;}
-        .cpfindbtn{padding:8px 18px;background:#9273DA;color:#fff;border:none;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:.74rem;font-weight:700;cursor:pointer;}
-        .cpfindbtn:hover{background:#2E2044;}
-        .cpferr{color:#e53e3e;font-size:.66rem;font-weight:700;display:none;margin-bottom:8px;}
-        .cpri{display:flex;align-items:center;justify-content:space-between;padding:10px 13px;border:1.5px solid #ede9f8;border-radius:9px;margin-bottom:8px;background:#faf8ff;}
-        .cprin{font-size:.78rem;font-weight:700;color:#2E2044;}.cprim{font-size:.61rem;color:#888;margin-top:1px;}
-        .cprok{font-size:.6rem;color:#15803d;font-weight:700;}.cprwarn{font-size:.6rem;color:#d97706;font-weight:700;}
-        .cpabtn{padding:5px 13px;background:#fff;border:2px solid #9273DA;color:#9273DA;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.68rem;font-weight:700;cursor:pointer;}
-        .cpabtn:hover{background:#9273DA;color:#fff;}
-        .cpal{padding:9px 12px;border-left:4px solid #f97316;background:#fff7ed;border-radius:0 7px 7px 0;margin-bottom:7px;font-size:.7rem;}
-        .cpnrep{color:#aaa;font-size:.74rem;font-style:italic;padding:4px 0;}
-        /* Opposite-shift button */
-        .view-opp-btn{display:block;width:calc(100% - 4px);margin:3px 2px 0;padding:2px 6px;
-            font-family:'Montserrat',sans-serif;font-size:.55rem;font-weight:700;text-transform:uppercase;
-            background:rgba(210,240,80,.15);color:#D2F050;border:1px solid rgba(210,240,80,.3);
-            border-radius:4px;cursor:pointer;transition:all .15s;}
-        .view-opp-btn:hover{background:#D2F050;color:#2E2044;}
-        /* Hover tooltip */
-        #cpTip{position:fixed;z-index:9500;background:#2E2044;border-radius:12px;padding:12px 16px;
-            box-shadow:0 12px 40px rgba(0,0,0,.5);min-width:200px;max-width:300px;
-            pointer-events:none;display:none;font-family:'Montserrat',sans-serif;
-            border:1.5px solid rgba(210,240,80,.2);}
-        /* Multi-date modal */
-        #cpMultiModal{display:none;position:fixed;inset:0;background:rgba(46,32,68,.85);
-            z-index:9200;align-items:center;justify-content:center;padding:12px;font-family:'Montserrat',sans-serif;}
+            </style>
 
-        /* ── View Team Absence button ── */
-        .ta-btn{
-            padding:10px 22px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;
-            background:linear-gradient(135deg,#2E2044,#4a3370);color:#D2F050;
-            border:2px solid rgba(210,240,80,.4);border-radius:10px;cursor:pointer;
-            letter-spacing:.04em;text-transform:uppercase;transition:all .18s;
-            box-shadow:0 2px 10px rgba(46,32,68,.25);white-space:nowrap;
-        }
-        .ta-btn:hover{background:#D2F050;color:#2E2044;border-color:#D2F050;box-shadow:0 4px 18px rgba(210,240,80,.3);}
-        /* ── Team Absence Modal ── */
-        #taModal{display:none;position:fixed;inset:0;background:rgba(46,32,68,.85);
-            z-index:9300;align-items:center;justify-content:center;padding:12px;
-            font-family:'Montserrat',sans-serif;}
-        .ta-box{background:#fff;border-radius:18px;width:min(1000px,98vw);max-height:92vh;
-            display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;}
-        .ta-hdr{background:#2E2044;padding:15px 22px;display:flex;align-items:center;
-            justify-content:space-between;flex-shrink:0;}
-        .ta-hdr-title{color:#fff;font-size:.95rem;font-weight:700;margin:0;}
-        .ta-hdr-sub{color:rgba(255,255,255,.55);font-size:.68rem;margin:2px 0 0;}
-        .ta-xbtn{background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;opacity:.7;padding:0 4px;}
-        .ta-xbtn:hover{opacity:1;}
-        .ta-toolbar{display:flex;gap:8px;padding:10px 16px;background:#f9f7fc;
-            border-bottom:1px solid #ede9f8;flex-shrink:0;flex-wrap:wrap;align-items:center;}
-        .ta-filter{padding:5px 14px;border-radius:20px;border:1.5px solid #ddd;background:#fff;
-            font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:700;cursor:pointer;color:#666;}
-        .ta-filter.on{background:#9273DA;border-color:#9273DA;color:#fff;}
-        .ta-search{padding:6px 12px;border:2px solid #ddd;border-radius:8px;
-            font-family:'Montserrat',sans-serif;font-size:.72rem;outline:none;min-width:180px;color:#2E2044;}
-        .ta-search:focus{border-color:#9273DA;}
-        .ta-scroll{flex:1;overflow-y:auto;min-height:0;padding:16px;}
-        .ta-empty{color:#aaa;font-size:.78rem;font-style:italic;text-align:center;padding:40px 0;}
-        /* summary cards */
-        .ta-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px;}
-        .ta-stat{background:#fff;border:1.5px solid #ede9f8;border-radius:12px;padding:12px 16px;text-align:center;}
-        .ta-stat-n{font-size:1.5rem;font-weight:800;color:#9273DA;}
-        .ta-stat-l{font-size:.62rem;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
-        /* crew section */
-        .ta-crew-hdr{background:#2E2044;color:#fff;font-size:.68rem;font-weight:700;
-            padding:7px 14px;border-radius:8px 8px 0 0;margin-top:12px;
-            display:flex;align-items:center;justify-content:space-between;}
-        .ta-card{border:1.5px solid #ede9f8;border-radius:0 0 10px 10px;margin-bottom:4px;overflow:hidden;}
-        .ta-row{display:grid;grid-template-columns:200px 90px 100px 1fr 160px;
-            align-items:center;padding:8px 14px;border-bottom:1px solid #f3f0fa;font-size:.74rem;}
-        .ta-row:last-child{border-bottom:none;}
-        .ta-row:hover{background:#faf8ff;}
-        .ta-row-hd{background:#f9f7fc;font-size:.6rem;font-weight:700;text-transform:uppercase;
-            letter-spacing:.05em;color:#aaa;border-bottom:2px solid #ede9f8;}
-        .ta-dates{display:flex;flex-wrap:wrap;gap:3px;}
-        .ta-date-pill{padding:1px 6px;background:#ede9f8;border-radius:10px;font-size:.6rem;color:#666;}
-        .ta-date-pill.today{background:#D2F050;color:#2E2044;font-weight:700;}
-    </style>
+<!-- MOBILE / SAFARI RESPONSIVE FIXES -->
+<style>
+  @supports (-webkit-touch-callout: none) {
+    body { background-attachment: scroll !important; }
+  }
+  @media (max-width: 991px) {
+    body { background-attachment: scroll !important; }
+    .acwa-navbar .container-fluid { padding: 0 1rem !important; }
+    .navbar-brand svg { height: 50px !important; width: auto !important; }
+    .nav-link { margin: 0.4rem 0.5rem !important; padding: 0.5rem 0 !important; }
+    .navbar-toggler { width: auto !important; flex-shrink: 0; }
+    .acwa-navbar .navbar-collapse.show,
+    .acwa-navbar .navbar-collapse.collapsing {
+      background-color: rgba(46, 34, 53, 0.97);
+      padding: 0.5rem 1rem 1rem;
+      border-radius: 0 0 12px 12px;
+    }
+    .nav-actions { flex-direction: row; flex-wrap: wrap; gap: 8px !important; margin-left: 0 !important; padding-top: 0.5rem; }
+    .hero-text { font-size: clamp(22px, 6vw, 40px) !important; max-width: 100% !important; }
+    .hero-section { padding: 0 5% !important; padding-top: 70px !important; min-height: 280px !important; height: auto !important; }
+    .hero-text > div { font-size: clamp(14px, 3.5vw, 24px) !important; }
+    .container-main { width: 100% !important; overflow-x: hidden !important; }
+    .shift-nav { top: 60px !important; padding: 15px !important; gap: 8px !important; flex-wrap: wrap; }
+    .shift-btn { padding: 8px 18px !important; font-size: 13px !important; }
+    .month-title { font-size: 1.3em !important; }
+    .brand-footer { padding: 40px 20px !important; }
+    .footer-content { grid-template-columns: 1fr !important; gap: 30px !important; }
+    .footer-logo svg { height: 55px !important; }
+    .dash-main { padding: 0.75rem 0.75rem 1.5rem !important; }
+    .slicer { gap: 0.5rem !important; }
+    .strip { padding: 0.65rem 0.9rem !important; }
+  }
+  @media (max-width: 480px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr) !important; }
+    .btn-sap, .btn-mini, .btn-mini-lime { font-size: 11px !important; padding: 6px 10px !important; }
+  }
+  * { -webkit-tap-highlight-color: transparent; }
+  input, select, textarea { font-size: 16px; }
+</style>
+
 </head>
-<script>
-    (function () {
-        'use strict';
-        function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-        function posTip(e,tt){
-            var x=e.clientX+16,y=e.clientY-10,tw=tt.offsetWidth||260,th=tt.offsetHeight||200;
-            if(x+tw>window.innerWidth-8)x=e.clientX-tw-10;
-            if(y+th>window.innerHeight-8)y=window.innerHeight-th-8;
-            if(x<4)x=4;if(y<4)y=4;
-            tt.style.left=x+'px';tt.style.top=y+'px';
-        }
-        function buildHTML(name,member){
-            var role=member.r,myColor=crewColorMap[name],k=(typeof CPKEY!=='undefined')?CPKEY:null,out='';
-            ['A','B','C','D'].forEach(function(crew){
-                var elig=CPREG.filter(function(m){
-                    if(m.n===name)return false;
-                    var mc=crewColorMap[m.n];
-                    if(!mc||mc===myColor)return false;
-                    var cov=CPROLECOVERS?CPROLECOVERS[m.r]:null;
-                    if(!cov||cov.indexOf(role)===-1)return false;
-                    if(k&&typeof cpSt==='function'&&cpSt(m.n,k)!=='O')return false;
-                    return m.c===crew;
-                });
-                if(!elig.length)return;
-                out+='<div style="font-size:.57rem;font-weight:700;color:#D2F050;text-transform:uppercase;letter-spacing:.06em;margin:5px 0 2px;border-top:1px solid rgba(255,255,255,.1);padding-top:4px">Crew '+crew+'</div>';
-                elig.forEach(function(m){
-                    var cc=crewColorMap[m.n]||'';
-                    out+='<div style="display:flex;justify-content:space-between;align-items:center;padding:1.5px 0"><span class="'+cc+'" style="font-size:.7rem">'+escH(m.n)+'</span><span style="color:rgba(255,255,255,.32);font-size:.57rem;margin-left:8px">'+escH(m.r)+'</span></div>';
-                });
-            });
-            return out||'<em style="color:rgba(255,255,255,.38);font-size:.7rem">No eligible cover found</em>';
-        }
-        function hookHover(){
-            var tbody=document.getElementById('cpTBody');if(!tbody)return;
-            tbody.querySelectorAll('tr:not(.cpsecrow):not(.cpeditrow)').forEach(function(row){
-                var td=row.querySelector('td:first-child');if(!td||td._cpH)return;
-                var ns=td.querySelector('span[class]');if(!ns)return;
-                var name=ns.textContent.trim();
-                var member=(typeof CPMAP!=='undefined')?CPMAP[name]:null;if(!member)return;
-                td._cpH=true;
-                td.addEventListener('mouseenter',function(e){
-                    var tt=document.getElementById('cpTip');if(!tt)return;
-                    tt.innerHTML='<div style="font-size:.64rem;font-weight:700;color:#D2F050;margin-bottom:5px;border-bottom:1px solid rgba(210,240,80,.25);padding-bottom:4px">&#128203; Available Cover</div><div style="font-size:.59rem;color:rgba(255,255,255,.48);margin-bottom:7px">'+escH(name)+' &bull; '+escH(member.r)+'</div>'+buildHTML(name,member);
-                    tt.style.display='block';posTip(e,tt);
-                });
-                td.addEventListener('mousemove',function(e){var tt=document.getElementById('cpTip');if(tt&&tt.style.display!=='none')posTip(e,tt);});
-                td.addEventListener('mouseleave',function(){var tt=document.getElementById('cpTip');if(tt)tt.style.display='none';});
-            });
-        }
-        var _t=setInterval(function(){
-            if(typeof cpRenderTbl==='undefined')return;
-            clearInterval(_t);
-            var _r=cpRenderTbl;
-            cpRenderTbl=function(){_r.apply(this,arguments);setTimeout(hookHover,0);};
-            if(typeof cpOpenPanel!=='undefined'){var _o=cpOpenPanel;cpOpenPanel=function(){_o.apply(this,arguments);setTimeout(hookHover,60);};}
-        },100);
-    }());
-</script>
+
 
 
 <nav class="navbar navbar-expand-lg acwa-navbar">
@@ -678,7 +504,7 @@
                 <li class="nav-item nav-actions">
                     <a href="https://flpnwc-fpg6i1pyim.dispatcher.sa1.hana.ondemand.com/sites?siteId=bd8f998f-0949-4d95-b233-fbf3aa884a5c#Shell-home" target="_blank" class="btn-sap">S4HANA</a>
                     <a href="https://acwapi-my.sharepoint.com/:x:/g/personal/m_algarni_nomac_com/IQBX9-3015HcT6C0FTLuB_lOAfVqMX5BJTYTqFMVOwZ7nwE?e=dQHZWw" target="_blank" class="btn-mini-lime"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Planned Leaves</a>
-                    <button id="cal-nav-btn" class="btn-mini" onclick="switchPage('calendar')">Ops Calendar</button>
+                    
                 </li>
             </ul>
         </div>
@@ -702,7 +528,7 @@
 <div id="content-area">
 
     <!-- VIEW: DASHBOARD (default) -->
-    <div id="view-dashboard" class="view-page active">
+    <div id="view-dashboard" class="view-page">
         <div class="dash-main">
             <!-- INFO BAR -->
             <div style="display:flex;justify-content:flex-end;align-items:center;gap:12px;margin-bottom:.5rem;">
@@ -798,26 +624,6 @@
 </div>
 
 
-<div id="view-calendar" class="view-page">
-    <!-- MAIN CONTENT -->
-    <div class="container-main">
-        <div class="shift-nav" style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-            <button class="ta-btn" onclick="taOpen()">&#128203; View Team Absence</button>
-            <button class="shift-btn active" onclick="switchShift('A', event)">Shift A</button>
-            <button class="shift-btn" onclick="switchShift('B', event)">Shift B</button>
-            <button class="shift-btn" onclick="switchShift('C', event)">Shift C</button>
-            <button class="shift-btn" onclick="switchShift('D', event)">Shift D</button>
-        </div>
-
-        <div class="calendar-container" id="calendarContainer"></div>
-
-        <div class="legend">
-            <div class="legend-item"><div class="dot" style="background:white; border:3px solid #9273DA"></div> Day Shift</div>
-            <div class="legend-item"><div class="dot" style="background:#2E2044;"></div> Night Shift</div>
-            <div class="legend-item"><div class="dot" style="background:#ddd;"></div> Off</div>
-        </div>
-    </div>
-</div>
 
 
 <footer class="brand-footer">
@@ -834,7 +640,7 @@
             </div>
             <a href="https://www.acwapower.com/en/contact-us/" class="get-in-touch-box">
                 <span>Get in touch</span>
-                <span class="arrow-icon">â†’</span>
+                <span class="arrow-icon">→</span>
             </a>
         </div>
 
@@ -868,7 +674,7 @@
     </div>
 
     <div class="footer-bottom">
-        <div>Â© 2026 Acwa. All rights reserved.</div>
+        <div>© 2026 Acwa. All rights reserved.</div>
         <div class="bottom-links">
             <a href="#">Legal Notice</a>
             <a href="https://www.acwapower.com/en/privacy-policy/">Privacy Policy</a>
@@ -877,183 +683,167 @@
     </div>
 </footer>
 
-
-
-<!-- Team Absence Modal -->
-<div id="taModal">
-    <div class="ta-box">
-        <div class="ta-hdr">
-            <div>
-                <p class="ta-hdr-title">&#128203; Team Absence &amp; Coverage Overview</p>
-                <p class="ta-hdr-sub" id="taSubtitle">All crews — 2026</p>
-            </div>
-            <button class="ta-xbtn" onclick="document.getElementById('taModal').style.display='none'">&#x2715;</button>
-        </div>
-        <div class="ta-toolbar">
-            <span style="font-size:.6rem;font-weight:700;color:#bbb;text-transform:uppercase;">Crew:</span>
-            <button class="ta-filter on" data-tacrew="all">All</button>
-            <button class="ta-filter" data-tacrew="A">Crew A</button>
-            <button class="ta-filter" data-tacrew="B">Crew B</button>
-            <button class="ta-filter" data-tacrew="C">Crew C</button>
-            <button class="ta-filter" data-tacrew="D">Crew D</button>
-            <span style="font-size:.6rem;font-weight:700;color:#bbb;text-transform:uppercase;margin-left:8px;">Type:</span>
-            <button class="ta-filter on" data-tatype="all">All Types</button>
-            <button class="ta-filter" data-tatype="Annual">Annual</button>
-            <button class="ta-filter" data-tatype="Sick">Sick</button>
-            <button class="ta-filter" data-tatype="Emergency">Emergency</button>
-            <input class="ta-search" type="text" id="taSearch" placeholder="&#128269; Search name...">
-        </div>
-        <div class="ta-scroll" id="taBody"></div>
-    </div>
-</div>
-
-<div id="cpTip"></div>
-
-<div id="cpMultiModal">
-    <div style="background:#fff;border-radius:18px;width:min(580px,96vw);max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.35);overflow:hidden;">
-        <div style="background:#2E2044;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;">
-            <div><p id="mmTitle" style="color:#fff;font-weight:700;font-size:.9rem;margin:0;"></p>
-                <p id="mmSub" style="color:rgba(255,255,255,.55);font-size:.67rem;margin:2px 0 0;"></p></div>
-            <button onclick="document.getElementById('cpMultiModal').style.display='none'" style="background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;opacity:.7;">&#x2715;</button>
-        </div>
-        <div style="padding:4px 16px 8px;background:#f9f7fc;border-bottom:1px solid #ede9f8;font-size:.68rem;color:#666;flex-shrink:0;">Tick the dates for this replacement to cover. Changes appear on the calendar.</div>
-        <div style="flex:1;overflow-y:auto;padding:14px;" id="mmDateList"></div>
-        <div style="padding:12px 16px;border-top:1px solid #ede9f8;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;background:#f9f7fc;">
-            <button onclick="mmSelectAll(true)" style="padding:6px 12px;border:1.5px solid #ddd;border-radius:7px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.7rem;cursor:pointer;">&#9745; Select All</button>
-            <button onclick="mmSelectAll(false)" style="padding:6px 12px;border:1.5px solid #ddd;border-radius:7px;background:#fff;font-family:'Montserrat',sans-serif;font-size:.7rem;cursor:pointer;">&#9744; Deselect</button>
-            <button onclick="mmApply()" style="padding:6px 18px;background:#9273DA;color:#fff;border:none;border-radius:7px;font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;">&#10003; Apply Coverage</button>
-        </div>
-    </div>
-</div>
-
-<div id="coveragePanel">
-    <div class="cpbox">
-        <div class="cphdr">
-            <div><p class="cptitle" id="cpTitle"></p><p class="cpsub" id="cpSub"></p></div>
-            <button class="cpxbtn" id="cpXBtn">&#x2715;</button>
-        </div>
-        <div class="cptabbar">
-            <button class="cptab on" data-pane="ov">&#128203;&nbsp;Coverage Overview</button>
-            <button class="cptab" data-pane="lv">&#127973;&nbsp;Leave &amp; Overtime</button>
-        </div>
-        <div class="cpfbar" id="cpFBar">
-            <span style="font-size:.58rem;font-weight:700;color:#bbb;text-transform:uppercase;">Filter:</span>
-            <button class="cpfbtn on" data-crew="all">All Crews</button>
-            <button class="cpfbtn" data-crew="A">Crew A</button>
-            <button class="cpfbtn" data-crew="B">Crew B</button>
-            <button class="cpfbtn" data-crew="C">Crew C</button>
-            <button class="cpfbtn" data-crew="D">Crew D</button>
-        </div>
-        <div class="cpscroll">
-            <div id="cpPaneOv"><table class="cptbl"><thead><tr><th>Name</th><th>Crew</th><th>Role</th><th>Status</th><th style="width:46px"></th></tr></thead><tbody id="cpTBody"></tbody></table></div>
-            <div id="cpPaneLv" style="display:none">
-                <div class="cplw">
-                    <div class="cplcard"><h4>&#128221; Report Absence</h4>
-                        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;margin-bottom:10px;">
-                            <div class="cpfg"><label>Absent Member</label><select class="cpfsel" id="cpAbsSel"><option value="">&#8212; Select member &#8212;</option></select></div>
-                            <div class="cpfg"><label>Leave Type</label>
-                                <div style="display:flex;gap:5px;">
-                                    <button class="cpltbtn on" data-lt="Annual">Annual</button>
-                                    <button class="cpltbtn" data-lt="Sick">Sick</button>
-                                    <button class="cpltbtn" data-lt="Emergency">Emergency</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cpferr" id="cpAbsErr"></div>
-                        <button class="cpfindbtn" id="cpFindBtn">&#128269; Find Replacements</button>
-                    </div>
-                    <div class="cplcard" id="cpRepCard" style="display:none">
-                        <h4>&#9989; Available Replacements</h4>
-                        <p id="cpRepCtx" style="font-size:.7rem;color:#666;margin-bottom:9px;"></p>
-                        <div id="cpRepList"></div>
-                    </div>
-                    <div class="cplcard"><h4>&#128203; Leave Records</h4><div id="cpLeaveLog"><p class="cpnrep">No records.</p></div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- SCRIPTS -->
 <script>
     function switchPage(page){
         document.querySelectorAll('.view-page').forEach(el=>el.classList.remove('active'));
         document.getElementById('view-'+page).classList.add('active');
         const b=document.getElementById('cal-nav-btn');
-        if(page==='calendar'){
+        {
             b.textContent='\u2190 Dashboard';
-            b.onclick=function(){switchPage('dashboard');};
-            setTimeout(autoSelectDayShift,150);
-        }else{
-            b.textContent='Ops Calendar';
-            b.onclick=function(){switchPage('calendar');};
+            
+                        
         }
     }
-    function autoSelectDayShift(){
-        const today=new Date();
-        const dd=String(today.getDate()).padStart(2,'0');
-        const mm=String(today.getMonth()+1).padStart(2,'0');
-        const yyyy=today.getFullYear();
-        const key=dd+'.'+mm+'.'+yyyy;
-        if(typeof crewSchedule==='undefined')return;
-        let found=null;
-        for(const g of['A','B','C']){
-            if(!crewSchedule[g])continue;
-            const e=crewSchedule[g][key];
-            if(e&&(e.phase==='Day'||e.type==='Day'||String(e).includes('Day'))){found=g;break;}
-        }
-        if(found){
-            switchShift(found,null);
-            document.querySelectorAll('.shift-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()==='Shift '+found));
-        }
-    }
+   
     window.addEventListener('scroll',()=>{
         const nb=document.querySelector('.acwa-navbar');
         if(!nb)return;
         window.scrollY>50?nb.classList.add('scrolled'):nb.classList.remove('scrolled');
     });
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-    function scrollToToday() {
-        setTimeout(() => {
-            const todayCell = document.getElementById('today-cell');
-            if (todayCell) {
-                // Calculate position: element top + scrollY - offset (header + nav)
-                // Header ~100px, ShiftNav ~80px. Offset ~250px to be safe and centered.
-                const offset = 250;
-                const elementPosition = todayCell.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        }, 800); // 800ms delay to ensure layout rendering
-    }
-
-    // Call on load and on shift change
-    window.addEventListener('load', scrollToToday);
-
-</script>
 <script>
+
+    // ── LIVE DATA FROM AZURE BLOB CSV (Power BI export) ─────────
     let OPS_DATA = [];
     let _opsReady = false;
-    fetch('plant_data.json')
-        .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-        .then(data=>{
-            OPS_DATA = Array.isArray(data)?data:(data.records||data.data||[]);
-            _opsReady = true;
-            if(document.readyState==='complete') initDash();
-        })
-        .catch(err=>{
-            console.warn('plant_data.json not loaded:',err);
-            const el=document.getElementById('dash-info');
-            if(el){ el.textContent='data not loaded — place plant_data.json next to this HTML'; el.style.color='#ef4444'; }
+
+    function parseDate(value) {
+    if (!value) return null;
+    const s = String(value).trim();
+    if (s.includes('T')) {
+        const d = new Date(s);
+        return isNaN(d.getTime()) ? null : d;
+    }
+    return null;
+}
+
+function formatDate(d) {
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = String(d.getFullYear());
+    return `${day}.${month}.${year}`;
+}
+
+function sv(val) {
+    if (val == null || val === '') return null;
+    const n = Number(val);
+    return (!isNaN(n) && isFinite(n)) ? n : null;
+}
+
+
+    function parseCSV(text) {
+        const lines = text.split('\n').filter(l => l.trim());
+        if (!lines.length) return [];
+        const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g,'').trim());
+        return lines.slice(1).map(line => {
+            // handle quoted commas
+            const vals = [];
+            let cur = '', inQ = false;
+            for (let i = 0; i < line.length; i++) {
+                const c = line[i];
+                if (c === '"') { inQ = !inQ; }
+                else if (c === ',' && !inQ) { vals.push(cur); cur = ''; }
+                else cur += c;
+            }
+            vals.push(cur);
+            const obj = {};
+            headers.forEach((h,i) => obj[h] = (vals[i]||'').replace(/^"|"$/g,'').trim());
+            return obj;
         });
+    }
+
+    function csvToOpsData(rawRows) {
+        const byDate = new Map();
+            rawRows.forEach(row => {
+        /** @type {Record<string, any>} */
+        const rowData = row;
+        const cleanRow = {};
+
+        for (const [k, v] of Object.entries(rowData)) {
+            const cleanKey = k.replace('DailyOperation[', '').replace(']', '').trim();
+            cleanRow[cleanKey] = v;
+        }
+
+        const dateObj = parseDate(cleanRow['ReportDate']) || parseDate(cleanRow['Date']);
+        if (!dateObj) return;
+        const dStr = formatDate(dateObj);
+
+        if (!byDate.has(dStr)) {
+            let eff = sv(cleanRow['NetEff_Pct']);
+            if (eff !== null && eff < 1) eff = parseFloat((eff * 100).toFixed(2));
+
+            let load = sv(cleanRow['TotalLoadMW']);
+            if (load !== null && load > 10000) load = load / 24;
+
+            byDate.set(dStr, {
+                Date: dStr,
+                Generation: sv(cleanRow['GrossMWH']),
+                NetGen: sv(cleanRow['NetMWH']),
+                Load: load,
+                PLF: (load !== null) ? parseFloat((load / 3883.2 * 100).toFixed(2)) : null,
+                Efficiency: eff,
+                HeatRate: sv(cleanRow['HeatRate']),
+                Fuel: sv(cleanRow['FuelGasTons']),
+                Emissions: {
+                    NOx: null,
+                    SOx: null,
+                    CO: null,
+                    Particulate: null,
+                    StackTemp: null
+                },
+                Water: { ROProduction: sv(cleanRow['ROProduction']) },
+                AirIntakeDP: sv(cleanRow['AirIntakeDP']),
+                Units: []
+            });
+        }
+
+        const day = byDate.get(dStr);
+
+        // Map Environment data (Pivoted or Row-based)
+        const nox = sv(cleanRow['NOx']) || sv(cleanRow['Env.NOx']);
+        const sox = sv(cleanRow['SOx']) || sv(cleanRow['Env.SOx']);
+        const co = sv(cleanRow['CO']) || sv(cleanRow['Env.CO']);
+        const particulate = sv(cleanRow['Particulate']) || sv(cleanRow['Dust']);
+        const temp = sv(cleanRow['Stack Temp']) || sv(cleanRow['StackTemp']);
+
+        if (nox !== null) day.Emissions.NOx = nox;
+        if (sox !== null) day.Emissions.SOx = sox;
+        if (co !== null) day.Emissions.CO = co;
+        if (particulate !== null) day.Emissions.Particulate = particulate;
+        if (temp !== null) day.Emissions.StackTemp = temp;
+    });
+
+        
+    const output = Array.from(byDate.values()).sort((a, b) => {
+        const p = s => {
+            const parts = s.split('.');
+            return new Date(`${parts[2]}-${parts[1]}-${parts[0]}`).getTime();
+        };
+        return p(a.Date) - p(b.Date);
+    });
+
+        return output;
+    }
+
+    fetch('https://qippdashstorage.blob.core.windows.net/data/powerbi_export.csv')
+        .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); })
+        .then(csvText => {
+            const rawRows = parseCSV(csvText);
+            OPS_DATA = csvToOpsData(rawRows);
+            _opsReady = true;
+            if(document.readyState === 'complete') initDash();
+        })
+        .catch(err => {
+            console.warn('CSV not loaded:', err);
+            const el = document.getElementById('dash-info');
+            if(el) { el.textContent = 'Live data not loaded — flow may not have run yet'; el.style.color='#f97316'; }
+        });
+
     function initDash(){
         if(!OPS_DATA.length) return;
-        ALL=OPS_DATA.map(r=>{r._d=pd(r.Date);return r;}).filter(r=>r._d);
+        ALL=OPS_DATA.map(r=>{r._d=(s=>{if(!s)return null;const p=s.trim().split('.');if(p.length===3)return new Date(+p[2],+p[1]-1,+p[0]);return new Date(s);})(r.Date);return r;}).filter(r=>r._d);
         ALL.sort((a,b)=>a._d-b._d); VIEW=[...ALL];
         const last=ALL[ALL.length-1];
         const el=document.getElementById('dash-info');
@@ -1354,7 +1144,7 @@
     // ─── INIT ───
     (async()=>{
         try{
-            const raw=await(await fetch('plant_data.json')).json();
+            const raw=await(await fetch('https://acwapi.sharepoint.com/:x:/r/sites/QIPPMailIngestTemp/Shared%20Documents/PowerBIExports/powerbi_export.csv?d=weabfbc5b24844e7a8cc382e493d37da6&csf=1&web=1&e=gRn5TD')).csv();
             ALL=raw.map(r=>{
                 const hr=(r.HeatRate!=null)?r.HeatRate:
                     (r.Fuel&&r.Generation?Math.round(r.Fuel*48500/r.Generation*10)/10:null);
@@ -1370,1033 +1160,15 @@
             buildTgl();sync();draw();
         }catch(e){
             document.getElementById('dash-info').textContent='⚠ Open via: python -m http.server 8080';
-            console.error('plant_data.json load error:',e);
+            console.error('powerbi_export.csv load error:',e);
         }
-    })();window.addEventListener('load',()=>{
-        if(typeof _opsReady!=='undefined'&&_opsReady) initDash();
-        initCharts(); selectType('Gas Turbines');
+        })();
+
+    window.addEventListener('load', () => {
+        initDash();
     });
 </script>
-<script>
-    window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.acwa-navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
 
-    const crewColorMap = {
-        'Syed Shahnawaz Ahmed': 'crew-red', 'Abdullah Al Amri': 'crew-red', 'Kanaka Naga Srinivasu Kolli': 'crew-red', 'Moustafa Elansari': 'crew-red', 'Mustafa Salem': 'crew-red', 'Zaid Almarri': 'crew-red', 'Alaa Alrefae': 'crew-red',
-        'Saleh Mohammed Al Amri': 'crew-yellow', 'Adam Mohammed Al-Huzum': 'crew-yellow', 'Sami Hamdan': 'crew-yellow',
-        'Shaheer Yousaf': 'crew-green', 'Juma Khan': 'crew-green', 'Veera Prasad': 'crew-green', 'Waleed Fayad': 'crew-green',
-        'Ahmed Fathy': 'crew-lightblue', 'Fawaz Al Qahtani': 'crew-lightblue', 'Rashed Alhajri': 'crew-lightblue', 'Prathapan': 'crew-lightblue', 'Yasser Althuiqeb': 'crew-lightblue', 'Abdullah Al Hajri': 'crew-lightblue', 'Norbie Cruz': 'crew-lightblue', 'Lakshmy Prasad': 'crew-lightblue', 'Saravanakumar Madhaiyan': 'crew-lightblue', 'Hassan Arshad': 'crew-lightblue', 'Ahmed Fawaz': 'crew-lightblue',
-        'Purushothaman Devaraj': 'crew-lightviolet', 'Abdulwahab Al-Shehab': 'crew-lightviolet', 'Izhar Ali': 'crew-lightviolet', 'Mark Ramirez': 'crew-lightviolet', 'Ahmed Alsaqoor': 'crew-lightviolet', 'Rajesh Muniasamy': 'crew-lightviolet',
-        'Mohamed Al Dossary': 'crew-lightorange', 'Abdullah Altulayhi': 'crew-lightorange', 'Bakr Abdulmajeed': 'crew-lightorange', 'Mohammed Mulhim': 'crew-lightorange', 'Abdullah Mohiddin Alshahrani': 'crew-lightorange', 'Mohammed Afnan': 'crew-lightorange', 'Abdelaziz Al Harbi': 'crew-lightorange', 'Amjad Alruwaytie': 'crew-lightorange', 'Khalid Saleh Khalousi': 'crew-lightorange', 'Saad Al Enize': 'crew-lightorange', 'Mohammed Al Ghamdi': 'crew-lightorange', 'Bader AlSubait': 'crew-lightorange',
-        'Saad Salem Al Hajiri': 'crew-grey', 'Abdulhadi Mohammed Saleh': 'crew-grey', 'Abderahman Al Anezie': 'crew-grey', 'Abderahman Al Baqmi': 'crew-grey', 'Ali Al Qahtani': 'crew-grey', 'Faris Al Dawasri': 'crew-grey', 'Mohamed Al Hakami': 'crew-grey', 'Saad Al Shahrani': 'crew-grey'
-    };
-
-
-    function formatCrewName(name) {
-        name = name.trim();
-        const colorClass = crewColorMap[name];
-        return colorClass ? `<span class="${colorClass}">${name}</span>` : name;
-    }
-
-    const scheduleData = {
-        "1/1": {"A": "O", "B": "D", "C": "N", "D": "O"}, "1/2": {"A": "O", "B": "D", "C": "N", "D": "O"}, "1/3": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "1/4": {"A": "O", "B": "N", "C": "O", "D": "D"}, "1/5": {"A": "D", "B": "O", "C": "O", "D": "N"}, "1/6": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "1/7": {"A": "N", "B": "O", "C": "D", "D": "O"}, "1/8": {"A": "N", "B": "O", "C": "D", "D": "O"}, "1/9": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "1/10": {"A": "O", "B": "D", "C": "N", "D": "O"}, "1/11": {"A": "O", "B": "N", "C": "O", "D": "D"}, "1/12": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "1/13": {"A": "D", "B": "O", "C": "O", "D": "N"}, "1/14": {"A": "D", "B": "O", "C": "O", "D": "N"}, "1/15": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "1/16": {"A": "N", "B": "O", "C": "D", "D": "O"}, "1/17": {"A": "O", "B": "D", "C": "N", "D": "O"}, "1/18": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "1/19": {"A": "O", "B": "N", "C": "O", "D": "D"}, "1/20": {"A": "O", "B": "N", "C": "O", "D": "D"}, "1/21": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "1/22": {"A": "D", "B": "O", "C": "O", "D": "N"}, "1/23": {"A": "N", "B": "O", "C": "D", "D": "O"}, "1/24": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "1/25": {"A": "O", "B": "D", "C": "N", "D": "O"}, "1/26": {"A": "O", "B": "D", "C": "N", "D": "O"}, "1/27": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "1/28": {"A": "O", "B": "N", "C": "O", "D": "D"}, "1/29": {"A": "D", "B": "O", "C": "O", "D": "N"}, "1/30": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "1/31": {"A": "N", "B": "O", "C": "D", "D": "O"}, "2/1": {"A": "N", "B": "O", "C": "D", "D": "O"}, "2/2": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "2/3": {"A": "O", "B": "D", "C": "N", "D": "O"}, "2/4": {"A": "O", "B": "N", "C": "O", "D": "D"}, "2/5": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "2/6": {"A": "D", "B": "O", "C": "O", "D": "N"}, "2/7": {"A": "D", "B": "O", "C": "O", "D": "N"}, "2/8": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "2/9": {"A": "N", "B": "O", "C": "D", "D": "O"}, "2/10": {"A": "O", "B": "D", "C": "N", "D": "O"}, "2/11": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "2/12": {"A": "O", "B": "N", "C": "O", "D": "D"}, "2/13": {"A": "O", "B": "N", "C": "O", "D": "D"}, "2/14": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "2/15": {"A": "D", "B": "O", "C": "O", "D": "N"}, "2/16": {"A": "N", "B": "O", "C": "D", "D": "O"}, "2/17": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "2/18": {"A": "O", "B": "D", "C": "N", "D": "O"}, "2/19": {"A": "O", "B": "D", "C": "N", "D": "O"}, "2/20": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "2/21": {"A": "O", "B": "N", "C": "O", "D": "D"}, "2/22": {"A": "D", "B": "O", "C": "O", "D": "N"}, "2/23": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "2/24": {"A": "N", "B": "O", "C": "D", "D": "O"}, "2/25": {"A": "N", "B": "O", "C": "D", "D": "O"}, "2/26": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "2/27": {"A": "O", "B": "D", "C": "N", "D": "O"}, "2/28": {"A": "O", "B": "N", "C": "O", "D": "D"}, "3/1": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "3/2": {"A": "D", "B": "O", "C": "O", "D": "N"}, "3/3": {"A": "D", "B": "O", "C": "O", "D": "N"}, "3/4": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "3/5": {"A": "N", "B": "O", "C": "D", "D": "O"}, "3/6": {"A": "O", "B": "D", "C": "N", "D": "O"}, "3/7": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "3/8": {"A": "O", "B": "N", "C": "O", "D": "D"}, "3/9": {"A": "O", "B": "N", "C": "O", "D": "D"}, "3/10": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "3/11": {"A": "D", "B": "O", "C": "O", "D": "N"}, "3/12": {"A": "N", "B": "O", "C": "D", "D": "O"}, "3/13": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "3/14": {"A": "O", "B": "D", "C": "N", "D": "O"}, "3/15": {"A": "O", "B": "D", "C": "N", "D": "O"}, "3/16": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "3/17": {"A": "O", "B": "N", "C": "O", "D": "D"}, "3/18": {"A": "D", "B": "O", "C": "O", "D": "N"}, "3/19": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "3/20": {"A": "N", "B": "O", "C": "D", "D": "O"}, "3/21": {"A": "N", "B": "O", "C": "D", "D": "O"}, "3/22": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "3/23": {"A": "O", "B": "D", "C": "N", "D": "O"}, "3/24": {"A": "O", "B": "N", "C": "O", "D": "D"}, "3/25": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "3/26": {"A": "D", "B": "O", "C": "O", "D": "N"}, "3/27": {"A": "D", "B": "O", "C": "O", "D": "N"}, "3/28": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "3/29": {"A": "N", "B": "O", "C": "D", "D": "O"}, "3/30": {"A": "O", "B": "D", "C": "N", "D": "O"}, "3/31": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "4/1": {"A": "O", "B": "N", "C": "O", "D": "D"}, "4/2": {"A": "O", "B": "N", "C": "O", "D": "D"}, "4/3": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "4/4": {"A": "D", "B": "O", "C": "O", "D": "N"}, "4/5": {"A": "N", "B": "O", "C": "D", "D": "O"}, "4/6": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "4/7": {"A": "O", "B": "D", "C": "N", "D": "O"}, "4/8": {"A": "O", "B": "D", "C": "N", "D": "O"}, "4/9": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "4/10": {"A": "O", "B": "N", "C": "O", "D": "D"}, "4/11": {"A": "D", "B": "O", "C": "O", "D": "N"}, "4/12": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "4/13": {"A": "N", "B": "O", "C": "D", "D": "O"}, "4/14": {"A": "N", "B": "O", "C": "D", "D": "O"}, "4/15": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "4/16": {"A": "O", "B": "D", "C": "N", "D": "O"}, "4/17": {"A": "O", "B": "N", "C": "O", "D": "D"}, "4/18": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "4/19": {"A": "D", "B": "O", "C": "O", "D": "N"}, "4/20": {"A": "D", "B": "O", "C": "O", "D": "N"}, "4/21": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "4/22": {"A": "N", "B": "O", "C": "D", "D": "O"}, "4/23": {"A": "O", "B": "D", "C": "N", "D": "O"}, "4/24": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "4/25": {"A": "O", "B": "N", "C": "O", "D": "D"}, "4/26": {"A": "O", "B": "N", "C": "O", "D": "D"}, "4/27": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "4/28": {"A": "D", "B": "O", "C": "O", "D": "N"}, "4/29": {"A": "N", "B": "O", "C": "D", "D": "O"}, "4/30": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "5/1": {"A": "O", "B": "D", "C": "N", "D": "O"}, "5/2": {"A": "O", "B": "D", "C": "N", "D": "O"}, "5/3": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "5/4": {"A": "O", "B": "N", "C": "O", "D": "D"}, "5/5": {"A": "D", "B": "O", "C": "O", "D": "N"}, "5/6": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "5/7": {"A": "N", "B": "O", "C": "D", "D": "O"}, "5/8": {"A": "N", "B": "O", "C": "D", "D": "O"}, "5/9": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "5/10": {"A": "O", "B": "D", "C": "N", "D": "O"}, "5/11": {"A": "O", "B": "N", "C": "O", "D": "D"}, "5/12": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "5/13": {"A": "D", "B": "O", "C": "O", "D": "N"}, "5/14": {"A": "D", "B": "O", "C": "O", "D": "N"}, "5/15": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "5/16": {"A": "N", "B": "O", "C": "D", "D": "O"}, "5/17": {"A": "O", "B": "D", "C": "N", "D": "O"}, "5/18": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "5/19": {"A": "O", "B": "N", "C": "O", "D": "D"}, "5/20": {"A": "O", "B": "N", "C": "O", "D": "D"}, "5/21": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "5/22": {"A": "D", "B": "O", "C": "O", "D": "N"}, "5/23": {"A": "N", "B": "O", "C": "D", "D": "O"}, "5/24": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "5/25": {"A": "O", "B": "D", "C": "N", "D": "O"}, "5/26": {"A": "O", "B": "D", "C": "N", "D": "O"}, "5/27": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "5/28": {"A": "O", "B": "N", "C": "O", "D": "D"}, "5/29": {"A": "D", "B": "O", "C": "O", "D": "N"}, "5/30": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "5/31": {"A": "N", "B": "O", "C": "D", "D": "O"}, "6/1": {"A": "N", "B": "O", "C": "D", "D": "O"}, "6/2": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "6/3": {"A": "O", "B": "D", "C": "N", "D": "O"}, "6/4": {"A": "O", "B": "N", "C": "O", "D": "D"}, "6/5": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "6/6": {"A": "D", "B": "O", "C": "O", "D": "N"}, "6/7": {"A": "D", "B": "O", "C": "O", "D": "N"}, "6/8": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "6/9": {"A": "N", "B": "O", "C": "D", "D": "O"}, "6/10": {"A": "O", "B": "D", "C": "N", "D": "O"}, "6/11": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "6/12": {"A": "O", "B": "N", "C": "O", "D": "D"}, "6/13": {"A": "O", "B": "N", "C": "O", "D": "D"}, "6/14": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "6/15": {"A": "D", "B": "O", "C": "O", "D": "N"}, "6/16": {"A": "N", "B": "O", "C": "D", "D": "O"}, "6/17": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "6/18": {"A": "O", "B": "D", "C": "N", "D": "O"}, "6/19": {"A": "O", "B": "D", "C": "N", "D": "O"}, "6/20": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "6/21": {"A": "O", "B": "N", "C": "O", "D": "D"}, "6/22": {"A": "D", "B": "O", "C": "O", "D": "N"}, "6/23": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "6/24": {"A": "N", "B": "O", "C": "D", "D": "O"}, "6/25": {"A": "N", "B": "O", "C": "D", "D": "O"}, "6/26": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "6/27": {"A": "O", "B": "D", "C": "N", "D": "O"}, "6/28": {"A": "O", "B": "N", "C": "O", "D": "D"}, "6/29": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "6/30": {"A": "D", "B": "O", "C": "O", "D": "N"}, "7/1": {"A": "D", "B": "O", "C": "O", "D": "N"}, "7/2": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "7/3": {"A": "N", "B": "O", "C": "D", "D": "O"}, "7/4": {"A": "O", "B": "D", "C": "N", "D": "O"}, "7/5": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "7/6": {"A": "O", "B": "N", "C": "O", "D": "D"}, "7/7": {"A": "O", "B": "N", "C": "O", "D": "D"}, "7/8": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "7/9": {"A": "D", "B": "O", "C": "O", "D": "N"}, "7/10": {"A": "N", "B": "O", "C": "D", "D": "O"}, "7/11": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "7/12": {"A": "O", "B": "D", "C": "N", "D": "O"}, "7/13": {"A": "O", "B": "D", "C": "N", "D": "O"}, "7/14": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "7/15": {"A": "O", "B": "N", "C": "O", "D": "D"}, "7/16": {"A": "D", "B": "O", "C": "O", "D": "N"}, "7/17": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "7/18": {"A": "N", "B": "O", "C": "D", "D": "O"}, "7/19": {"A": "N", "B": "O", "C": "D", "D": "O"}, "7/20": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "7/21": {"A": "O", "B": "D", "C": "N", "D": "O"}, "7/22": {"A": "O", "B": "N", "C": "O", "D": "D"}, "7/23": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "7/24": {"A": "D", "B": "O", "C": "O", "D": "N"}, "7/25": {"A": "D", "B": "O", "C": "O", "D": "N"}, "7/26": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "7/27": {"A": "N", "B": "O", "C": "D", "D": "O"}, "7/28": {"A": "O", "B": "D", "C": "N", "D": "O"}, "7/29": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "7/30": {"A": "O", "B": "N", "C": "O", "D": "D"}, "7/31": {"A": "O", "B": "N", "C": "O", "D": "D"}, "8/1": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "8/2": {"A": "D", "B": "O", "C": "O", "D": "N"}, "8/3": {"A": "N", "B": "O", "C": "D", "D": "O"}, "8/4": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "8/5": {"A": "O", "B": "D", "C": "N", "D": "O"}, "8/6": {"A": "O", "B": "D", "C": "N", "D": "O"}, "8/7": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "8/8": {"A": "O", "B": "N", "C": "O", "D": "D"}, "8/9": {"A": "D", "B": "O", "C": "O", "D": "N"}, "8/10": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "8/11": {"A": "N", "B": "O", "C": "D", "D": "O"}, "8/12": {"A": "N", "B": "O", "C": "D", "D": "O"}, "8/13": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "8/14": {"A": "O", "B": "D", "C": "N", "D": "O"}, "8/15": {"A": "O", "B": "N", "C": "O", "D": "D"}, "8/16": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "8/17": {"A": "D", "B": "O", "C": "O", "D": "N"}, "8/18": {"A": "D", "B": "O", "C": "O", "D": "N"}, "8/19": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "8/20": {"A": "N", "B": "O", "C": "D", "D": "O"}, "8/21": {"A": "O", "B": "D", "C": "N", "D": "O"}, "8/22": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "8/23": {"A": "O", "B": "N", "C": "O", "D": "D"}, "8/24": {"A": "O", "B": "N", "C": "O", "D": "D"}, "8/25": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "8/26": {"A": "D", "B": "O", "C": "O", "D": "N"}, "8/27": {"A": "N", "B": "O", "C": "D", "D": "O"}, "8/28": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "8/29": {"A": "O", "B": "D", "C": "N", "D": "O"}, "8/30": {"A": "O", "B": "D", "C": "N", "D": "O"}, "8/31": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "9/1": {"A": "O", "B": "N", "C": "O", "D": "D"}, "9/2": {"A": "D", "B": "O", "C": "O", "D": "N"}, "9/3": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "9/4": {"A": "N", "B": "O", "C": "D", "D": "O"}, "9/5": {"A": "N", "B": "O", "C": "D", "D": "O"}, "9/6": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "9/7": {"A": "O", "B": "D", "C": "N", "D": "O"}, "9/8": {"A": "O", "B": "N", "C": "O", "D": "D"}, "9/9": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "9/10": {"A": "D", "B": "O", "C": "O", "D": "N"}, "9/11": {"A": "D", "B": "O", "C": "O", "D": "N"}, "9/12": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "9/13": {"A": "N", "B": "O", "C": "D", "D": "O"}, "9/14": {"A": "O", "B": "D", "C": "N", "D": "O"}, "9/15": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "9/16": {"A": "O", "B": "N", "C": "O", "D": "D"}, "9/17": {"A": "O", "B": "N", "C": "O", "D": "D"}, "9/18": {"A": "D", "B": "O", "C": "O", "D": "N"}, "9/19": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "9/20": {"A": "N", "B": "O", "C": "D", "D": "O"}, "9/21": {"A": "N", "B": "O", "C": "D", "D": "O"}, "9/22": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "9/23": {"A": "O", "B": "D", "C": "N", "D": "O"}, "9/24": {"A": "O", "B": "N", "C": "O", "D": "D"}, "9/25": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "9/26": {"A": "D", "B": "O", "C": "O", "D": "N"}, "9/27": {"A": "D", "B": "O", "C": "O", "D": "N"}, "9/28": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "9/29": {"A": "N", "B": "O", "C": "D", "D": "O"}, "9/30": {"A": "O", "B": "D", "C": "N", "D": "O"}, "10/1": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "10/2": {"A": "O", "B": "N", "C": "O", "D": "D"}, "10/3": {"A": "O", "B": "N", "C": "O", "D": "D"}, "10/4": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "10/5": {"A": "D", "B": "O", "C": "O", "D": "N"}, "10/6": {"A": "N", "B": "O", "C": "D", "D": "O"}, "10/7": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "10/8": {"A": "O", "B": "D", "C": "N", "D": "O"}, "10/9": {"A": "O", "B": "D", "C": "N", "D": "O"}, "10/10": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "10/11": {"A": "O", "B": "N", "C": "O", "D": "D"}, "10/12": {"A": "D", "B": "O", "C": "O", "D": "N"}, "10/13": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "10/14": {"A": "N", "B": "O", "C": "D", "D": "O"}, "10/15": {"A": "N", "B": "O", "C": "D", "D": "O"}, "10/16": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "10/17": {"A": "O", "B": "D", "C": "N", "D": "O"}, "10/18": {"A": "O", "B": "N", "C": "O", "D": "D"}, "10/19": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "10/20": {"A": "D", "B": "O", "C": "O", "D": "N"}, "10/21": {"A": "D", "B": "O", "C": "O", "D": "N"}, "10/22": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "10/23": {"A": "N", "B": "O", "C": "D", "D": "O"}, "10/24": {"A": "O", "B": "D", "C": "N", "D": "O"}, "10/25": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "10/26": {"A": "O", "B": "N", "C": "O", "D": "D"}, "10/27": {"A": "O", "B": "N", "C": "O", "D": "D"}, "10/28": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "10/29": {"A": "D", "B": "O", "C": "O", "D": "N"}, "10/30": {"A": "N", "B": "O", "C": "D", "D": "O"}, "10/31": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "11/1": {"A": "O", "B": "D", "C": "N", "D": "O"}, "11/2": {"A": "O", "B": "D", "C": "N", "D": "O"}, "11/3": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "11/4": {"A": "O", "B": "N", "C": "O", "D": "D"}, "11/5": {"A": "D", "B": "O", "C": "O", "D": "N"}, "11/6": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "11/7": {"A": "N", "B": "O", "C": "D", "D": "O"}, "11/8": {"A": "N", "B": "O", "C": "D", "D": "O"}, "11/9": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "11/10": {"A": "O", "B": "D", "C": "N", "D": "O"}, "11/11": {"A": "O", "B": "N", "C": "O", "D": "D"}, "11/12": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "11/13": {"A": "D", "B": "O", "C": "O", "D": "N"}, "11/14": {"A": "D", "B": "O", "C": "O", "D": "N"}, "11/15": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "11/16": {"A": "N", "B": "O", "C": "D", "D": "O"}, "11/17": {"A": "O", "B": "D", "C": "N", "D": "O"}, "11/18": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "11/19": {"A": "O", "B": "N", "C": "O", "D": "D"}, "11/20": {"A": "O", "B": "N", "C": "O", "D": "D"}, "11/21": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "11/22": {"A": "D", "B": "O", "C": "O", "D": "N"}, "11/23": {"A": "N", "B": "O", "C": "D", "D": "O"}, "11/24": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "11/25": {"A": "O", "B": "D", "C": "N", "D": "O"}, "11/26": {"A": "O", "B": "D", "C": "N", "D": "O"}, "11/27": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "11/28": {"A": "O", "B": "N", "C": "O", "D": "D"}, "11/29": {"A": "D", "B": "O", "C": "O", "D": "N"}, "11/30": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "12/1": {"A": "N", "B": "O", "C": "D", "D": "O"}, "12/2": {"A": "N", "B": "O", "C": "D", "D": "O"}, "12/3": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "12/4": {"A": "O", "B": "D", "C": "N", "D": "O"}, "12/5": {"A": "O", "B": "N", "C": "O", "D": "D"}, "12/6": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "12/7": {"A": "D", "B": "O", "C": "O", "D": "N"}, "12/8": {"A": "D", "B": "O", "C": "O", "D": "N"}, "12/9": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "12/10": {"A": "N", "B": "O", "C": "D", "D": "O"}, "12/11": {"A": "O", "B": "D", "C": "N", "D": "O"}, "12/12": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "12/13": {"A": "O", "B": "N", "C": "O", "D": "D"}, "12/14": {"A": "O", "B": "N", "C": "O", "D": "D"}, "12/15": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "12/16": {"A": "D", "B": "O", "C": "O", "D": "N"}, "12/17": {"A": "N", "B": "O", "C": "D", "D": "O"}, "12/18": {"A": "N", "B": "O", "C": "D", "D": "O"},
-        "12/19": {"A": "O", "B": "D", "C": "N", "D": "O"}, "12/20": {"A": "O", "B": "D", "C": "N", "D": "O"}, "12/21": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "12/22": {"A": "O", "B": "N", "C": "O", "D": "D"}, "12/23": {"A": "D", "B": "O", "C": "O", "D": "N"}, "12/24": {"A": "D", "B": "O", "C": "O", "D": "N"},
-        "12/25": {"A": "N", "B": "O", "C": "D", "D": "O"}, "12/26": {"A": "N", "B": "O", "C": "D", "D": "O"}, "12/27": {"A": "O", "B": "D", "C": "N", "D": "O"},
-        "12/28": {"A": "O", "B": "D", "C": "N", "D": "O"}, "12/29": {"A": "O", "B": "N", "C": "O", "D": "D"}, "12/30": {"A": "O", "B": "N", "C": "O", "D": "D"},
-        "12/31": {"A": "D", "B": "O", "C": "O", "D": "N"}
-    };
-
-    const crewByDate = {
-        defaults: {
-            A: {
-                D: { shiftInChargeEngineer: ["Zaid Almarri"], supervisor: ["Syed Shahnawaz Ahmed"], ccrOperators: ["Sami Hamdan","Fawaz Al Qahtani","Ahmed Fathy","Abdulwahab Al-Shehab","Shaheer Yousaf"], localOperators: ["Purushothaman Devaraj","Mohamed Al Dossary","Abdullah Altulayhi","Bakr Abdulmajeed","Saad Salem Al Hajiri","Abdulhadi Mohammed Saleh"] },
-                N: { shiftInChargeEngineer: ["Zaid Almarri"], supervisor: ["Syed Shahnawaz Ahmed"], ccrOperators: ["Sami Hamdan","Fawaz Al Qahtani","Ahmed Fathy","Abdulwahab Al-Shehab","Shaheer Yousaf"], localOperators: ["Purushothaman Devaraj","Mohamed Al Dossary","Abdullah Altulayhi","Bakr Abdulmajeed","Saad Salem Al Hajiri","Abdulhadi Mohammed Saleh"] }
-            },
-            B: {
-                D: { shiftInChargeEngineer: ["Abdullah Al Amri"], supervisor: ["Kanaka Naga Srinivasu Kolli"], ccrOperators: ["Prathapan","Ahmed Fawaz","Rashed Alhajri","Saravanakumar Madhaiyan","Abdullah Mohiddin Alshahrani"], localOperators: ["Mohammed Mulhim","Mohammed Afnan","Abdelaziz Al Harbi","Amjad Alruwaytie","Abderahman Al Anezie"] },
-                N: { shiftInChargeEngineer: ["Abdullah Al Amri"], supervisor: ["Kanaka Naga Srinivasu Kolli"], ccrOperators: ["Prathapan","Ahmed Fawaz","Rashed Alhajri","Saravanakumar Madhaiyan","Abdullah Mohiddin Alshahrani"], localOperators: ["Mohammed Mulhim","Mohammed Afnan","Abdelaziz Al Harbi","Amjad Alruwaytie","Abderahman Al Anezie"] }
-            },
-            C: {
-                D: { shiftInChargeEngineer: ["Alaa Alrefae"], supervisor: ["Moustafa Elansari"], ccrOperators: ["Abdullah Al Hajri","Yasser Althuiqeb","Waleed Fayad","Norbie Cruz"], localOperators: ["Khalid Saleh Khalousi","Saad Al Enize","Izhar Ali","Abderahman Al Baqmi","Ali Al Qahtani"] },
-                N: { shiftInChargeEngineer: ["Alaa Alrefae"], supervisor: ["Moustafa Elansari"], ccrOperators: ["Abdullah Al Hajri","Yasser Althuiqeb","Waleed Fayad","Norbie Cruz"], localOperators: ["Khalid Saleh Khalousi","Saad Al Enize","Izhar Ali","Abderahman Al Baqmi","Ali Al Qahtani"] }
-            },
-            D: {
-                D: { shiftInChargeEngineer: ["Mustafa Salem"], supervisor: [], ccrOperators: ["Lakshmy Prasad","Saleh Mohammed Al Amri","Hassan Arshad","Veera Prasad"], localOperators: ["Rajesh Muniasamy","Mark Ramirez","Mohammed Al Ghamdi","Bader AlSubait","Faris Al Dawasri","Mohamed Al Hakami","Saad Al Shahrani","Ahmed Alsaqoor"] },
-                N: { shiftInChargeEngineer: ["Mustafa Salem"], supervisor: [], ccrOperators: ["Lakshmy Prasad","Saleh Mohammed Al Amri","Hassan Arshad","Veera Prasad"], localOperators: ["Rajesh Muniasamy","Mark Ramirez","Mohammed Al Ghamdi","Bader AlSubait","Faris Al Dawasri","Mohamed Al Hakami","Saad Al Shahrani","Ahmed Alsaqoor"] }
-            }
-        }
-    };
-
-    function getDayClass(date, shift) {
-        const key = `${date.getMonth() + 1}/${date.getDate()}`;
-        const data = scheduleData[key];
-        if (!data) return "empty";
-        const type = data[shift];
-        if (type === "D") return "day-shift";
-        if (type === "N") return "night-shift";
-        if (type === "O") return "off-shift";
-        return "empty";
-    }
-
-    function getShiftLabel(date, shift) {
-        const key = `${date.getMonth() + 1}/${date.getDate()}`;
-        const data = scheduleData[key];
-        if (!data) return "";
-        const type = data[shift];
-        if (type === "D") return "day";
-        if (type === "N") return "night";
-        if (type === "O") return "off";
-        return "";
-    }
-
-    function openCrewModal() { /* panel handles this */ }
-
-    function closeCrewModal() {
-        document.getElementById('crewModal').style.display = 'none';
-    }
-
-    function renderCrewList(crew) {
-        const sections = [
-            ["Shift In Charge Engineer", crew.shiftInChargeEngineer || []],
-            ["Supervisor", crew.supervisor || []],
-            ["CCR Operators", crew.ccrOperators || []],
-            ["Local Operators", crew.localOperators || []]
-        ];
-
-        let html = "";
-        sections.forEach(([title, names]) => {
-            html += `<div style="margin:10px 0 6px; font-weight:700; color:var(--brand-dark); text-transform:uppercase; font-size:0.8rem; letter-spacing:0.5px;">${title}</div>`;
-            if (!names.length) html += `<div style="color:#999; font-style:italic; margin-bottom:12px;">No names set</div>`;
-            else html += `<ul style="margin-left:18px; margin-bottom:12px; list-style-type:disc; color:#555;">${names.map(n => `<li>${formatCrewName(n)}</li>`).join("")}</ul>`;
-        });
-        return html;
-    }
-
-    function showCrewForDay(dateObj, shiftGroup) {
-        cpOpenPanel(dateObj);
-    }
-
-    function buildCalendar(shift) {
-        const container = document.getElementById('calendarContainer');
-        container.innerHTML = '';
-
-        for (let month = 0; month < 12; month++) {
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-            const monthSection = document.createElement('div');
-            monthSection.className = 'month-section mb-5';
-
-            const title = document.createElement('div');
-            title.className = 'month-title';
-            title.textContent = `${monthNames[month]} 2026`;
-            monthSection.appendChild(title);
-
-            const grid = document.createElement('div');
-            grid.className = 'calendar-grid';
-
-            dayNames.forEach(day => {
-                const dayHeader = document.createElement('div');
-                dayHeader.className = 'day-header';
-                dayHeader.textContent = day;
-                grid.appendChild(dayHeader);
-            });
-
-            const firstDay = new Date(2026, month, 1).getDay();
-            const daysInMonth = new Date(2026, month + 1, 0).getDate();
-
-            for (let i = 0; i < firstDay; i++) {
-                const emptyDay = document.createElement('div');
-                emptyDay.className = 'calendar-day empty';
-                grid.appendChild(emptyDay);
-            }
-
-            for (let day = 1; day <= daysInMonth; day++) {
-                const date = new Date(2026, month, day);
-                const dayClass = getDayClass(date, shift);
-                const label = getShiftLabel(date, shift);
-
-                const dayElement = document.createElement('div');
-                dayElement.className = `calendar-day ${dayClass}`;
-
-                const buttonHtml = (dayClass !== 'off-shift') ? '<button class="view-crew-btn">View Crew</button>' : '';
-                dayElement.innerHTML = `<div class="date">${day}</div><div class="shift">${label}</div>${buttonHtml}`;
-
-
-
-                const todayDate = new Date();
-                if (date.getDate() === todayDate.getDate() &&
-                    date.getMonth() === todayDate.getMonth() &&
-                    date.getFullYear() === todayDate.getFullYear()) {
-                    dayElement.style.border = '4px solid #FFD700';
-                    dayElement.style.boxShadow = '0 0 15px rgba(255, 215, 0, 0.5)';
-                    dayElement.id = 'today-cell';
-                }
-                dayElement.addEventListener('click', () => showCrewForDay(date, shift));
-
-
-                grid.appendChild(dayElement);
-            }
-
-            monthSection.appendChild(grid);
-            container.appendChild(monthSection);
-        }
-    }
-
-    function switchShift(shift, event) {
-        const buttons = document.querySelectorAll('.shift-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        buildCalendar(shift);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const container = document.getElementById('calendarContainer');
-        if (container) buildCalendar('A');
-
-        const closeBtn = document.getElementById('crewModalClose');
-        const modal = document.getElementById('crewModal');
-
-        if (closeBtn) closeBtn.addEventListener('click', closeCrewModal);
-        if (modal) {
-            modal.addEventListener('click', (e) => {
-                if (e.target.id === 'crewModal') closeCrewModal();
-            });
-        }
-    });
-
-    function scrollToToday() {
-        setTimeout(() => {
-            const todayCell = document.getElementById('today-cell');
-            if (todayCell) {
-                // Calculate position: element top + scrollY - offset (header + nav)
-                // Header ~100px, ShiftNav ~80px. Offset ~250px to be safe and centered.
-                const offset = 250;
-                const elementPosition = todayCell.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-            }
-        }, 800); // 800ms delay to ensure layout rendering
-    }
-
-    // Call on load and on shift change
-    window.addEventListener('load', scrollToToday);
-
-
-
-    /* ════════════════════════════════════════════════════════════
-       COVERAGE PANEL — injected in same script block as calendar
-       All functions share exact same scope as buildCalendar
-       ════════════════════════════════════════════════════════════ */
-    var CP_PIN='1234', CP_KEY=null, CP_LT='Annual', CP_EID=null, CP_FC='all';
-    var CP_OV={}, CP_LR={}, CP_PENDING=null;
-
-    var CP_REG=[
-        {n:"Zaid Almarri",c:"A",r:"Shift in Charge Engineer"},
-        {n:"Syed Shahnawaz Ahmed",c:"A",r:"Supervisor"},
-        {n:"Sami Hamdan",c:"A",r:"CCR Operator"},
-        {n:"Fawaz Al Qahtani",c:"A",r:"CCR Operator"},
-        {n:"Ahmed Fathy",c:"A",r:"CCR Operator"},
-        {n:"Abdulwahab Al-Shehab",c:"A",r:"CCR Operator"},
-        {n:"Shaheer Yousaf",c:"A",r:"CCR Operator"},
-        {n:"Purushothaman Devaraj",c:"A",r:"Local Operator"},
-        {n:"Mohamed Al Dossary",c:"A",r:"Local Operator"},
-        {n:"Abdullah Altulayhi",c:"A",r:"Local Operator"},
-        {n:"Bakr Abdulmajeed",c:"A",r:"Local Operator"},
-        {n:"Saad Salem Al Hajiri",c:"A",r:"Local Operator"},
-        {n:"Abdulhadi Mohammed Saleh",c:"A",r:"Local Operator"},
-        {n:"Abdullah Al Amri",c:"B",r:"Shift in Charge Engineer"},
-        {n:"Kanaka Naga Srinivasu Kolli",c:"B",r:"Supervisor"},
-        {n:"Prathapan",c:"B",r:"CCR Operator"},
-        {n:"Ahmed Fawaz",c:"B",r:"CCR Operator"},
-        {n:"Rashed Alhajri",c:"B",r:"CCR Operator"},
-        {n:"Saravanakumar Madhaiyan",c:"B",r:"CCR Operator"},
-        {n:"Abdullah Mohiddin Alshahrani",c:"B",r:"CCR Operator"},
-        {n:"Mohammed Mulhim",c:"B",r:"Local Operator"},
-        {n:"Mohammed Afnan",c:"B",r:"Local Operator"},
-        {n:"Abdelaziz Al Harbi",c:"B",r:"Local Operator"},
-        {n:"Amjad Alruwaytie",c:"B",r:"Local Operator"},
-        {n:"Abderahman Al Anezie",c:"B",r:"Local Operator"},
-        {n:"Alaa Alrefae",c:"C",r:"Shift in Charge Engineer"},
-        {n:"Moustafa Elansari",c:"C",r:"Supervisor"},
-        {n:"Abdullah Al Hajri",c:"C",r:"CCR Operator"},
-        {n:"Yasser Althuiqeb",c:"C",r:"CCR Operator"},
-        {n:"Waleed Fayad",c:"C",r:"CCR Operator"},
-        {n:"Norbie Cruz",c:"C",r:"CCR Operator"},
-        {n:"Khalid Saleh Khalousi",c:"C",r:"Local Operator"},
-        {n:"Saad Al Enize",c:"C",r:"Local Operator"},
-        {n:"Izhar Ali",c:"C",r:"Local Operator"},
-        {n:"Abderahman Al Baqmi",c:"C",r:"Local Operator"},
-        {n:"Ali Al Qahtani",c:"C",r:"Local Operator"},
-        {n:"Mustafa Salem",c:"D",r:"Shift in Charge Engineer"},
-        {n:"Veera Prasad",c:"D",r:"Supervisor"},
-        {n:"Lakshmy Prasad",c:"D",r:"CCR Operator"},
-        {n:"Saleh Mohammed Al Amri",c:"D",r:"CCR Operator"},
-        {n:"Hassan Arshad",c:"D",r:"CCR Operator"},
-        {n:"Ahmed Alsaqoor",c:"D",r:"CCR Operator"},
-        {n:"Rajesh Muniasamy",c:"D",r:"Local Operator"},
-        {n:"Mark Ramirez",c:"D",r:"Local Operator"},
-        {n:"Mohammed Al Ghamdi",c:"D",r:"Local Operator"},
-        {n:"Bader AlSubait",c:"D",r:"Local Operator"},
-        {n:"Faris Al Dawasri",c:"D",r:"Local Operator"},
-        {n:"Mohamed Al Hakami",c:"D",r:"Local Operator"},
-        {n:"Saad Al Shahrani",c:"D",r:"Local Operator"}
-    ];
-
-
-
-    var CP_MAP={};
-    CP_REG.forEach(function(m){ CP_MAP[m.n]=m; });
-    /* safe JSON for onclick attributes — double quotes → &quot; */
-    function qjs(v){ return JSON.stringify(v).replace(/"/g,'&quot;'); }
-
-    var CP_ROLE_COVERS={
-        'Local Operator':           ['Local Operator'],
-        'CCR Operator':             ['Local Operator','CCR Operator','Supervisor','Shift in Charge Engineer'],
-        'Supervisor':               ['Supervisor','Shift in Charge Engineer'],
-        'Shift in Charge Engineer': ['Supervisor','Shift in Charge Engineer']
-    };
-
-    /* ── helpers ── */
-    function cpSt(name,key){
-        if(CP_OV[name]&&CP_OV[name][key]) return CP_OV[name][key];
-        var m=CP_MAP[name]; if(!m) return 'O';
-        return (scheduleData[key]&&scheduleData[key][m.c])||'O';
-    }
-    function cpPK(key){ var p=key.split('/'),d=new Date(2026,+p[0]-1,+p[1]-1); return (d.getMonth()+1)+'/'+d.getDate(); }
-    function cpNK(key){ var p=key.split('/'),d=new Date(2026,+p[0]-1,+p[1]+1); return (d.getMonth()+1)+'/'+d.getDate(); }
-    function cpRoleOk(cn,an){ var cm=CP_MAP[cn],am=CP_MAP[an]; if(!cm||!am) return false; return (CP_ROLE_COVERS[cm.r]||[]).indexOf(am.r)!==-1; }
-    function cpColorOk(cn,an){ var c1=crewColorMap[cn]||'',c2=crewColorMap[an]||''; return c1!==''&&c1===c2; }
-    function cpEligible(cn,an,key,sh){
-        if(cpSt(cn,key)!=='O') return {ok:false,why:'Working or on leave'};
-        if(sh==='D'&&cpSt(cn,cpPK(key))==='N') return {ok:false,why:'Rest needed after Night shift'};
-        if(!cpRoleOk(cn,an)) return {ok:false,why:'Role not eligible'};
-        if(!cpColorOk(cn,an)) return {ok:false,why:'Different crew color group'};
-        return {ok:true};
-    }
-    function mkSp(s){ var c={D:['spD','DAY'],N:['spN','NIGHT'],O:['spO','OFF'],LEAVE:['spL','LEAVE'],SICK:['spS','SICK'],COVER:['spC','COVERING']}; var x=c[s]||c.O; return '<span class="spill '+x[0]+'">'+x[1]+'</span>'; }
-    function mkDot(cr){ return '<span class="crewdot crewdot-'+cr+'">'+cr+'</span>'; }
-    function cpID(n){ return 'cpx_'+n.replace(/[^a-zA-Z0-9]/g,'_'); }
-
-    /* ── OPEN ── */
-    function cpOpenPanel(dateObj, focusShift) {
-        CP_KEY=(dateObj.getMonth()+1)+'/'+dateObj.getDate();
-        CP_EID=null; CP_FC='all';
-        document.getElementById('coveragePanel').style.display='flex';
-        document.getElementById('cpTitle').textContent=dateObj.toLocaleDateString('en-US',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-        var td=scheduleData[CP_KEY]||{},nD=0,nN=0,nO=0;
-        ['A','B','C','D'].forEach(function(x){if(td[x]==='D')nD++;else if(td[x]==='N')nN++;else nO++;});
-        document.getElementById('cpSub').textContent=nD+' Day  |  '+nN+' Night  |  '+nO+' Off';
-        if(focusShift){
-            var fc=['A','B','C','D'].filter(function(c){return (td[c]||'O')===focusShift;});
-            if(fc.length===1){CP_FC=fc[0];}
-        }
-        document.querySelectorAll('.cpfbtn').forEach(function(b){b.classList.toggle('on',b.dataset.crew===CP_FC);});
-        cpRenderTbl(); cpBuildLv(null); cpPane('ov');
-    }
-
-    function cpPane(p){
-        document.querySelectorAll('.cptab').forEach(function(b){b.classList.toggle('on',b.dataset.pane===p);});
-        document.getElementById('cpPaneOv').style.display=p==='ov'?'':'none';
-        document.getElementById('cpPaneLv').style.display=p==='lv'?'':'none';
-        document.getElementById('cpFBar').style.display=p==='ov'?'':'none';
-    }
-
-    /* ── table ── */
-    function cpRenderTbl(){
-        var k=CP_KEY,fc=CP_FC,tbody=document.getElementById('cpTBody');
-        if(!tbody) return;
-        var rows='',lc=null;
-        CP_REG.forEach(function(m){
-            if(fc!=='all'&&m.c!==fc) return;
-            if(m.c!==lc){
-                var cs=(scheduleData[k]&&scheduleData[k][m.c])||'O';
-                rows+='<tr class="cpsecrow"><td colspan="5">Crew '+m.c+' &mdash; '+mkSp(cs)+'</td></tr>';
-                lc=m.c;
-            }
-            var st=cpSt(m.n,k);
-            var lr=(CP_LR[k]||[]).find(function(r){return r.absent===m.n;});
-            var cv=(CP_LR[k]||[]).find(function(r){return r.coverBy===m.n;});
-            var ds=lr?(lr.type==='Sick'?'SICK':'LEAVE'):cv?'COVER':st;
-            var note='';
-            if(lr) note='<br><small style="color:#b45309">'+lr.type+(lr.coverBy?' &bull; Cover: <b>'+lr.coverBy+'</b>':' &bull; <span style=color:#e53e3e>Unassigned</span>')+'</small>';
-            if(cv) note='<br><small style="color:#1e40af">&#9989; Covering <b>'+cv.absent+'</b></small>';
-            var id=cpID(m.n),cc=crewColorMap[m.n]||'';
-            rows+='<tr><td><span class="'+cc+'">'+m.n+'</span>'+note+'</td><td>'+mkDot(m.c)+'</td>'
-                +'<td style="font-size:.67rem;color:#888">'+m.r+'</td><td>'+mkSp(ds)+'</td>'
-                +'<td><button class="cpebtn" onclick="cpTogEdit('+qjs(id)+','+qjs(m.n)+')">&#9998;</button></td></tr>'
-                +'<tr class="cpeditrow" id="er_'+id+'" style="display:none"><td colspan="5"><div class="cpeditwrap" id="ew_'+id+'"></div></td></tr>';
-        });
-        tbody.innerHTML=rows;
-    }
-
-    /* ── edit ── */
-    function cpTogEdit(id,name){
-        if(CP_EID&&CP_EID!==id){var pr=document.getElementById('er_'+CP_EID);if(pr)pr.style.display='none';}
-        var row=document.getElementById('er_'+id); if(!row) return;
-        if(row.style.display!=='none'){row.style.display='none';CP_EID=null;return;}
-        CP_EID=id; row.style.display='';
-        var cur=cpSt(name,CP_KEY),w=document.getElementById('ew_'+id);
-        w.innerHTML='<span style="font-size:.7rem;color:#444">Change <b>'+name+'</b>:</span>'
-            +'<input type="password" class="cpepin" id="ep_'+id+'" maxlength="6" placeholder="PIN" autocomplete="off"/>'
-            +'<select class="cpesel" id="es_'+id+'"><option value="D"'+(cur==='D'?' selected':'')+'>&#9728; Day</option>'
-            +'<option value="N"'+(cur==='N'?' selected':'')+'>&#127769; Night</option>'
-            +'<option value="O"'+(cur==='O'?' selected':'')+'>&#9866; Off</option></select>'
-            +'<button class="cpebtnok" onclick="cpApplyEdit('+qjs(id)+','+qjs(name)+')">Apply</button>'
-            +'<button class="cpebtncanc" onclick="cpCancelEdit('+qjs(id)+')">Cancel</button>'
-            +'<span class="cpeerr" id="ee_'+id+'"></span>';
-        document.getElementById('ep_'+id).focus();
-    }
-    function cpCancelEdit(id){var r=document.getElementById('er_'+id);if(r)r.style.display='none';CP_EID=null;}
-    function cpApplyEdit(id,name){
-        var pin=document.getElementById('ep_'+id).value,ns=document.getElementById('es_'+id).value,err=document.getElementById('ee_'+id);
-        if(pin!==CP_PIN){err.textContent='Wrong PIN';err.style.display='';return;}
-        if(ns==='D'&&cpSt(name,cpPK(CP_KEY))==='N'){err.textContent='Cannot — finished Night yesterday';err.style.display='';return;}
-        if(ns==='N'&&cpSt(name,cpNK(CP_KEY))==='D'){err.textContent='Cannot — Day scheduled tomorrow';err.style.display='';return;}
-        if(!CP_OV[name])CP_OV[name]={};CP_OV[name][CP_KEY]=ns;cpCancelEdit(id);cpRenderTbl();
-    }
-
-    /* ── leave form ── */
-    function cpBuildLv(pre){
-        var k=CP_KEY,sel=document.getElementById('cpAbsSel'); if(!sel) return;
-        sel.innerHTML='<option value="">&#8212; Select member &#8212;</option>';
-        var lc='';
-        CP_REG.forEach(function(m){
-            var st=cpSt(m.n,k); if(st!=='D'&&st!=='N') return;
-            if(m.c!==lc){var og=document.createElement('optgroup');og.label='Crew '+m.c;sel.appendChild(og);lc=m.c;}
-            var opt=document.createElement('option');opt.value=m.n;
-            opt.textContent=m.n+' ('+(st==='D'?'Day':'Night')+') · '+m.r;
-            if(pre&&m.n===pre)opt.selected=true;
-            sel.lastChild.appendChild(opt);
-        });
-        cpRenderLog(); document.getElementById('cpRepCard').style.display='none';
-        if(pre) cpFindRep();
-    }
-    function cpRenderLog(){
-        var recs=CP_LR[CP_KEY]||[],d=document.getElementById('cpLeaveLog');
-        if(!recs.length){d.innerHTML='<p class="cpnrep">No leave records.</p>';return;}
-        d.innerHTML=recs.map(function(r){
-            return '<div class="cpal"><b>'+r.absent+'</b> <span class="spill '+(r.type==='Sick'?'spS':'spL')+'" style="font-size:.58rem">'+r.type+'</span> '
-                +(r.shift==='D'?'Day':'Night')+' &bull; '+(r.coverBy?'Cover: <b>'+r.coverBy+'</b>':'<span style=color:#e53e3e>Unassigned</span>')+'</div>';
-        }).join('');
-    }
-    function cpFindRep(){
-        var k=CP_KEY,absent=document.getElementById('cpAbsSel').value,err=document.getElementById('cpAbsErr');
-        if(!absent){document.getElementById('cpRepCard').style.display='none';return;}
-        err.style.display='none';
-        var st=cpSt(absent,k); if(st!=='D'&&st!=='N'){err.textContent='Not scheduled today';err.style.display='';return;}
-        var elig=[],inelig=[];
-        CP_REG.forEach(function(m){
-            if(m.n===absent)return;
-            var chk=cpEligible(m.n,absent,k,st);
-            if(chk.ok)elig.push(m);
-            else if(cpColorOk(m.n,absent))inelig.push({m:m,why:chk.why});
-        });
-        document.getElementById('cpRepCard').style.display='';
-        document.getElementById('cpRepCtx').innerHTML='<b>'+absent+'</b> &bull; '+(st==='D'?'Day':'Night')+' &bull; <span class="spill '+(CP_LT==='Sick'?'spS':'spL')+'">'+CP_LT+'</span>'
-            +'<br><small style="color:#888;font-size:.62rem">Rules: same color &bull; role hierarchy &bull; no post-Night conflict</small>';
-        var h='';
-        if(elig.length){
-            h+='<div style="font-size:.62rem;font-weight:700;color:#15803d;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">&#9989; Eligible ('+elig.length+')</div>';
-            h+=elig.map(function(m){
-                var cc=crewColorMap[m.n]||'';
-                return '<div class="cpri"><div><div class="cprin"><span class="'+cc+'">'+m.n+'</span> '+mkDot(m.c)+'</div>'
-                    +'<div class="cprim">'+m.r+' &bull; Off today</div>'+(cpSt(m.n,cpPK(k))!=='O'?'<span class="cprwarn">&#9888; Was '+cpSt(m.n,cpPK(k))+' yesterday</span>':'<span class="cprok">&#10003; No conflict</span>')+'</div>'
-                    +'<button class="cpabtn" onclick="cpAssign('+qjs(m.n)+','+qjs(absent)+','+qjs(st)+')">&#9989; Assign</button></div>';
-            }).join('');
-        } else h+='<p class="cpnrep">No eligible replacements match all rules.</p>';
-        if(inelig.length) h+='<details><summary style="font-size:.62rem;font-weight:700;color:#aaa;cursor:pointer;text-transform:uppercase">&#128683; Blocked same-color ('+inelig.length+')</summary>'
-            +inelig.map(function(x){return '<div style="padding:5px 10px;font-size:.68rem;color:#888;border-left:3px solid #fee2e2;margin:3px 0;background:#fff5f5;border-radius:0 5px 5px 0">'+x.m.n+' &mdash; <span style=color:#e53e3e>'+x.why+'</span></div>';}).join('')+'</details>';
-        document.getElementById('cpRepList').innerHTML=h;
-    }
-    function cpAssign(coverBy,absent,shift){
-        var k=CP_KEY,p=prompt('Supervisor PIN to confirm:\n\n'+coverBy+' covers '+absent+'\n'+(shift==='D'?'Day':'Night')+' shift  ·  '+CP_LT);
-        if(p===null)return; if(p!==CP_PIN){alert('Wrong PIN.');return;}
-        if(!CP_LR[k])CP_LR[k]=[];
-        CP_LR[k]=CP_LR[k].filter(function(r){return r.absent!==absent;});
-        var rec={absent:absent,coverBy:coverBy,type:CP_LT,shift:shift,dates:[k]};
-        CP_LR[k].push(rec);
-        if(!CP_OV[absent])CP_OV[absent]={};if(!CP_OV[coverBy])CP_OV[coverBy]={};
-        CP_OV[absent][k]=CP_LT==='Sick'?'SICK':'LEAVE';CP_OV[coverBy][k]=shift;
-        cpRenderTbl();cpBuildLv(null);
-        /* Mark base date immediately */
-        cpMarkCal([k], coverBy);
-        CP_PENDING={absent:absent,coverBy:coverBy,shift:shift,rec:rec,baseKey:k};
-        mmOpen(absent,coverBy,shift,k);
-    }
-
-    /* ── multi-date modal ── */
-    function mmOpen(absent,coverBy,shift,baseKey){
-        var am=CP_MAP[absent],dates=[];
-        var bd=new Date(2026,(+baseKey.split('/')[0])-1,+baseKey.split('/')[1]);
-        for(var d=1;d<=30;d++){
-            var dt=new Date(2026,bd.getMonth(),bd.getDate()+d);
-            if(dt.getFullYear()!==2026)break;
-            var k2=(dt.getMonth()+1)+'/'+dt.getDate();
-            var st2=(scheduleData[k2]&&am&&scheduleData[k2][am.c])||'O';
-            if(st2==='D'||st2==='N') dates.push({key:k2,dt:dt,shift:st2,ok:cpEligible(coverBy,absent,k2,st2).ok,why:cpEligible(coverBy,absent,k2,st2).why||''});
-        }
-        document.getElementById('mmTitle').textContent='Multi-Date Coverage Plan';
-        document.getElementById('mmSub').textContent=coverBy+' covering '+absent+'  ·  '+CP_LT;
-        var h='<div style="margin-bottom:10px;padding:8px 12px;background:#f0fdf4;border-radius:8px;border:1.5px solid #bbf7d0;font-size:.74rem"><b>&#9989; Assigned:</b> '+new Date(2026,(+baseKey.split('/')[0])-1,+baseKey.split('/')[1]).toLocaleDateString('en-US',{weekday:'short',day:'numeric',month:'short'})+'</div>';
-        if(!dates.length) h+='<p style="color:#aaa;font-size:.74rem;font-style:italic">No more scheduled dates in next 30 days.</p>';
-        else h+=dates.map(function(d){
-            var lbl=d.dt.toLocaleDateString('en-US',{weekday:'long',day:'numeric',month:'long'});
-            if(CP_OV[coverBy]&&CP_OV[coverBy][d.key]) return '<div style="padding:8px 12px;margin-bottom:5px;border-radius:8px;border:1.5px solid #dbeafe;background:#eff6ff;font-size:.74rem;color:#1e40af"><b>'+lbl+'</b> (already covered)</div>';
-            if(!d.ok) return '<div style="padding:8px 12px;margin-bottom:5px;border-radius:8px;border:1.5px solid #fee2e2;background:#fff5f5;font-size:.74rem;color:#888;opacity:.7"><b>'+lbl+'</b> &mdash; <span style=color:#e53e3e>'+d.why+'</span></div>';
-            return '<label style="display:flex;align-items:center;gap:10px;padding:9px 12px;margin-bottom:5px;border-radius:8px;border:1.5px solid #ede9f8;background:#faf8ff;cursor:pointer">'
-                +'<input type="checkbox" data-key="'+d.key+'" data-shift="'+d.shift+'" style="width:16px;height:16px;accent-color:#9273DA;flex-shrink:0" checked/>'
-                +'<div><div style="font-size:.74rem;font-weight:600;color:#2E2044">'+lbl+'</div>'
-                +'<div style="font-size:.62rem;color:#888">'+(d.shift==='D'?'&#9728; Day':'&#127769; Night')+'</div></div></label>';
-        }).join('');
-        document.getElementById('mmDateList').innerHTML=h;
-        document.getElementById('cpMultiModal').style.display='flex';
-    }
-    function mmSelectAll(v){document.querySelectorAll('#mmDateList input[type=checkbox]').forEach(function(c){c.checked=v;});}
-    function mmApply(){
-        if(!CP_PENDING)return;
-        var absent=CP_PENDING.absent,coverBy=CP_PENDING.coverBy,rec=CP_PENDING.rec;
-        var keys=[];
-        document.querySelectorAll('#mmDateList input[type=checkbox]:checked').forEach(function(cb){
-            var k2=cb.dataset.key,sh=cb.dataset.shift;
-            if(!CP_OV[absent])CP_OV[absent]={};if(!CP_OV[coverBy])CP_OV[coverBy]={};
-            CP_OV[absent][k2]=CP_LT==='Sick'?'SICK':'LEAVE';CP_OV[coverBy][k2]=sh;
-            if(!CP_LR[k2])CP_LR[k2]=[];
-            CP_LR[k2]=CP_LR[k2].filter(function(r){return r.absent!==absent;});
-            CP_LR[k2].push({absent:absent,coverBy:coverBy,type:CP_LT,shift:sh,dates:[k2]});
-            if(rec.dates.indexOf(k2)===-1)rec.dates.push(k2); keys.push(k2);
-        });
-        var _cb = CP_PENDING ? CP_PENDING.coverBy : null;
-        cpMarkCal(keys, _cb); cpRenderTbl(); cpRenderLog();
-        document.getElementById('cpMultiModal').style.display='none'; CP_PENDING=null;
-    }
-    function cpMarkCal(keys, coverBy){
-        /* Use data-cpk stamps set by cpPostBuild — reliable key matching */
-        document.querySelectorAll('.calendar-day[data-cpk]').forEach(function(cell){
-            var k=cell.getAttribute('data-cpk');
-            if(keys.indexOf(k)===-1) return;
-            /* Remove old badge */
-            var old=cell.querySelector('.cp-badge');if(old)old.remove();
-            /* Visual: purple left border + badge with name */
-            cell.style.borderLeft='4px solid #9273DA';
-            cell.style.boxShadow='inset 3px 0 0 rgba(146,115,218,.15)';
-            var b=document.createElement('div');
-            b.className='cp-badge';
-            b.style.cssText='font-size:.52rem;font-weight:700;background:#9273DA;color:#fff;'
-                +'border-radius:4px;padding:2px 6px;margin-top:3px;text-align:center;'
-                +'text-transform:uppercase;letter-spacing:.03em;line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
-            b.innerHTML='&#9989; ' + (coverBy ? coverBy.split(' ')[0] : 'Covered');
-            cell.appendChild(b);
-        });
-    }
-
-    /* ── hover tooltip ── */
-    function cpTipHTML(key,type){
-        var td=scheduleData[key]||{},crews=['A','B','C','D'].filter(function(c){return td[c]===type;});
-        if(!crews.length)return '<em style="color:rgba(255,255,255,.45);font-size:.7rem">No crew on this shift</em>';
-        var out='';
-        crews.forEach(function(crew){
-            out+='<div style="font-size:.58rem;font-weight:700;color:#D2F050;text-transform:uppercase;letter-spacing:.06em;margin:6px 0 3px;border-top:1px solid rgba(255,255,255,.1);padding-top:4px">Crew '+crew+'</div>';
-            CP_REG.filter(function(m){return m.c===crew;}).forEach(function(m){
-                var cc=crewColorMap[m.n]||'';
-                out+='<div style="display:flex;justify-content:space-between;padding:1px 0"><span class="'+cc+'" style="font-size:.7rem">'+m.n+'</span><span style="color:rgba(255,255,255,.35);font-size:.57rem;margin-left:8px">'+m.r+'</span></div>';
-            });
-        });
-        return out;
-    }
-    function cpTipShow(e,key,type){
-        var tt=document.getElementById('cpTip'); if(!tt) return;
-        tt.innerHTML='<div style="font-size:.65rem;font-weight:700;color:#fff;margin-bottom:5px">'+(type==='D'?'&#9728; Day Shift':'&#127769; Night Shift')+'</div>'+cpTipHTML(key,type);
-        tt.style.display='block'; cpTipMove(e);
-    }
-    function cpTipMove(e){
-        var tt=document.getElementById('cpTip'); if(!tt||tt.style.display==='none')return;
-        var x=e.clientX+16,y=e.clientY-10,tw=tt.offsetWidth||250,th=tt.offsetHeight||200;
-        if(x+tw>window.innerWidth-8)x=e.clientX-tw-10;
-        if(y+th>window.innerHeight-8)y=window.innerHeight-th-8;
-        tt.style.left=x+'px';tt.style.top=y+'px';
-    }
-    function cpTipHide(){var tt=document.getElementById('cpTip');if(tt)tt.style.display='none';}
-
-    /* ── post-build: add View Night/Day + wire delegation ── */
-    function cpPostBuild(){
-        document.querySelectorAll('.month-section').forEach(function(sec,mi){
-            sec.querySelectorAll('.calendar-day:not(.empty)').forEach(function(cell){
-                var ne=cell.querySelector('.date'); if(!ne) return;
-                var day=parseInt(ne.textContent.trim()),key=(mi+1)+'/'+day;
-                cell.setAttribute('data-cpk',key);
-                var isD=cell.classList.contains('day-shift'),isN=cell.classList.contains('night-shift');
-                if(!isD&&!isN) return;
-                var myT=isD?'D':'N',oppT=isD?'N':'D';
-                var mb=cell.querySelector('.view-crew-btn');
-                if(mb){mb.setAttribute('data-cpk',key);mb.setAttribute('data-cpt',myT);}
-                if(!cell.querySelector('.view-opp-btn')){
-                    var td=scheduleData[key]||{};
-                    if(['A','B','C','D'].some(function(c){return td[c]===oppT;})){
-                        var ob=document.createElement('button');
-                        ob.className='view-opp-btn';
-                        ob.innerHTML=oppT==='N'?'&#127769; View Night':'&#9728; View Day';
-                        ob.setAttribute('data-cpk',key);ob.setAttribute('data-cpt',oppT);
-                        cell.appendChild(ob);
-                    }
-                }
-            });
-        });
-    }
-    function cpWire(){
-        var con=document.getElementById('calendarContainer'); if(!con||con.cpWired) return;
-        con.cpWired=true;
-        con.addEventListener('click',function(e){
-            var btn=e.target.closest
-                ? e.target.closest('[data-cpk]')
-                : null;
-            if(!btn) return;
-            if(!btn.classList.contains('view-crew-btn')&&!btn.classList.contains('view-opp-btn')) return;
-            e.preventDefault(); e.stopPropagation();
-            var key=btn.getAttribute('data-cpk'),type=btn.getAttribute('data-cpt')||'D';
-            cpTipHide();
-            var p=key.split('/');
-            cpOpenPanel(new Date(2026,+p[0]-1,+p[1]),type);
-        },true);
-        con.addEventListener('mouseover',function(e){
-            var btn=e.target.closest?e.target.closest('[data-cpk]'):null;
-            if(!btn||(!(btn.classList.contains('view-crew-btn'))&&!(btn.classList.contains('view-opp-btn')))) return;
-            cpTipShow(e,btn.getAttribute('data-cpk'),btn.getAttribute('data-cpt')||'D');
-        });
-        con.addEventListener('mousemove',cpTipMove);
-        con.addEventListener('mouseout',function(e){
-            var btn=e.target.closest?e.target.closest('[data-cpk]'):null;
-            if(btn) cpTipHide();
-        });
-        window.addEventListener('scroll',cpTipHide,{passive:true});
-    }
-
-    /* ── DOMContentLoaded wiring ── */
-    document.addEventListener('DOMContentLoaded',function(){
-        document.getElementById('cpXBtn').addEventListener('click',function(){document.getElementById('coveragePanel').style.display='none';});
-        document.getElementById('coveragePanel').addEventListener('click',function(e){if(e.target.id==='coveragePanel')document.getElementById('coveragePanel').style.display='none';});
-        document.querySelectorAll('.cptab').forEach(function(b){b.addEventListener('click',function(){cpPane(b.dataset.pane);});});
-        document.querySelectorAll('.cpfbtn').forEach(function(b){
-            b.addEventListener('click',function(){CP_FC=b.dataset.crew;document.querySelectorAll('.cpfbtn').forEach(function(x){x.classList.toggle('on',x.dataset.crew===CP_FC);});cpRenderTbl();});
-        });
-        document.querySelectorAll('.cpltbtn').forEach(function(b){
-            b.addEventListener('click',function(){document.querySelectorAll('.cpltbtn').forEach(function(x){x.classList.remove('on');});b.classList.add('on');CP_LT=b.dataset.lt;});
-        });
-        document.getElementById('cpAbsSel').addEventListener('change',cpFindRep);
-        document.getElementById('cpFindBtn').addEventListener('click',cpFindRep);
-        /* Calendar already built — post-process it now */
-        cpPostBuild();
-        cpWire();
-        /* Wrap for future rebuilds */
-        if(typeof buildCalendar==='function'){
-            var _orig=buildCalendar;
-            buildCalendar=function(sh){_orig(sh);cpPostBuild();cpWire();};
-        }
-    });
-
-
-    /* ════════════════════════════════════════════════════════════
-       TEAM ABSENCE MODAL
-       ════════════════════════════════════════════════════════════ */
-    var TA_CREW='all', TA_TYPE='all', TA_SEARCH='';
-
-    function taOpen(){
-        taRender();
-        document.getElementById('taModal').style.display='flex';
-    }
-
-    function taRender(){
-        var today = (new Date().getMonth()+1)+'/'+(new Date().getDate());
-        /* Collect all leave records from CP_LR */
-        var records=[];
-        Object.keys(CP_LR).forEach(function(key){
-            (CP_LR[key]||[]).forEach(function(r){
-                records.push(Object.assign({},r,{dateKey:key}));
-            });
-        });
-
-        /* Apply filters */
-        var q=TA_SEARCH.trim().toLowerCase();
-        var filtered=records.filter(function(r){
-            var m=CP_MAP[r.absent];
-            if(TA_CREW!=='all'&&m&&m.c!==TA_CREW) return false;
-            if(TA_TYPE!=='all'&&r.type!==TA_TYPE) return false;
-            if(q&&r.absent.toLowerCase().indexOf(q)===-1&&
-                r.coverBy&&r.coverBy.toLowerCase().indexOf(q)===-1) return false;
-            return true;
-        });
-
-        /* Sort by date */
-        filtered.sort(function(a,b){
-            var pa=a.dateKey.split('/'),pb=b.dateKey.split('/');
-            return (+pa[0]*31+ +pa[1]) - (+pb[0]*31+ +pb[1]);
-        });
-
-        var body=document.getElementById('taBody');
-        if(!filtered.length){
-            body.innerHTML='<div class="ta-empty">&#128203; No absence records found.'
-                +'<br><small style="font-size:.7rem">Use the Leave &amp; Overtime tab in the Coverage Panel to record absences.</small></div>';
-            /* Update subtitle */
-            document.getElementById('taSubtitle').textContent='No records yet';
-            return;
-        }
-
-        /* Stats */
-        var nAnnual=filtered.filter(function(r){return r.type==='Annual';}).length;
-        var nSick  =filtered.filter(function(r){return r.type==='Sick';}).length;
-        var nEmerg =filtered.filter(function(r){return r.type==='Emergency';}).length;
-        var nUnassd=filtered.filter(function(r){return !r.coverBy;}).length;
-
-        document.getElementById('taSubtitle').textContent=
-            filtered.length+' record'+(filtered.length!==1?'s':'')+' · '+
-            Object.keys(CP_LR).length+' date'+(Object.keys(CP_LR).length!==1?'s':'');
-
-        var h='<div class="ta-stats">'
-            +'<div class="ta-stat"><div class="ta-stat-n" style="color:#9273DA">'+filtered.length+'</div><div class="ta-stat-l">Total</div></div>'
-            +'<div class="ta-stat"><div class="ta-stat-n" style="color:#b45309">'+nAnnual+'</div><div class="ta-stat-l">Annual</div></div>'
-            +'<div class="ta-stat"><div class="ta-stat-n" style="color:#b91c1c">'+nSick+'</div><div class="ta-stat-l">Sick</div></div>'
-            +'<div class="ta-stat"><div class="ta-stat-n" style="color:#1e40af">'+nEmerg+'</div><div class="ta-stat-l">Emergency</div></div>'
-            +'<div class="ta-stat"><div class="ta-stat-n" style="color:#e53e3e">'+nUnassd+'</div><div class="ta-stat-l">Unassigned</div></div>'
-            +'</div>';
-
-        /* Group by crew */
-        var crews=['A','B','C','D'];
-        crews.forEach(function(crew){
-            if(TA_CREW!=='all'&&crew!==TA_CREW) return;
-            var crewRecs=filtered.filter(function(r){var m=CP_MAP[r.absent];return m&&m.c===crew;});
-            if(!crewRecs.length) return;
-            var crewColor={'A':'#9273DA','B':'#2E2044','C':'#f97316','D':'#1e40af'};
-            h+='<div class="ta-crew-hdr" style="background:'+crewColor[crew]+';">'
-                +'<span>Crew '+crew+' &nbsp;&mdash;&nbsp; '+crewRecs.length+' record'+(crewRecs.length!==1?'s':'')+'</span>'
-                +'<span style="font-size:.6rem;opacity:.7">'+
-                crewRecs.filter(function(r){return r.coverBy;}).length+' covered &bull; '+
-                crewRecs.filter(function(r){return !r.coverBy;}).length+' unassigned</span>'
-                +'</div>';
-            h+='<div class="ta-card">'
-                +'<div class="ta-row ta-row-hd"><span>Absent Member</span><span>Date</span><span>Shift</span><span>Replacement</span><span>Type &amp; Status</span></div>';
-            crewRecs.forEach(function(r){
-                var cmap = crewColorMap||{};
-                var cc=cmap[r.absent]||'';
-                var isToday=r.dateKey===today;
-                var dateObj=new Date(2026,(+r.dateKey.split('/')[0])-1,+r.dateKey.split('/')[1]);
-                var dateLbl=dateObj.toLocaleDateString('en-US',{weekday:'short',day:'numeric',month:'short'});
-                var statusBadge=r.coverBy
-                    ?'<span class="spill spC" style="font-size:.58rem">Covered</span>'
-                    :'<span class="spill spS" style="font-size:.58rem">Unassigned</span>';
-                var typeBadge='<span class="spill '+(r.type==='Sick'?'spS':r.type==='Emergency'?'spS':'spL')+'" style="font-size:.58rem">'+r.type+'</span>';
-                var cvCc=r.coverBy?(cmap[r.coverBy]||''):'';
-                h+='<div class="ta-row'+(isToday?' today-row':'').replace('today-row','')
-                    +'" style="'+(isToday?'background:#fffde7;':'')+'">'
-                    +'<span><span class="'+cc+'" style="font-weight:600">'+r.absent+'</span>'+(isToday?' <span style="background:#D2F050;color:#2E2044;font-size:.52rem;font-weight:700;padding:1px 5px;border-radius:4px">TODAY</span>':'')+'</span>'
-                    +'<span style="font-size:.7rem;color:#666">'+dateLbl+'</span>'
-                    +'<span>'+(r.shift==='D'?'<span style="color:#1a6e14;font-size:.7rem">&#9728; Day</span>':'<span style="color:#9273DA;font-size:.7rem">&#127769; Night</span>')+'</span>'
-                    +'<span>'+(r.coverBy?'<span class="'+cvCc+'" style="font-size:.72rem">'+r.coverBy+'</span>':'<em style="color:#aaa;font-size:.68rem">None assigned</em>')+'</span>'
-                    +'<span style="display:flex;gap:4px;flex-wrap:wrap">'+typeBadge+statusBadge+'</span>'
-                    +'</div>';
-            });
-            h+='</div>';
-        });
-
-        body.innerHTML=h;
-    }
-
-    /* ── wire TA modal events ── */
-    document.addEventListener('DOMContentLoaded',function(){
-        /* close */
-        document.getElementById('taModal').addEventListener('click',function(e){
-            if(e.target.id==='taModal') document.getElementById('taModal').style.display='none';
-        });
-        /* crew filters */
-        document.querySelectorAll('[data-tacrew]').forEach(function(b){
-            b.addEventListener('click',function(){
-                TA_CREW=b.dataset.tacrew;
-                document.querySelectorAll('[data-tacrew]').forEach(function(x){x.classList.toggle('on',x.dataset.tacrew===TA_CREW);});
-                taRender();
-            });
-        });
-        /* type filters */
-        document.querySelectorAll('[data-tatype]').forEach(function(b){
-            b.addEventListener('click',function(){
-                TA_TYPE=b.dataset.tatype;
-                document.querySelectorAll('[data-tatype]').forEach(function(x){x.classList.toggle('on',x.dataset.tatype===TA_TYPE);});
-                taRender();
-            });
-        });
-        /* search */
-        document.getElementById('taSearch').addEventListener('input',function(){
-            TA_SEARCH=this.value; taRender();
-        });
-    });
-    //
-    var CPOV = {}, CPLR = {}, CPPENDING = null, CPEDIT_ID = null;
-    const CPPIN = "1234";
-
-    var CPREG = [
-        // SHIFT A
-        {n:"Zaid Almarri", c:"A", r:"Shift in Charge Engineer"},
-        {n:"Syed Shahnawaz Ahmed", c:"A", r:"Supervisor"},
-        {n:"Sami Hamdan", c:"A", r:"CCR Operator"},
-        {n:"Purushothaman Devaraj", c:"A", r:"Local Operator"},
-
-        // SHIFT B
-        {n:"Abdullah Al Amri", c:"B", r:"Shift in Charge Engineer"},
-        {n:"Kanaka Naga Srinivasu Kolli", c:"B", r:"Supervisor"},
-        {n:"Prathapan", c:"B", r:"CCR Operator"},
-        {n:"Mohammed Mulhim", c:"B", r:"Local Operator"},
-
-        // SHIFT C
-        {n:"Alaa Alrefae", c:"C", r:"Shift in Charge Engineer"},
-        {n:"Mustafa Ansari", c:"C", r:"Supervisor"},
-        {n:"Abdullah Al Hajri", c:"C", r:"CCR Operator"},
-        {n:"Khalid Saleh Khalousi", c:"C", r:"Local Operator"},
-
-        // SHIFT D
-        {n:"Mustafa Salem", c:"D", r:"Shift in Charge Engineer"},
-        {n:"Lakshmy Prasad", c:"D", r:"CCR Operator"},
-        {n:"Veera Prasad", c:"D", r:"CCR Operator"},
-        {n:"Ahmed Alsagoor", c:"D", r:"Local Operator"}
-    ];
-
-    var CPMAP = {};
-    CPREG.forEach(function(m){ CPMAP[m.n] = m; });
-
-    var CPROLECOVERS = {
-        "Local Operator": ["Local Operator"],
-        "CCR Operator": ["Local Operator","CCR Operator","Supervisor","Shift in Charge Engineer"],
-        "Supervisor": ["Supervisor","Shift in Charge Engineer"],
-        "Shift in Charge Engineer": ["Supervisor","Shift in Charge Engineer"]
-    };
-
-
-    // ══════════════════════════════════════════════════════════════════
-    //  HOVER COVERAGE TOOLTIP  — v20260314 FIXED (CCR color match)
-    // ══════════════════════════════════════════════════════════════════
-    (function() {
-        var tip = document.getElementById('cpTip');
-        if (!tip) {
-            tip = document.createElement('div');
-            tip.id = 'cpTip';
-            document.body.appendChild(tip);
-        }
-
-        function tipHide() {
-            tip.style.display = 'none';
-        }
-
-        function tipMove(e) {
-            if (tip.style.display === 'none') return;
-            var x = e.clientX + 18, y = e.clientY - 12;
-            var tw = 320, th = 220;
-            if (x + tw > window.innerWidth - 8) x = e.clientX - tw - 12;
-            if (y + th > window.innerHeight - 8) y = e.clientY - th - 8;
-            tip.style.left = x + 'px';
-            tip.style.top = y + 'px';
-        }
-
-        function getCoverCandidates(absentName, dateKey, shift) {
-            if (typeof CPREG === 'undefined' || typeof scheduleData === 'undefined') return [];
-            var absentEntry = (typeof CPMAP !== 'undefined') ? CPMAP[absentName] : null;
-            if (!absentEntry) return [];
-            var result = [];
-
-            CPREG.forEach(function (m) {
-                if (m.n === absentName) return;
-
-                // Must be OFF on this date
-                var st = (scheduleData[dateKey] || {})[m.c] || 'O';
-                if (typeof CPOV !== 'undefined' && CPOV[m.n] && CPOV[m.n][dateKey]) {
-                    st = CPOV[m.n][dateKey];
-                }
-                if (st !== 'O') return;
-
-                // Role eligibility
-                var covers = (typeof CPROLECOVERS !== 'undefined') ? CPROLECOVERS[m.r] : null;
-                if (covers && covers.indexOf(absentEntry.r) === -1) return;
-
-                // FIXED: CCR → SICE must be same color group
-                if (m.r === 'CCR Operator' && absentEntry.r.includes('Shift in Charge Engineer')) {
-                    var mColor = (typeof crewColorMap !== 'undefined') ? crewColorMap[m.n] : '';
-                    var siceColor = (typeof crewColorMap !== 'undefined') ? crewColorMap[absentName] : '';
-                    if (mColor !== siceColor) return;
-                }
-
-                // Different crew colour group (via crewColorMap)
-                if (typeof crewColorMap !== 'undefined') {
-                    var c1 = crewColorMap[m.n], c2 = crewColorMap[absentName];
-                    if (c1 && c2 && c1 === c2) return;
-                }
-                result.push(m);
-            });
-            return result;
-        }
-
-        function buildTipHTML(absentName, dateKey, shift) {
-            var candidates = getCoverCandidates(absentName, dateKey, shift);
-            var html = '<div class="tip-title">&#128270; Coverage for ' + absentName + '</div>';
-
-            if (candidates.length === 0) {
-                html += '<div class="tip-none">No eligible off-duty cover found</div>';
-                return html;
-            }
-
-            // Group by crew
-            var grouped = {A:[], B:[], C:[], D:[]};
-            candidates.forEach(function(m){ if(grouped[m.c]) grouped[m.c].push(m); });
-
-            ['A','B','C','D'].forEach(function(crew){
-                if (!grouped[crew].length) return;
-                html += '<div class="tip-crew-hdr">Crew ' + crew + '</div>';
-                grouped[crew].forEach(function(m){
-                    var roleAbbr = m.r.replace('Shift in Charge Engineer','ICE')
-                        .replace('Shift In Charge Engineer','ICE')
-                        .replace('CCR Operator','CCR')
-                        .replace('Local Operator','LO')
-                        .replace('Supervisor','SUP');
-                    var cc = (typeof crewColorMap !== 'undefined' && crewColorMap[m.n]) ? crewColorMap[m.n] : '';
-                    html += '<div style="display:flex;justify-content:space-between;padding:1px 0">'
-                        +  '<span class="tip-name ' + cc + '">' + m.n + '</span>'
-                        +  '<span class="tip-role">' + roleAbbr + '</span>'
-                        +  '</div>';
-                });
-            });
-
-            html += '<div class="tip-count">' + candidates.length + ' candidate'
-                + (candidates.length !== 1 ? 's' : '') + ' found</div>';
-            return html;
-        }
-
-        // ... rest of the wiring code stays exactly the same ...
-        // (mouseover/mousemove/mouseout + cpRenderTbl/cpOpenPanel hooks)
-    })();
-
-</script>
-<>
 
 </html>
+<!-- redeploy trigger: 2025-04-24 -->
